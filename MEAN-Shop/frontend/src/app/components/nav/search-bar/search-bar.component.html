@@ -1,0 +1,12 @@
+<div class="searchBar">
+    <div class="input-group">
+        <div class="inputSize">
+          <input type="search" class="form-control" 
+          placeholder="Buscar en Amazona"
+          (focus)="toggleFocus()" (blur)="toggleFocus()"/>
+        </div>
+        <button type="button" class="btn btn-primary ceramic" [ngClass]="cssSearchButton()">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+</div>

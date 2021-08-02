@@ -1,0 +1,59 @@
+.navbar {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.navbar-dark {
+    background-color: var(--charcoal);
+}
+.container-fluid {
+    justify-content: center;
+}
+.logo {
+    background-image: url(../../../assets/icon/amz_logo_wt_sm.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 45px;
+    order: 1;
+    width: 275px;
+}
+
+app-search-bar {
+    flex-grow: 5;
+    order: 3;
+}
+
+.navbar-nav.log{
+    flex-direction: row;
+}
+
+.endNavBar {
+    display: flex;
+    column-gap: 5px;
+}
+
+
+@media screen and (min-width: 475px) {
+    .logo {
+        height: 40px;
+        width: 250px;
+    }
+}
+@media screen and (min-width: 720px) {
+    .navbar {
+        flex-direction: row;
+    }
+    .logo {
+        height: 50px;
+        width: 198px;
+    }
+    app-search-bar {
+        order: 2;
+    }
+    .endNavBar {
+        order: 3;
+    }
+    .container-fluid {
+        justify-content: space-between;
+    }
+}

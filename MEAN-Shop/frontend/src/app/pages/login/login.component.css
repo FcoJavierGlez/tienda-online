@@ -1,0 +1,17 @@
+.box-container {
+    margin-top: 30px;
+}
+
+.pointer:hover {
+    cursor: pointer;
+}
+
+.text-green {
+    color: rgb(0, 190, 0);
+}
+
+@media screen and (min-width: 765px) {
+    .container {
+        max-width: 650px;
+    }
+}

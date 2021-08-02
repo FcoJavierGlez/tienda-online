@@ -1,0 +1,39 @@
+<div class="box-container">
+    <div class="container">
+        <h2>Login</h2>
+        <hr>
+        <form class="form" [formGroup]="form" (submit)="onSubmit($event)">
+
+            <!-- Email -->
+            <div class="form-group">
+                <div class="col-md-12" [ngClass]="divFormGroupCss('email')">
+                    <label for="email" class="form-label required">Correo</label>
+                    <input type="email" name="email" id="email" formControlName="email" class="form-control">
+                    <div *ngIf="form.get('email')?.touched && form.get('email')?.invalid" class="text-danger">{{ getErrorMessage('email') }}</div>
+                </div>
+            </div>
+
+            <!-- Contraseña -->
+            <div class="form-group">
+                <div class="col-md-12" [ngClass]="divFormGroupCss('password')">
+                    <label for="password" class="form-label required">Contraseña</label>
+                    <div class="input-group">
+                        <div class="input-group-text pointer" (click)="toggleInputPassword($event)">
+                            <i class="fas fa-eye text-green" *ngIf="password.type == 'password'; else hidePassword"></i>
+                            <ng-template #hidePassword>
+                                <i class="fas fa-eye-slash text-danger"></i>
+                            </ng-template>
+                        </div>
+                        <input type="password" #password name="password" id="password" formControlName="password" class="form-control">
+                    </div>
+                    <div *ngIf="form.get('password')?.touched && form.get('password')?.invalid" class="text-danger">{{ getErrorMessage('password') }}</div>
+                </div>
+            </div>
+            
+            <div class="button-main-panel">
+                <button class="btn ceramic">Aceptar</button>
+            </div>
+        </form>
+    </div>
+</div>
+

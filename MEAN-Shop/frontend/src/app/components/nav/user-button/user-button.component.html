@@ -1,0 +1,12 @@
+<div class="iconUser frame" (click)="showMenu()">
+    <div class="userbox" *ngIf="!login; else userButtonLogged">
+        <i class="far fa-user-circle"></i>
+        <div>Inicia sesión</div>
+    </div>
+    <ng-template #userButtonLogged>
+        <div class="userbox">
+            <i class="fas fa-user-circle"></i>
+            <div>Bienvenido/a</div>
+        </div>
+    </ng-template>
+</div>

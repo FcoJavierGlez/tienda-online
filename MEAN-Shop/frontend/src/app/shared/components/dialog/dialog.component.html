@@ -1,0 +1,16 @@
+<div class="dialog">
+    <h2 mat-dialog-title>{{ data.title }}</h2>
+    <mat-dialog-content class="mat-typography">
+        <div *ngIf="data?.alertMessage; else commonMessage">
+            <p class="text-danger bold">{{ data.message }}</p>
+            <p *ngIf="data?.continueMessage">¿Desea continuar?</p>
+        </div>
+        <ng-template #commonMessage>
+            <p>{{ data.message }}</p>
+        </ng-template>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button [mat-dialog-close]="false" cdkFocusInitial class="btn btn-danger" *ngIf="data?.optionButtons">No</button>
+        <button mat-button [mat-dialog-close]="true" class="btn btn-success">{{ data.optionButtons ? 'Sí' : 'Aceptar'}}</button>
+    </mat-dialog-actions>
+</div>

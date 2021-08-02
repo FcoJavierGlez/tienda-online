@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-md navbar-dark">
+    <div class="container-fluid">
+        <a href="/"class="frame">
+            <div class="logo"></div>
+        </a>
+
+        <app-search-bar></app-search-bar>
+
+        <div class="endNavBar">
+            <app-user-button [login]="login"></app-user-button>
+            <app-cart-button [login]="login"></app-cart-button>
+        </div>
+
+
+        <!-- <div *ngIf="!login; else logout">
+            <ul class="navbar-nav log">
+                <li class="nav-item">
+                    <a routerLink="/login" [routerLinkActive]="'active'" class="nav-link">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/register" [routerLinkActive]="'active'" class="nav-link">Register</a>
+                </li>
+            </ul>
+        </div>
+        <ng-template #logout>
+            <button class="btn btn-danger" (click)="logOut()">Logout</button>
+        </ng-template> -->
+    </div>
+</nav>

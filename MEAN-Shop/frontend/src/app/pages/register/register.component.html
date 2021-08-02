@@ -1,0 +1,75 @@
+<div class="box-container">
+    <div class="container" *ngIf="!tokenActivate; else activateAccount">
+        <h2>Registro</h2>
+        <hr>
+        <form class="form" [formGroup]="form" (submit)="onSubmit($event)">
+
+            <!-- Nombre -->
+            <div class="form-group row">
+                <div class="col-md-12" [ngClass]="divFormGroupCss('name')">
+                    <label for="name" class="form-label required">Nombre</label>
+                    <input type="text" name="name" id="name" formControlName="name" class="form-control">
+                    <div *ngIf="form.get('name')?.touched && form.get('name')?.invalid" class="text-danger">{{ getErrorMessage('name') }}</div>
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <div class="col-md-12" [ngClass]="divFormGroupCss('email')">
+                    <label for="email" class="form-label required">Correo</label>
+                    <input type="email" name="email" id="email" formControlName="email" class="form-control">
+                    <div *ngIf="form.get('email')?.touched && form.get('email')?.invalid" class="text-danger">{{ getErrorMessage('email') }}</div>
+                </div>
+            </div>
+
+            <!-- Contraseña -->
+            <div class="form-group">
+                <div class="col-md-12" [ngClass]="divFormGroupCss('password')">
+                    <label for="password" class="form-label required">Contraseña</label>
+                    <div class="input-group">
+                        <div class="input-group-text pointer" (click)="toggleInputPassword($event)">
+                            <i class="fas fa-eye text-green" *ngIf="password.type == 'password'; else hidePassword"></i>
+                            <ng-template #hidePassword>
+                                <i class="fas fa-eye-slash text-danger"></i>
+                            </ng-template>
+                        </div>
+                        <input type="password" #password name="password" id="password" formControlName="password" class="form-control">
+                    </div>
+                    <div *ngIf="form.get('password')?.touched && form.get('password')?.invalid" class="text-danger">{{ getErrorMessage('password') }}</div>
+                </div>
+            </div>
+
+            <!-- Repetir contraseña -->
+            <div class="form-group">
+                <div class="col-md-12" [ngClass]="divFormGroupCss('repeatPassword')">
+                    <label for="repeatPassword" class="form-label required">Repetir contraseña</label>
+                    <div class="input-group">
+                        <div class="input-group-text pointer" (click)="toggleInputPassword($event)">
+                            <i class="fas fa-eye text-green" *ngIf="repeatPassword.type == 'password'; else hideRepeatPassword"></i>
+                            <ng-template #hideRepeatPassword>
+                                <i class="fas fa-eye-slash text-danger"></i>
+                            </ng-template>
+                        </div>
+                        <input type="password" #repeatPassword name="repeatPassword" id="repeatPassword" formControlName="repeatPassword" class="form-control">
+                    </div>
+                    <div *ngIf="form.get('repeatPassword')?.touched && form.get('repeatPassword')?.invalid" class="text-danger">{{ getErrorMessage('repeatPassword') }}</div>
+                </div>
+            </div>
+            
+            <div class="button-main-panel">
+                <button class="btn ceramic">Aceptar</button>
+            </div>
+        </form>
+    </div>
+
+    <ng-template #activateAccount>
+        <div class="container">
+            <h2>Activar cuenta</h2>
+            <hr>
+            <div class="text-center">{{ messageActivate }}</div>
+            <div *ngIf="messageActivate !== 'Activando cuenta...'" class="buttons-panel">
+                <button class="btn btn-success" (click)="goLogin()">Aceptar</button>
+            </div>
+        </div>
+    </ng-template>
+</div>

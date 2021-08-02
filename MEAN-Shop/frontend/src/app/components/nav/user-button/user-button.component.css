@@ -1,0 +1,20 @@
+.iconUser {
+    color: white;
+    height: 52px;
+    padding: 5px 4px;
+    text-decoration: none;
+    width: 100px;
+}
+.userbox {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.iconUser .far {
+    color: var(--ceramic_dark);
+}
+
+.iconUser .fas {
+    color: var(--ceramic);
+}
