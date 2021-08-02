@@ -22,7 +22,6 @@ export class NavComponent implements OnInit, DoCheck {
   
   logOut(): void {
     this.appCookies.logout();
-    //this.profileSvc.resetProfile();
     this.router.navigate(['/']);
   }
 }
