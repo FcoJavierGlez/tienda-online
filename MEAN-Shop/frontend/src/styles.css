@@ -5,7 +5,7 @@
     --ceramic_dark: #CE7829;
 }
 
-html, body { height: 100%; }
+html, body { height: 100%; background-color: rgb(235,235,235); }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 h1,

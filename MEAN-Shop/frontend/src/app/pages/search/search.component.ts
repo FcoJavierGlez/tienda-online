@@ -1,28 +1,32 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit, DoCheck, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { SearchService } from 'src/app/shared/services/search.service';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit, DoCheck {
+export class SearchComponent implements OnInit, DoCheck, OnDestroy {
 
   search!: string;
+  products!: any[];
 
-  constructor( private params: ActivatedRoute ) { 
-    
-  }
+  constructor( private params: ActivatedRoute, private searchSvc: SearchService ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
     this.params.queryParams.subscribe(
-      param => this.search = param['s']
+      param => {
+        this.search = param['s'];
+        this.searchSvc.search( this.search ).subscribe(
+          data => this.products = data
+        );
+      }
     );
-    console.log(this.search);
   }
 
-  ngDoCheck(): void {
-    console.log(this.search);
-  }
+  ngDoCheck(): void { }
+
+  ngOnDestroy(): void { }
 
 }

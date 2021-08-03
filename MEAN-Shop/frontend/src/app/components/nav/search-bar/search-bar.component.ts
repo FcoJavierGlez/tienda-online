@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SearchService } from 'src/app/shared/services/search.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -11,7 +12,7 @@ export class SearchBarComponent implements OnInit {
   focus: boolean = false;
   textSearch: string = '';
 
-  constructor( private router: Router  ) { }
+  constructor( private router: Router, private searchSvc: SearchService ) { }
 
   ngOnInit(): void {
 
@@ -20,9 +21,10 @@ export class SearchBarComponent implements OnInit {
   search(): void {
     if ( this.textSearch.replace(/\s+/g, '') == '' ) this.router.navigate(['/search']);
     else {
-      const SEARCH = this.textSearch.trim().replace(/\s+/g, ' ').replace(/\s/g, '%20');
+      //const SEARCH = this.textSearch.trim().replace(/\s+/g, ' ');
+      const ROUTE = this.textSearch.trim().replace(/\s+/g, ' ').replace(/\s/g, '%20');
       this.textSearch = '';
-      this.router.navigateByUrl(`/search?s=${SEARCH}`);
+      this.router.navigateByUrl( `/search?s=${ROUTE}` );
     }
   }
 
