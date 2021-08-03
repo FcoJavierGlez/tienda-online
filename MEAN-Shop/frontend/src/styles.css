@@ -5,6 +5,9 @@
     --ceramic_dark: #CE7829;
 }
 
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
 h1,
 h2,
 h3,
@@ -12,6 +15,14 @@ h4,
 h5,
 h6 {
     text-align: center;
+}
+
+/* Panel buttons */
+.button-main-panel {
+    margin: 0 auto;
+}
+.button-main-panel button {
+    width: 100%;
 }
 
 /* Button success color */
@@ -25,6 +36,27 @@ h6 {
     border-color: #19921f;
 }
 
+/* Ceramic buttons */
+.ceramic {
+    background: linear-gradient(180deg, var(--ceramic) 0%, var(--ceramic_dark) 100%);
+    border: 2px solid var(--charcoal);
+    color: white;
+}
+.ceramic:hover {
+    background: linear-gradient(180deg, var(--ceramic_light) 0%, var(--ceramic) 100%);
+    border: 2px solid var(--charcoal);
+    color: var(--charcoal);
+}
+.ceramic:focus {
+    box-shadow: 0 0 0 0.25rem rgb(255 176 58 / 25%);
+}
+
+/* Navbar */
+.navbar .fas,
+.navbar .far {
+    font-size: 22px;
+}
+
 /* Formularios */
 form.form-group {
     margin-bottom: 15px;
@@ -34,7 +66,6 @@ form label {
     font-weight: bold;
     margin-top: 15px;
 }
-
 form label.required:after { 
     color: #d00;
     content: "*";
@@ -115,53 +146,4 @@ form .input-group-text {
 
 form i.fas {
     font-size: 20px;
-}
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-.navbar .container-fluid div.navbar-collapse {
-    flex-basis: auto!important;
-}
-
-.navbar-nav {
-    flex-direction: row!important;
-}
-
-.navbar .fas,
-.navbar .far {
-    font-size: 22px;
-}
-
-.frame {
-    border: 1px solid transparent;
-    border-radius: 3px;
-}
-.frame:hover {
-    border: 1px solid white;
-    border-radius: 3px;
-    cursor: pointer;
-}
-
-.button-main-panel {
-    margin: 0 auto;
-}
-
-.button-main-panel button {
-    width: 100%;
-}
-
-.ceramic {
-    background: linear-gradient(180deg, var(--ceramic) 0%, var(--ceramic_dark) 100%);
-    border: 2px solid var(--charcoal);
-    color: white;
-}
-
-.ceramic:hover {
-    background: linear-gradient(180deg, var(--ceramic_light) 0%, var(--ceramic) 100%);
-    border: 2px solid var(--charcoal);
-    color: var(--charcoal);
-}
-
-.ceramic:focus {
-    box-shadow: 0 0 0 0.25rem rgb(255 176 58 / 25%);
 }
