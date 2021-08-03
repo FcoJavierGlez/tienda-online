@@ -18,3 +18,19 @@
 .iconUser .fas {
     color: var(--ceramic);
 }
+
+button.mat-focus-indicator.mat-menu-item {
+    background: linear-gradient(180deg, var(--ceramic) 0%, var(--ceramic_dark) 100%);
+    border: 2px solid black;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    margin: 8px 4px;
+    text-align: center;
+    width: 160px;
+}
+
+button.mat-focus-indicator.mat-menu-item:hover {
+    background: linear-gradient(180deg, var(--ceramic_light) 0%, var(--ceramic) 100%);
+    color: black;
+}

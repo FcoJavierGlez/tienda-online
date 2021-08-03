@@ -151,13 +151,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .ceramic {
-    background-color: var(--ceramic);
+    background: linear-gradient(180deg, var(--ceramic) 0%, var(--ceramic_dark) 100%);
     border: 2px solid var(--charcoal);
     color: white;
 }
 
 .ceramic:hover {
-    background-color: var(--ceramic_light);
+    background: linear-gradient(180deg, var(--ceramic_light) 0%, var(--ceramic) 100%);
     border: 2px solid var(--charcoal);
     color: var(--charcoal);
 }

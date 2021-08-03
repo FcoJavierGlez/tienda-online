@@ -1,4 +1,4 @@
-<div class="iconUser frame" (click)="showMenu()">
+<div class="iconUser frame" [matMenuTriggerFor]="menu">
     <div class="userbox" *ngIf="!login; else userButtonLogged">
         <i class="far fa-user-circle"></i>
         <div>Inicia sesión</div>
@@ -10,3 +10,12 @@
         </div>
     </ng-template>
 </div>
+<mat-menu #menu="matMenu">
+    <div *ngIf="!login; else menuLoggedIn">
+        <button mat-menu-item (click)="goTo('/login')">Iniciar sesión</button>
+        <button mat-menu-item (click)="goTo('/register')">Crear cuenta</button>
+    </div>
+    <ng-template #menuLoggedIn>
+        <button mat-menu-item (click)="logout()">Cerrar sesión</button>
+    </ng-template>
+</mat-menu>
