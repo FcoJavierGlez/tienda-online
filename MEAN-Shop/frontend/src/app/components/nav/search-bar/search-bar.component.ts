@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-bar',
@@ -8,11 +9,21 @@ import { Component, OnInit } from '@angular/core';
 export class SearchBarComponent implements OnInit {
 
   focus: boolean = false;
+  textSearch: string = '';
 
-  constructor() { }
+  constructor( private router: Router  ) { }
 
   ngOnInit(): void {
 
+  }
+
+  search(): void {
+    if ( this.textSearch.replace(/\s+/g, '') == '' ) this.router.navigate(['/search']);
+    else {
+      const SEARCH = this.textSearch.trim().replace(/\s+/g, ' ').replace(/\s/g, '%20');
+      this.textSearch = '';
+      this.router.navigateByUrl(`/search?s=${SEARCH}`);
+    }
   }
 
   toggleFocus(): void {

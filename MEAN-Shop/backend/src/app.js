@@ -6,6 +6,7 @@ import './database';
 import accessRoutes from './routes/access.routes';
 import productRoutes from './routes/product.routes';
 import cartRoutes from './routes/cart.routes';
+import searchRoutes from './routes/search.routes';
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.use( express.urlencoded( { extended: false } ) );
 app.use( '/api/access', accessRoutes );
 app.use( '/api/product', productRoutes );
 app.use( '/api/cart', cartRoutes );
+app.use( '/api/search', searchRoutes );
 
 
 app.get('/', (req,res) => {

@@ -3,9 +3,9 @@
         <div class="inputSize">
           <input type="search" class="form-control" 
           placeholder="Buscar en Amazona"
-          (focus)="toggleFocus()" (blur)="toggleFocus()"/>
+          (focus)="toggleFocus()" (blur)="toggleFocus()" [(ngModel)]="textSearch" (keyup.enter)="search()"/>
         </div>
-        <button type="button" class="btn btn-primary ceramic" [ngClass]="cssSearchButton()">
+        <button type="button" class="btn btn-primary ceramic" [ngClass]="cssSearchButton()" (click)="search()">
           <i class="fas fa-search"></i>
         </button>
       </div>

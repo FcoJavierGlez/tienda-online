@@ -13,6 +13,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { CartButtonComponent } from './components/nav/cart-button/cart-button.component';
 import { SearchBarComponent } from './components/nav/search-bar/search-bar.component';
 import { UserButtonComponent } from './components/nav/user-button/user-button.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { UserButtonComponent } from './components/nav/user-button/user-button.co
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    FormsModule,
     MatMenuModule,
     PagesModule
   ],

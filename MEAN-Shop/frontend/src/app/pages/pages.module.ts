@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CartComponent } from './cart/cart.component';
+import { SearchComponent } from './search/search.component';
 
 
 
@@ -17,7 +18,8 @@ import { CartComponent } from './cart/cart.component';
     RegisterComponent,
     LoginComponent,
     ProfileComponent,
-    CartComponent
+    CartComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule,
