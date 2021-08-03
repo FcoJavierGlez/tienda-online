@@ -13,7 +13,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
-    height: 50px;
+    height: 52px;
     order: 1;
     width: 275px;
 }
@@ -52,7 +52,6 @@ app-search-bar {
         flex-direction: row;
     }
     .logo {
-        height: 52px;
         width: 198px;
     }
     app-search-bar {
