@@ -3,10 +3,20 @@
         <div class="inputSize">
           <input type="search" class="form-control" 
           placeholder="Buscar en Amazona"
-          (focus)="toggleFocus()" (blur)="toggleFocus()" [(ngModel)]="textSearch" (keyup.enter)="search()"/>
+          (focus)="toggleFocus()" 
+          (blur)="toggleFocus()" 
+          [(ngModel)]="textSearch" 
+          (keyup.enter)="search()"
+          (keyup)="getSuggestions()"
+          [matAutocomplete]="auto"/> <!--  *ngIf="!textSearch.length" -->
         </div>
         <button type="button" class="btn btn-primary ceramic" [ngClass]="cssSearchButton()" (click)="search()">
           <i class="fas fa-search"></i>
         </button>
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let suggestion of suggestions" [value]="suggestion.name">
+            {{suggestion.name}}
+          </mat-option>
+        </mat-autocomplete>
       </div>
 </div>

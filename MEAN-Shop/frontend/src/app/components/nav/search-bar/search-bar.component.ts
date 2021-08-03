@@ -12,6 +12,8 @@ export class SearchBarComponent implements OnInit {
   focus: boolean = false;
   textSearch: string = '';
 
+  suggestions!: any[] | null;
+
   constructor( private router: Router, private searchSvc: SearchService ) { }
 
   ngOnInit(): void {
@@ -26,6 +28,16 @@ export class SearchBarComponent implements OnInit {
       this.textSearch = '';
       this.router.navigateByUrl( `/search?s=${ROUTE}` );
     }
+  }
+
+  getSuggestions() {
+    if (!this.textSearch.length) this.suggestions = [];
+    else
+    this.searchSvc.suggestions( this.textSearch ).subscribe(
+      data => {
+        this.suggestions = data;
+      }
+    )
   }
 
   toggleFocus(): void {

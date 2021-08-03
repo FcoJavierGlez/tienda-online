@@ -14,4 +14,8 @@ export class SearchService {
   search(search: string): Observable<any> {
     return this.http.post<any>( `${this.URL}/product`, { search: search } );
   }
+
+  suggestions(search: string): Observable<any[] | null> {
+    return this.http.post<any>( this.URL, { search: search } );
+  }
 }
