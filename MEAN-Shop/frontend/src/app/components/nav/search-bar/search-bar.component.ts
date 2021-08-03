@@ -21,12 +21,12 @@ export class SearchBarComponent implements OnInit {
   }
 
   search(): void {
-    if ( this.textSearch.replace(/\s+/g, '') == '' ) this.router.navigate(['/search']);
+    if ( this.textSearch.replace(/\s+/g, '') == '' ) this.router.navigate(['/products']);
     else {
       //const SEARCH = this.textSearch.trim().replace(/\s+/g, ' ');
       const ROUTE = this.textSearch.trim().replace(/\s+/g, ' ').replace(/\s/g, '%20');
       this.textSearch = '';
-      this.router.navigateByUrl( `/search?s=${ROUTE}` );
+      this.router.navigateByUrl( `/products?s=${ROUTE}` );
     }
   }
 
