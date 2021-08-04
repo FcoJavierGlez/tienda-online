@@ -8,7 +8,7 @@
           [(ngModel)]="textSearch" 
           (keyup.enter)="search()"
           (keyup)="getSuggestions()"
-          [matAutocomplete]="auto"/> <!--  *ngIf="!textSearch.length" -->
+          [matAutocomplete]="auto"/>
         </div>
         <button type="button" class="btn btn-primary ceramic" [ngClass]="cssSearchButton()" (click)="search()">
           <i class="fas fa-search"></i>
