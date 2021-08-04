@@ -8,8 +8,15 @@ const UTILS = (
                 numHexadecimal += CHARACTERS[parseInt( Math.random() * CHARACTERS.length )];
             return numHexadecimal;
         }
+        const normalizeSearchRegExp = input => input.replace( /\s+/g, " " )
+                                        .replace( /[aá]/gi, "(a|á)" )
+                                        .replace( /[eé]/gi, "(e|é)" )
+                                        .replace( /[ií]/gi, "(i|í)" )
+                                        .replace( /[oó]/gi, "(o|ó)" )
+                                        .replace( /[uú]/gi, "(u|ú)" );
         return {
             genHexa: genHexa,
+            normalizeSearchRegExp: normalizeSearchRegExp
         }
     }
 )();
