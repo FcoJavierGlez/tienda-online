@@ -10,11 +10,13 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { LoggedInGuard } from './shared/guards/logged-in.guard';
 import { CartComponent } from './pages/cart/cart.component';
 import { ProductsComponent } from './pages/products/products.component';
+import { ViewProductComponent } from './pages/view-product/view-product.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'cart', component: CartComponent },
   { path: 'products', component: ProductsComponent },
+  { path: 'product/:id', pathMatch: 'full', component: ViewProductComponent },
   { path: 'login', component: LoginComponent, canActivate: [InvitedGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [InvitedGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [LoggedInGuard] },

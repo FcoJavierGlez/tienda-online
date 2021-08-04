@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SearchService } from 'src/app/shared/services/search.service';
 
+import { Tag } from 'src/app/shared/interfaces/tag';
+
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
@@ -12,7 +14,7 @@ export class SearchBarComponent implements OnInit {
   focus: boolean = false;
   textSearch: string = '';
 
-  suggestions!: any[] | null;
+  suggestions!: Tag[] | null;
 
   constructor( private router: Router, private searchSvc: SearchService ) { }
 

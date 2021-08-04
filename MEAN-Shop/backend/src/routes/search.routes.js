@@ -3,8 +3,10 @@ import searchCtl from '../controllers/search.controller';
 
 const router = Router();
 
-router.post( '/', searchCtl.search );
+router.post( '/', searchCtl.suggestions );
 
-router.post( '/product', searchCtl.searchProduct );
+router.post( '/product', searchCtl.search );
+
+router.get( '/product/:id', searchCtl.viewProduct );
 
 export default router;

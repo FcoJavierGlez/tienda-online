@@ -3,7 +3,7 @@ import Product from "../models/Product.model";
 import utils from '../lib/utils';
 
 const searchController = {
-    search: async function (req,res) {
+    suggestions: async function (req,res) {
         try {
             const regexSearch = utils.normalizeSearchRegExp(req.body.search);
             const searchTag = await Tag.find( { name: new RegExp( regexSearch, 'i' ) } )
@@ -15,7 +15,7 @@ const searchController = {
             res.status(500).json( { success: false, message: 'Ha habido un error al procesar su solicitud' } );
         }
     },
-    searchProduct: async function (req,res) {
+    search: async function (req,res) {
         try {
             let searchProduct;
 
@@ -31,6 +31,15 @@ const searchController = {
                 await Tag.findByIdAndUpdate( tag._id, { $inc: { search: 1 } });
                 searchProduct = await Product.find( { tags: tag.name } );
             }
+            res.status(200).json( searchProduct );
+        } catch (error) {
+            console.log(error);
+            res.status(500).json( { success: false, message: 'Ha habido un error al procesar su solicitud' } );
+        }
+    },
+    viewProduct: async function (req,res) {
+        try {
+            const searchProduct = await Product.findById( req.params.id );
             res.status(200).json( searchProduct );
         } catch (error) {
             console.log(error);

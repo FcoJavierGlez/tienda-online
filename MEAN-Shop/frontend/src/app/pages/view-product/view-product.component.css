@@ -1,0 +1,98 @@
+.view-product {
+    display: grid;
+    grid-template-columns: 60px auto;
+    min-height: 840px;
+    margin-top: 30px;
+}
+
+.images-list {
+    align-items: center;
+    display: flex;
+    flex-flow: column;
+    margin-top: 30px;
+    row-gap: 15px;
+}
+.info {
+    display: grid;
+    grid-template-columns: 55% 45%;
+}
+.photo {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 95%;
+}
+.photo img {
+    max-height: 800px;
+    max-width: 90%;
+}
+.text {
+    padding-top: 15px;
+    width: 100%;
+}
+.text p {
+    color: black;
+    padding: 0 12px;
+    text-align: justify;
+}
+.show-price {
+    column-gap: 6px;
+    display: grid;
+    grid-template-columns: max-content auto;
+    padding: 0 12px;
+}
+.show-price p {
+    font-size: 14px;
+    margin-bottom: 0;
+    padding: 0;
+}
+.show-price p.old-price {
+    color: rgb(125,125,125);
+    display: flex;
+    justify-content: flex-end;
+}
+.show-price p.final-price {
+    color: black;
+    font-size: 15px;
+}
+span.line {
+    color: black;
+    text-decoration: line-through;
+}
+span.offer {
+    color: rgb(200,0,0);
+}
+span.price {
+    font-size: 16px;
+    font-weight: 500;
+}
+.buy-panel {
+    border: 2px solid var(--charcoal);
+    border-radius: 10px;
+    height: 500px;
+    margin: 10px;
+    margin-top: 15px;
+}
+
+.text .buttons-panel {
+    justify-content: center;
+}
+.text button {
+    border-radius: 50px;
+    min-width: 180px;
+}
+.ceramic {
+    background: linear-gradient(180deg, var(--ceramic_light) 0%, var(--ceramic) 100%);
+    color: black;
+}
+.ceramic:hover {
+    background: linear-gradient(180deg, var(--ceramic_light) 0%, var(--ceramic_dark) 100%);
+    color: white;
+}
+.golden {
+    color: black;
+    background: linear-gradient(180deg, gold 0%, rgb(238, 181, 37) 100%);
+}
+.golden:hover {
+    background: linear-gradient(180deg, gold 0%, rgb(189, 142, 25) 100%);
+}

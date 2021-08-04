@@ -2,6 +2,8 @@ import { Component, OnInit, DoCheck, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SearchService } from 'src/app/shared/services/search.service';
 
+import { Product } from 'src/app/shared/interfaces/product';
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -10,7 +12,7 @@ import { SearchService } from 'src/app/shared/services/search.service';
 export class ProductsComponent implements OnInit, DoCheck, OnDestroy {
 
   search!: string;
-  products!: any[];
+  products!: Product[];
 
   constructor( private params: ActivatedRoute, private searchSvc: SearchService ) { }
 

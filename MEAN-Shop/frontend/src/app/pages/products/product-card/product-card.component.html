@@ -1,0 +1,12 @@
+<div class="product-card col">
+    <div class="product-img" (click)="goToProduct()">
+        <img [src]="product.images[0]" alt="Imagen de producto">
+    </div>
+    <div class="name">
+        <a (click)="goToProduct()" class="name">{{ product.name }}</a>
+    </div>
+    <div class="show-price">
+        <div class="price">{{ product.price * ( (100 - product.discount) / 100 ) | price }}</div>
+        <div *ngIf="product.discount" class="old-price">{{ product.price | price }}</div>
+    </div>
+</div>
