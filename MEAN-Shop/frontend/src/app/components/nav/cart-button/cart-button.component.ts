@@ -1,11 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, DoCheck, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-cart-button',
   templateUrl: './cart-button.component.html',
   styleUrls: ['./cart-button.component.css']
 })
-export class CartButtonComponent implements OnInit {
+export class CartButtonComponent implements OnInit, DoCheck {
 
   @Input() login!: boolean;
 
@@ -14,6 +14,10 @@ export class CartButtonComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  ngDoCheck(): void {
+    console.log('DoCheck cart-button');
   }
 
   getTotalItems(): string {
