@@ -1,5 +1,6 @@
 import { Component, DoCheck, Input, OnInit } from '@angular/core';
 import { Product } from 'src/app/shared/interfaces/product';
+import { AppCookiesService } from 'src/app/shared/services/app-cookies.service';
 import { CartService } from 'src/app/shared/services/cart.service';
 
 @Component({
@@ -13,15 +14,15 @@ export class CartButtonComponent implements OnInit, DoCheck {
 
   cart: Product[] = [];
 
-  constructor( private cartSvc: CartService ) { }
+  constructor( private cartSvc: CartService, private cookiesSvc: AppCookiesService ) { }
 
   ngOnInit(): void {
-    //console.log('Iniciado cart-button');
     this.cartSvc.cart$.subscribe(
       cart => {
         this.cart = cart;
       }
-    )
+    );
+    if (this.cookiesSvc.checkLogin()) this.cartSvc.requestGetCart( this.cookiesSvc.getToken() );
   }
 
   ngDoCheck(): void {
