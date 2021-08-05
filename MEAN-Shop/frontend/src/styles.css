@@ -3,6 +3,7 @@
     --ceramic_light: #FFB03A;
     --ceramic: #DF9433;
     --ceramic_dark: #CE7829;
+    --spartan_red: #9E1316;
 }
 
 html, body { height: 100%; }
@@ -15,6 +16,14 @@ h4,
 h5,
 h6 {
     text-align: center;
+}
+
+hr.spartan {
+    color: var(--spartan_red);
+    height: 2px;
+    margin-top: 0;
+    margin-bottom: 16px;
+    opacity: 1;
 }
 
 /* Panel buttons */

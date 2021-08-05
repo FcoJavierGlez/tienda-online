@@ -1,4 +1,12 @@
-<div>
-    <p>Nombre: {{ product.name }}</p>
-    <p>Cantidad: {{ product.quantity }}</p>
+<div class="product-cart">
+    <div class="product-img">
+        <img [src]="product.images[0]" alt="Imagen del producto" srcset="">
+    </div>
+    <div class="info">
+        <div class="product-name">
+            <p class="product-name">{{ product.name }}</p>
+        </div>
+        <hr>
+        <p>Cantidad: {{ product.quantity }}</p>
+    </div>
 </div>

@@ -1,5 +1,10 @@
 .box-container {
-    margin-top: 30px;
+    margin-top: 5px;
+}
+
+form {
+    margin: 0 auto;
+    width: 95%;
 }
 
 .pointer:hover {
@@ -11,6 +16,9 @@
 }
 
 @media screen and (min-width: 765px) {
+    .box-container {
+        margin-top: 30px;
+    }
     .container {
         max-width: 650px;
     }
