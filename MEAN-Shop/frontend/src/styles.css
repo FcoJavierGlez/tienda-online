@@ -148,6 +148,46 @@ form i.fas {
     font-size: 20px;
 }
 
+/* Show */
+.mobile {
+    display: block;
+}
+.mobileandtablet {
+    display: block;
+}
+.tablet {
+    display: none;
+}
+.tabletandpc {
+    display: none;
+}
+.pc {
+    display: none;
+}
+
+@media screen and (min-width: 500px )  {
+    .mobile {
+        display: none;
+    }
+    .tablet {
+        display: block;
+    }
+    .tabletandpc {
+        display: block;
+    }
+}
+@media screen and (min-width: 770px )  {
+    .mobileandtablet {
+        display: none;
+    }
+    .tablet {
+        display: none;
+    }
+    .pc {
+        display: block;
+    }
+}
+
 @media screen and (max-width: 1400px) {
     .container-fluid {
         padding: 0!important;

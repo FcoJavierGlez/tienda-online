@@ -7,11 +7,17 @@
         </div>
 
         <div class="info">
+            <div class="mobileandtablet mt-4">
+                <h3>{{ product.name }}</h3>
+                <hr>
+            </div>
             <div class="photo">
                 <img [src]="getImage()" alt="Imagen del producto">
             </div>
             <div class="text">
-                <h3>{{ product.name }}</h3>
+                <div class="pc">
+                    <h3>{{ product.name }}</h3>
+                </div>
                 <hr>
 
                 <div *ngIf="product.discount; else withoutDiscount" class="show-price">
