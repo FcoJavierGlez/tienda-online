@@ -6,51 +6,50 @@
             [srcImage]="src" [index]="i" (changePhoto)="changePhoto($event)"></app-preview-image>
         </div>
 
-        <div class="info">
-            <div class="mobileandtablet mt-4">
-                <div class="name-mobile">
-                    <h3>{{ product.name }}</h3>
-                </div>
-                <hr>
+        <div class="mobileandtablet mt-3">
+            <div class="name-mobile">
+                <h3>{{ product.name }}</h3>
             </div>
-            <div class="photo">
-                <img [src]="getImage()" alt="Imagen del producto">
+            <hr>
+        </div>
+        <div class="photo">
+            <img [src]="getImage()" alt="Imagen del producto">
+        </div>
+        <div class="text">
+            <div class="pc">
+                <h3>{{ product.name }}</h3>
             </div>
-            <div class="text">
-                <div class="pc">
-                    <h3>{{ product.name }}</h3>
-                </div>
-                <hr>
+            <hr>
 
-                <div *ngIf="product.discount; else withoutDiscount" class="show-price">
-                    <p class="old-price">Precio recomendado:</p>
-                    <p><span class="line">{{ product.price | price }}</span></p>
+            <div *ngIf="product.discount; else withoutDiscount" class="show-price">
+                <p class="old-price">Precio recomendado:</p>
+                <p><span class="line">{{ product.price | price }}</span></p>
 
-                    <p class="old-price">Ahorras:</p>
-                    <p><span class="offer">{{ product.price - product.price * (100 - product.discount) / 100 | price }} ({{ product.discount }}%)</span></p>
-                    
-                    <p class="old-price">Precio:</p>
-                    <p><span class="offer price">{{ product.price * (100 - product.discount) / 100 | price }}</span></p>
-                    <div></div>
-                    <p class="final-price">Precio final del producto</p>
-                </div>
-
-                <ng-template #withoutDiscount>
-                    <div class="show-price">
-                        <p class="old-price">Precio: </p>
-                        <p><span>{{ product.price | price }}</span></p>
-                    </div>
-                </ng-template>
-                <hr>
-
-                <p>{{ product.description }}</p>
+                <p class="old-price">Ahorras:</p>
+                <p><span class="offer">{{ product.price - product.price * (100 - product.discount) / 100 | price }} ({{ product.discount }}%)</span></p>
                 
-                <div class="buttons-panel">
-                    <button class="btn ceramic">Comprar ya</button>
-                    <button class="btn ceramic golden">Añadir a la cesta</button>
-                </div>
+                <p class="old-price">Precio:</p>
+                <p><span class="offer price">{{ product.price * (100 - product.discount) / 100 | price }}</span></p>
+                <div></div>
+                <p class="final-price">Precio final del producto</p>
             </div>
 
+            <ng-template #withoutDiscount>
+                <div class="show-price">
+                    <p class="old-price">Precio: </p>
+                    <p><span>{{ product.price | price }}</span></p>
+                </div>
+            </ng-template>
+            <hr>
+
+            <p>{{ product.description }}</p>
+            
+            <div class="buttons-panel">
+                <button class="btn ceramic">Comprar ya</button>
+                <button class="btn ceramic golden">Añadir a la cesta</button>
+            </div>
+        </div>
+        <div class="info">
         </div>
     </div>
 </div>
