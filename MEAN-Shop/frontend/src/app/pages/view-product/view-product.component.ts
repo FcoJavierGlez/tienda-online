@@ -2,6 +2,7 @@ import { QueryList } from '@angular/core';
 import { Component, OnInit, OnDestroy, ViewChildren } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/shared/interfaces/product';
+import { AppCookiesService } from 'src/app/shared/services/app-cookies.service';
 import { SearchService } from 'src/app/shared/services/search.service';
 import { PreviewImageComponent } from './preview-image/preview-image.component';
 
@@ -22,7 +23,11 @@ export class ViewProductComponent implements OnInit, OnDestroy {
 
   @ViewChildren(PreviewImageComponent) childrens!: QueryList<PreviewImageComponent>;
 
-  constructor( private searchSvc: SearchService, private router: ActivatedRoute ) { }
+  constructor( 
+    private searchSvc: SearchService, 
+    private appCookiesSvc: AppCookiesService,
+    private router: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
     this.route$ = this.router.params
@@ -54,5 +59,17 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   changePhoto(src: string): void {
     this.childrens.toArray()[this.imageSelected].activated = false;
     this.imageSelected = this.product.images.indexOf( src );
+  }
+
+  buyNow(): void {
+    if ( !this.appCookiesSvc.checkLogin() ) return;
+    this.addToCart();
+    console.log('Comprar');
+    
+  }
+
+  addToCart(): void {
+    if ( !this.appCookiesSvc.checkLogin() ) return;
+    console.log('Añadir al carrito');
   }
 }

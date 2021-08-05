@@ -45,8 +45,8 @@
             <p>{{ product.description }}</p>
             
             <div class="buttons-panel">
-                <button class="btn ceramic">Comprar ya</button>
-                <button class="btn ceramic golden">Añadir a la cesta</button>
+                <button class="btn ceramic" (click)="buyNow()">Comprar ya</button>
+                <button class="btn ceramic golden" (click)="addToCart()">Añadir a la cesta</button>
             </div>
         </div>
         <div class="info">
