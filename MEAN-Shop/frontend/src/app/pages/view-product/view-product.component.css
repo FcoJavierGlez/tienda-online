@@ -1,8 +1,15 @@
 .view-product {
+    display: flex;
+    flex-flow: column;
     min-height: 85vh;
     margin-top: 30px;
 }
-
+.name-mobile {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical; 
+    overflow: hidden;
+}
 .images-list {
     align-items: center;
     display: flex;
@@ -10,17 +17,22 @@
     gap: 15px;
     justify-content: center;
     margin: 5px auto;
+    /* order: 3; */
+}
+.mobileandtablet {
+    /* order: 1; */
 }
 .photo {
     align-items: center;
     display: flex;
-    height: 65vh;
+    height: 50vh;
     justify-content: center;
-    margin: 10px auto;
+    margin: 25px auto;
+    /* order: 2; */
     width: 95%;
 }
 .photo img {
-    max-height: 65vh;
+    max-height: 50vh;
     max-width: 90%;
 }
 .text {
