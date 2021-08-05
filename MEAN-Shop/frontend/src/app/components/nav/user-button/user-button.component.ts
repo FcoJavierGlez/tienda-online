@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppCookiesService } from 'src/app/shared/services/app-cookies.service';
+import { CartService } from 'src/app/shared/services/cart.service';
 
 @Component({
   selector: 'app-user-button',
@@ -11,7 +12,11 @@ export class UserButtonComponent implements OnInit {
 
   @Input() login!: boolean;
 
-  constructor( private router: Router, private appCookiesSvc: AppCookiesService ) { }
+  constructor( 
+    private router: Router, 
+    private appCookiesSvc: AppCookiesService,
+    private cartSvc: CartService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -22,6 +27,7 @@ export class UserButtonComponent implements OnInit {
 
   logout(): void {
     this.appCookiesSvc.logout();
+    this.cartSvc.resetCart();
     this.router.navigate( ['/'] );
   }
 

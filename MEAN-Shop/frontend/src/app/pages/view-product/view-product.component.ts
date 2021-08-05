@@ -3,6 +3,7 @@ import { Component, OnInit, OnDestroy, ViewChildren } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/shared/interfaces/product';
 import { AppCookiesService } from 'src/app/shared/services/app-cookies.service';
+import { CartService } from 'src/app/shared/services/cart.service';
 import { SearchService } from 'src/app/shared/services/search.service';
 import { PreviewImageComponent } from './preview-image/preview-image.component';
 
@@ -26,7 +27,8 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   constructor( 
     private searchSvc: SearchService, 
     private appCookiesSvc: AppCookiesService,
-    private router: ActivatedRoute
+    private router: ActivatedRoute,
+    private cartSvc: CartService
   ) { }
 
   ngOnInit(): void {
@@ -70,6 +72,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
 
   addToCart(): void {
     if ( !this.appCookiesSvc.checkLogin() ) return;
-    console.log('Añadir al carrito');
+    console.log('Añadir al carrito', this.product);
+    this.cartSvc.addProduct( this.product );
   }
 }

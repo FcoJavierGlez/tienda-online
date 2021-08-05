@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { DialogComponent } from 'src/app/shared/components/dialog/dialog.component';
 import { AccessService } from 'src/app/shared/services/access.service';
 import { AppCookiesService } from 'src/app/shared/services/app-cookies.service';
+import { CartService } from 'src/app/shared/services/cart.service';
 
 @Component({
   selector: 'app-login',
@@ -22,10 +23,12 @@ export class LoginComponent implements OnInit {
     private accessSvc: AccessService,
     private appCookies: AppCookiesService,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private cartSvc: CartService
   ) { }
 
   ngOnInit(): void {
+    if ( !this.appCookies.checkLogin() ) this.cartSvc.resetCart();
     this.createForm();
   }
 
@@ -72,8 +75,8 @@ export class LoginComponent implements OnInit {
     if (!this.form.valid) return;
     this.accessSvc.login( this.form.value )?.subscribe(
       data => {
-        this.appCookies.login( data.token, data.refresh/* , data.profile */ );
-        //this.profileSvc.setProfile();
+        this.appCookies.login( data.token, data.refresh );
+        /* this.cartSvc.requestGetCart( this.appCookies.getToken() ); */
         this.router.navigate(['/']);
       },
       err => {

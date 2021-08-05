@@ -5,7 +5,7 @@ const cartController = {
         try {
             const searchUser = await User.findOne( { uid: req.uid } );
             //console.log( searchUser.cart );
-            res.status(200).json( { cart: searchUser.cart } );
+            res.status(200).json( searchUser.cart );/* { cart: searchUser.cart } */
         } catch (error) {
             res.status(500).json( { success: false, message: 'Hubo un error al procesar la solicitud', error: error } );
         }

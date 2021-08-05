@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DialogComponent } from 'src/app/shared/components/dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AccessService } from 'src/app/shared/services/access.service';
+import { CartService } from 'src/app/shared/services/cart.service';
+import { AppCookiesService } from 'src/app/shared/services/app-cookies.service';
 
 @Component({
   selector: 'app-register',
@@ -23,12 +25,15 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private params: ActivatedRoute,
     private accessSvc: AccessService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private appCookies: AppCookiesService,
+    private cartSvc: CartService
   ) { 
     
   }
 
   ngOnInit(): void {
+    if ( !this.appCookies.checkLogin() ) this.cartSvc.resetCart();
     this.params.queryParams.subscribe(
       res => this.tokenActivate = res['activate']
     );
