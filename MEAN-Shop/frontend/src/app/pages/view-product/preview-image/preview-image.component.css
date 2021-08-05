@@ -4,8 +4,8 @@
     background-size: contain;
     border: 1px solid steelblue;
     border-radius: 3px;
-    height: 75px;
-    width: 53px;
+    height: 55px;
+    width: 40px;
 }
 
 .preview:hover {
@@ -20,4 +20,11 @@
     border-radius: 3px;
     box-shadow: 0 0 6px 2px goldenrod;
     cursor: pointer;
+}
+
+@media screen and (min-width: 770px) {
+    .preview {
+        height: 75px;
+        width: 53px;
+    }
 }
