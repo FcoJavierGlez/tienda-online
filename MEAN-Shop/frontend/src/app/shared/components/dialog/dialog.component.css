@@ -6,3 +6,7 @@ button {
 .bold {
     font-weight: bold;
 }
+
+.btn-success:focus {
+    box-shadow: none;
+}

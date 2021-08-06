@@ -25,11 +25,13 @@
     justify-content: center;
     margin: 20px auto;
     order: 2;
+    /* width: 95%; */
     width: 95%;
 }
 .photo img {
     max-height: 50vh;
-    max-width: 90%;
+    /* max-width: 90%; */
+    max-width: 100%;
 }
 .text {
     padding: 0 10px;
@@ -127,22 +129,35 @@ span.price {
         order: 1;
     }
     .photo {
+        align-items: baseline;
         height: auto;
         min-height: 100%;
         margin: 0 auto;
         order: 2;
     }
     .photo img {
+        margin-top: 20px;
         max-height: 80vh;
+        max-width: 90%;
     }
     .text {
         order: 3;
     }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 992px) {
     .text .buttons-panel {
         flex-flow: row;
         row-gap: 0;
+    }
+}
+
+@media screen and (min-width: 1400px) {
+    .photo {
+        align-items: center;
+        margin-top: 0;
+    }
+    .photo img {
+        max-width: 95%;
     }
 }

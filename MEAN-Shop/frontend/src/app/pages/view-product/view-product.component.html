@@ -45,12 +45,23 @@
             <ng-template #withoutDiscount>
                 <div class="show-price">
                     <p class="old-price">Precio: </p>
-                    <p><span>{{ product.price | price }}</span></p>
+                    <p><span class="offer price">{{ product.price | price }}</span></p>
+                    <div></div>
+                    <p class="final-price">Precio final del producto</p>
                 </div>
             </ng-template>
             <hr>
 
             <p>{{ product.description }}</p>
+
+            <!-- <div *ngFor="let descr of descripcion">
+                <div *ngIf="descr.type == 'p'" >
+                    <p *ngFor="let p of descr.text">{{ p }}</p>
+                </div>
+                <ul *ngIf="descr.type == 'ul'" >
+                    <li *ngFor="let li of descr.text">{{ li }}</li>
+                </ul>
+            </div> -->
             
             <div class="buttons-panel">
                 <button class="btn ceramic" (click)="buyNow()">Comprar ya</button>

@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { DialogComponent } from 'src/app/shared/components/dialog/dialog.component';
 import { Product } from 'src/app/shared/interfaces/product';
+import { AppCookiesService } from 'src/app/shared/services/app-cookies.service';
 import { CartService } from 'src/app/shared/services/cart.service';
 
 @Component({
@@ -14,7 +17,9 @@ export class ProductCartComponent implements OnInit {
   
   constructor( 
     private router: Router,
-    private cartSvc: CartService
+    private cartSvc: CartService,
+    private appCookiesSvc: AppCookiesService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -28,14 +33,30 @@ export class ProductCartComponent implements OnInit {
     return ( this.product.price * (100 - this.product.discount) / 100 );
   }
 
+  private messageLoggedIn(): void {
+    let registerDialog = this.dialog.open(DialogComponent, {
+      data: {
+        title: 'Debe iniciar sesión',
+        message: 'Parece que la sesión de su cuenta ha caducado. Debe iniciar sesión para poder realizar esta acción.',
+        alertMessage: false,
+        continueMessage: false,
+        optionButtons: false
+      }
+    });
+    registerDialog.afterClosed().subscribe( () => this.router.navigate( ['/login'] ) );
+  }
+
   incProduct(): void {
-    this.cartSvc.addProduct( this.product );
+    if ( !this.appCookiesSvc.checkLogin() ) this.messageLoggedIn();
+    else this.cartSvc.addProduct( this.product );
   }
   decProduct(): void {
-    this.cartSvc.decrementProduct( this.product );
+    if ( !this.appCookiesSvc.checkLogin() ) this.messageLoggedIn();
+    else this.cartSvc.decrementProduct( this.product );
   }
   removeProduct(): void {
-    this.cartSvc.removeProduct( this.product );
+    if ( !this.appCookiesSvc.checkLogin() ) this.messageLoggedIn();
+    else this.cartSvc.removeProduct( this.product );
   }
 
 }

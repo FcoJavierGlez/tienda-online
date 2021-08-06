@@ -3,6 +3,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Product } from '../interfaces/product';
+import { AccessService } from './access.service';
 import { AppCookiesService } from './app-cookies.service';
 
 @Injectable({
@@ -14,22 +15,32 @@ export class CartService {
   private cart: Product[] = [];
   cart$ = new EventEmitter<Product[]>();
 
-  constructor( private http: HttpClient, private cookiesSvc: AppCookiesService ) { }
+  constructor( 
+    private http: HttpClient, 
+    private cookiesSvc: AppCookiesService,
+    private accessSvc: AccessService 
+  ) { }
 
   requestGetCart(token: string): void {
     this.http.get<Product[]>( this.URL, { headers: { authorization: `Bearer ${token}` } } ).subscribe(
       cart => {
         this.cart = cart;
-        //console.log('Carrito dentro de requestGetCart()',this.cart);
         this.cart$.emit( this.cart );
       }
-    )
+    );
   }
 
   requestUpdateCart(token: string): void {
-    this.http.put<Product[]>( this.URL, { cart: this.cart }, { headers: { authorization: `Bearer ${token}` } } ).subscribe(
-      cart => cart/* console.log('Carrito dentro de requestGetCart()',cart) */
-    );
+    if (token !== '')
+      this.http.put<Product[]>( this.URL, { cart: this.cart }, { headers: { authorization: `Bearer ${token}` } } ).subscribe();
+    else
+      this.accessSvc.refreshToken( this.cookiesSvc.getToken(true) ).subscribe(
+        res => {
+          token = res.token;
+          this.cookiesSvc.login( res.token, res.refresh );
+          this.http.put<Product[]>( this.URL, { cart: this.cart }, { headers: { authorization: `Bearer ${token}` } } ).subscribe();
+        }
+      );
   }
 
   getCart(): Product[] {

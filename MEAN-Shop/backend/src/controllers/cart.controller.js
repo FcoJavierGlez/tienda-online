@@ -12,9 +12,9 @@ const cartController = {
     },
     updateCart: async function (req,res){
         try {
-            console.log(req.body.cart);
+            // console.log(req.body.cart);
             const searchUser = await User.findOneAndUpdate( { uid: req.uid }, { cart: req.body.cart } );
-            console.log( searchUser );
+            // console.log( searchUser );
             res.status(200).json( { success: true, message: 'Cesta actualizada' } );
         } catch (error) {
             res.status(500).json( { success: false, message: 'Hubo un error al procesar la solicitud', error: error } );

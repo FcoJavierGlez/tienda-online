@@ -41,12 +41,12 @@ hr.spartan {
 /* Button success color */
 .btn-success {
     color: #fff;
-    background-color: #31c038;
-    border-color: #28ac2f;
+    background-color: #31c038!important;
+    border-color: #28ac2f!important;
 }
 .btn-success:hover {
-    background-color: #1ea524;
-    border-color: #19921f;
+    background-color: #1ea524!important;
+    border-color: #19921f!important;
 }
 
 /* Ceramic buttons */
