@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Product } from 'src/app/shared/interfaces/product';
 
 @Component({
@@ -10,9 +11,17 @@ export class ProductCartComponent implements OnInit {
 
   @Input() product!: Product;
   
-  constructor() { }
+  constructor( private router: Router ) { }
 
   ngOnInit(): void {
+  }
+
+  goToProduct(): void {
+    this.router.navigateByUrl(`/product/${this.product._id}`);
+  }
+
+  getTotalPrice(): number {
+    return ( this.product.price * (100 - this.product.discount) / 100 ) * this.product.quantity;
   }
 
 }

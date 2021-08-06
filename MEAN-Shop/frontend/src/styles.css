@@ -1,4 +1,5 @@
 :root {
+    --blue_greek: #1269C7;
     --charcoal: #141414;
     --ceramic_light: #FFB03A;
     --ceramic: #DF9433;
@@ -22,9 +23,11 @@ h6 {
 hr.spartan {
     color: var(--spartan_red);
     height: 2px;
+    margin: 0 auto;
     margin-top: 0;
     margin-bottom: 16px;
     opacity: 1;
+    width: 95%;
 }
 
 /* Panel buttons */
@@ -184,6 +187,11 @@ form i.fas {
     }
     .tabletandpc {
         display: block;
+    }
+}
+@media screen and (min-width: 576px )  {
+    hr.spartan {
+        width: 100%;
     }
 }
 @media screen and (min-width: 770px )  {

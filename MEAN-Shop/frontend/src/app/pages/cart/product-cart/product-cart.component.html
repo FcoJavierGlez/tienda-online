@@ -1,12 +1,25 @@
 <div class="product-cart">
-    <div class="product-img">
+    <div class="product-img" (click)="goToProduct()">
         <img [src]="product.images[0]" alt="Imagen del producto" srcset="">
     </div>
     <div class="info">
-        <div class="product-name">
-            <p class="product-name">{{ product.name }}</p>
+        <div>
+            <div class="product-name" (click)="goToProduct()">
+                <p class="product-name">{{ product.name }}</p>
+            </div>
+            <p class="vendor" *ngIf="product?.vendor !== ''">
+                por <span class="vendor" (click)="goToProduct()" *ngIf="product.vendor !== ''">{{ product.vendor }}</span>
+            </p>
+            <div class="quantity">
+                <b>Cantidad: </b>
+
+                <button class="btn-incdec ceramic"><i class="fas fa-minus"></i></button>
+
+                <div class="total-quantity">{{ product.quantity }}</div>
+
+                <button class="btn-incdec ceramic"><i class="fas fa-plus"></i></button>
+            </div>
         </div>
-        <hr>
-        <p>Cantidad: {{ product.quantity }}</p>
+        <div class="price-box">{{ getTotalPrice() | price }}</div>
     </div>
 </div>
