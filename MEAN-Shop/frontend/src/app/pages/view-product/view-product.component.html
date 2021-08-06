@@ -8,7 +8,7 @@
 
         <!-- Nombre versión móvil -->
         <div class="mobileandtablet mt-2">
-            <div class="name-mobile">
+            <div class="name-box">
                 <h3>{{ product.name }}</h3>
             </div>
         </div>
@@ -28,7 +28,9 @@
         <div class="text">
             <!-- Nombre -->
             <div class="pc">
-                <h3>{{ product.name }}</h3>
+                <div class="name-box">
+                    <h3>{{ product.name }}</h3>
+                </div>
                 <p class="vendor" *ngIf="product.vendor !== ''">
                     <b>Vendedor:</b> {{ product.vendor }}
                 </p>

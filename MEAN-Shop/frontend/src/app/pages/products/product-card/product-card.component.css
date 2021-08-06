@@ -1,22 +1,25 @@
 .product-card {
-    *border: 1px solid black;
-    max-width: 300px;
+    /* border: 1px solid black; */
     padding: 5px;
+    width: 300px;
 }
 
 .product-img {
+    display: flex;
     height: 250px;
     margin-bottom: 10px;
-    width: 100%;
+    width: auto;
+    max-width: 300px;
 }
 .product-img:hover {
     cursor: pointer;
 }
 .product-img img {
     display: block;
-    height: 100%;
     margin: auto;
+    max-height: 100%;
     width: auto;
+    max-width: 290px;
 }
 
 div.name {

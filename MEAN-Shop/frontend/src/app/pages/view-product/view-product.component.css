@@ -3,7 +3,7 @@
     flex-flow: column;
     min-height: 85vh;
 }
-.name-mobile {
+.name-box {
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical; 
@@ -140,7 +140,12 @@ span.price {
         max-height: 80vh;
         max-width: 90%;
     }
+    .name-box {
+        -webkit-line-clamp: 3;
+    }
     .text {
+        padding: 0;
+        padding-top: 15px;
         order: 3;
     }
 }
