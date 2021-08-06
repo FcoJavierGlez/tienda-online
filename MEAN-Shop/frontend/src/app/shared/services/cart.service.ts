@@ -78,19 +78,4 @@ export class CartService {
     this.resetCart();
     this.requestUpdateCart( this.cookiesSvc.getToken() );
   }
-
-  /* addProduct = (cart, product) => {
-    if (!cart.length) return cart.push( product );
-    const searchProduct = cart.find( e => e._id == product._id );
-    if (!searchProduct) return cart.push( product );
-    ++searchProduct.quantity;
-  }
-  getTotalProducts = cart => {
-      if (!cart.length) return 0;
-      return cart.map( e => e.quantity ).reduce( (e, acc) => e + acc);
-  }
-  getTotalPrice = cart => {
-      if (!cart.length) return 0;
-      return cart.map( e => e.price * ( (100 - e.discount) / 100 ) * e.quantity ).reduce( (e, acc) => e + acc );
-  } */
 }
