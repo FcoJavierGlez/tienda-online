@@ -1,8 +1,10 @@
+import { Description } from "./description";
+
 export interface Product {
     _id?: string,
     name: string,
     vendor?: string,
-    description: string,
+    description: Description[],
     images: string[],
     price: number,
     quantity: number,

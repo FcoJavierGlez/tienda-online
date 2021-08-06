@@ -24,17 +24,6 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   private route$!: any;
   private product$!: any;
 
-  descripcion: any[] = [
-    {
-      type: 'p',
-      text: ['Vendido y enviado por PlayStation 5 Store.']
-    },
-    {
-      type: 'ul',
-      text: ['Juego compatible con PlayStation 5.', 'Desarrollador Bluepoint/Japan Studios.', 'Incluye juego completo']
-    }
-  ]
-
   @ViewChildren(PreviewImageComponent) childrens!: QueryList<PreviewImageComponent>;
 
   constructor( 

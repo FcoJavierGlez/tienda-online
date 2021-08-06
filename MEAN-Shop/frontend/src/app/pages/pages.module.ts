@@ -13,6 +13,7 @@ import { ProductCardComponent } from './products/product-card/product-card.compo
 import { ViewProductComponent } from './view-product/view-product.component';
 import { PreviewImageComponent } from './view-product/preview-image/preview-image.component';
 import { ProductCartComponent } from './cart/product-cart/product-cart.component';
+import { DescriptionComponent } from './view-product/description/description.component';
 
 
 
@@ -27,7 +28,8 @@ import { ProductCartComponent } from './cart/product-cart/product-cart.component
     ProductCardComponent,
     ViewProductComponent,
     PreviewImageComponent,
-    ProductCartComponent
+    ProductCartComponent,
+    DescriptionComponent
   ],
   imports: [
     CommonModule,

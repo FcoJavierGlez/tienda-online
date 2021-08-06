@@ -1,0 +1,11 @@
+<div class="description">
+    <div *ngIf="description.type == 'p'" >
+        <p *ngFor="let p of description.text">{{ p }}</p>
+    </div>
+    <ul *ngIf="description.type == 'ul'" >
+        <li *ngFor="let li of description.text">{{ li }}</li>
+    </ul>
+    <ol type="description.ol_type !== '' ? description.ol_type : '1'" *ngIf="description.type == 'ol'" >
+        <li *ngFor="let li of description.text">{{ li }}</li>
+    </ol>
+</div>

@@ -1,4 +1,5 @@
 import { Schema, model } from "mongoose";
+import Description from "./Description.model";
 
 const productSchema = new Schema(
     {
@@ -12,9 +13,8 @@ const productSchema = new Schema(
             default: ''
         },
         description: {
-            type: String,
-            required: true,
-            trim: true
+            type: [Description],
+            required: true
         },
         images: {
             type: [String],
