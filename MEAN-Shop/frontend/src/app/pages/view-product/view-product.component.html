@@ -10,7 +10,12 @@
             <div class="name-mobile">
                 <h3>{{ product.name }}</h3>
             </div>
-            <hr>
+        </div>
+        <div class="mobileandtablet">
+            <p class="vendor m-mobile" *ngIf="product.vendor !== ''">
+                <b>Vendedor:</b> {{ product.vendor }}
+            </p>
+            <hr class="mt-2">
         </div>
         <div class="photo">
             <img [src]="getImage()" alt="Imagen del producto">
@@ -18,8 +23,11 @@
         <div class="text">
             <div class="pc">
                 <h3>{{ product.name }}</h3>
+                <p class="vendor" *ngIf="product.vendor !== ''">
+                    <b>Vendedor:</b> {{ product.vendor }}
+                </p>
             </div>
-            <hr>
+            <hr class="mt-2">
 
             <div *ngIf="product.discount; else withoutDiscount" class="show-price">
                 <p class="old-price">Precio recomendado:</p>

@@ -6,7 +6,10 @@
         <a (click)="goToProduct()" class="name">{{ product.name }}</a>
     </div>
     <div class="show-price">
-        <div class="price">{{ product.price * ( (100 - product.discount) / 100 ) | price }}</div>
+        <div class="price" [ngClass]="cssPrice()" >{{ product.price * ( (100 - product.discount) / 100 ) | price }}</div>
         <div *ngIf="product.discount" class="old-price">{{ product.price | price }}</div>
     </div>
+    <a class="vendor" (click)="goToProduct()" *ngIf="product.vendor !== ''">
+        {{ product.vendor }}
+    </a>
 </div>

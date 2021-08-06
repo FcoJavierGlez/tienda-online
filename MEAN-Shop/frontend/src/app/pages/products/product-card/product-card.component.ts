@@ -19,6 +19,10 @@ export class ProductCardComponent implements OnInit {
     this.router.navigateByUrl(`/product/${this.product._id}`);
   }
 
-  
+  cssPrice(): any {
+    return {
+      'sale-price': this.product.discount > 0
+    }
+  }
 
 }

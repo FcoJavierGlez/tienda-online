@@ -27,6 +27,7 @@ div.name {
 }
 
 a {
+    cursor: pointer;
     text-decoration: none;
 }
 
@@ -34,10 +35,10 @@ a.name {
     color: var(--charcoal);
     font-weight: 400;
     line-height: 1rem;
+
 }
 a.name:hover {
     color: var(--ceramic_dark);
-    cursor: pointer;
 }
 
 .show-price {
@@ -49,8 +50,20 @@ a.name:hover {
     font-size: 20px;
     font-weight: 500;
 }
+.sale-price {
+    color: var(--red);
+}
 .old-price {
-    color: rgb(200,0,0);
     font-size: 14px;
     text-decoration: line-through;
+}
+
+a.vendor {
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-left: 1px;
+}
+a.vendor:hover {
+    color: var(--spartan_red);
+    text-decoration: underline;
 }

@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
       this.cartSvc.resetCart();
       return;
     }
-    this.cartSvc.requestGetCart( this.cookiesSvc.getToken() );
+    //this.cartSvc.requestGetCart( this.cookiesSvc.getToken() );
     
   }
 

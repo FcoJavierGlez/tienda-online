@@ -76,7 +76,7 @@ export class LoginComponent implements OnInit {
     this.accessSvc.login( this.form.value )?.subscribe(
       data => {
         this.appCookies.login( data.token, data.refresh );
-        /* this.cartSvc.requestGetCart( this.appCookies.getToken() ); */
+        this.cartSvc.requestGetCart( this.appCookies.getToken() );
         this.router.navigate(['/']);
       },
       err => {

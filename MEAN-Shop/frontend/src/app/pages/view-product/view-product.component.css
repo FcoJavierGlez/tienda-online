@@ -42,6 +42,14 @@
     padding: 0 12px;
     text-align: justify;
 }
+p.vendor {
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+p.vendor.m-mobile {
+    margin-left: 6px;
+    margin-top: 4px;
+}
 .show-price {
     column-gap: 6px;
     display: grid;

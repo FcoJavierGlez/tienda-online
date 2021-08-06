@@ -20,7 +20,7 @@ export class CartService {
     this.http.get<Product[]>( this.URL, { headers: { authorization: `Bearer ${token}` } } ).subscribe(
       cart => {
         this.cart = cart;
-        console.log('Carrito dentro de requestGetCart()',this.cart);
+        //console.log('Carrito dentro de requestGetCart()',this.cart);
         this.cart$.emit( this.cart );
       }
     )

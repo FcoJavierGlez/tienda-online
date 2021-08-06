@@ -7,6 +7,10 @@ const productSchema = new Schema(
             required: true,
             trim: true
         },
+        vendor: {
+            type: String,
+            default: ''
+        },
         description: {
             type: String,
             required: true,
