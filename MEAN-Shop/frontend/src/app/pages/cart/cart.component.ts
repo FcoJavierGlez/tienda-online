@@ -10,9 +10,9 @@ import { CartService } from 'src/app/shared/services/cart.service';
 })
 export class CartComponent implements OnInit, DoCheck {
 
-  //cart!: Product[];
+  cart!: Product[];
 
-  cart: Product[] = [
+  /* cart: Product[] = [
     {
         "_id": "61098413aeed3955dc8f929a",
         "name": "Ratchet & Clank: Una Dimensión Aparte",
@@ -94,14 +94,14 @@ export class CartComponent implements OnInit, DoCheck {
         "createdAt": "2021-07-30T20:17:14.420Z",
         "updatedAt": "2021-08-04T09:55:40.148Z"
     }
-];
+]; */
 
   constructor( private cookiesSvc: AppCookiesService, private cartSvc: CartService ) { }
 
   ngOnInit(): void { }
 
   ngDoCheck(): void {
-    //this.cart = this.cartSvc.getCart();
+    this.cart = this.cartSvc.getCart();
   }
 
   ngOnDestroy(): void { }
@@ -109,5 +109,9 @@ export class CartComponent implements OnInit, DoCheck {
   getTotalPrice(): number {
     if (!this.cart.length) return 0;
     return this.cart.map( e => e.price * ( (100 - e.discount) / 100 ) * e.quantity ).reduce( (e, acc) => e + acc );
+  }
+
+  emptyCart(): void {
+    this.cartSvc.emptyCart();
   }
 }

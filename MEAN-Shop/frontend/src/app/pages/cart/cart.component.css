@@ -11,6 +11,16 @@ hr.my-1 {
     opacity: 1;
 }
 
+.empty-cart {
+    color: var(--spartan_red);
+    font-size: 0.8rem;
+    margin-left: 8px;
+}
+.empty-cart:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 @media screen and (min-width: 765px) {
     .container {
         margin-top: 30px;

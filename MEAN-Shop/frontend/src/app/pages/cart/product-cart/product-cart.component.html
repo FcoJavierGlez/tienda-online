@@ -2,24 +2,32 @@
     <div class="product-img" (click)="goToProduct()">
         <img [src]="product.images[0]" alt="Imagen del producto" srcset="">
     </div>
-    <div class="info">
-        <div>
-            <div class="product-name" (click)="goToProduct()">
-                <p class="product-name">{{ product.name }}</p>
+    <div class="info-box">
+        <div class="info">
+            <div>
+                <div class="product-name" (click)="goToProduct()">
+                    <p class="product-name">{{ product.name }}</p>
+                </div>
+                <p class="vendor" *ngIf="product?.vendor !== ''">
+                    por <span class="vendor" (click)="goToProduct()" *ngIf="product.vendor !== ''">{{ product.vendor }}</span>
+                </p>
             </div>
-            <p class="vendor" *ngIf="product?.vendor !== ''">
-                por <span class="vendor" (click)="goToProduct()" *ngIf="product.vendor !== ''">{{ product.vendor }}</span>
-            </p>
-            <div class="quantity">
-                <b>Cantidad: </b>
-
-                <button class="btn-incdec ceramic"><i class="fas fa-minus"></i></button>
-
-                <div class="total-quantity">{{ product.quantity }}</div>
-
-                <button class="btn-incdec ceramic"><i class="fas fa-plus"></i></button>
+            <div class="price-quantity">
+                <div class="price">
+                    <div>Precio/ud: </div> <span>{{ getSalePrice() | price }}</span>
+                </div>
+                <div class="quantity">
+                    <div>Cantidad: </div>
+    
+                    <button class="btn-incdec ceramic" (click)="decProduct()"><i class="fas fa-minus"></i></button>
+    
+                    <div class="total-quantity">{{ product.quantity }}</div>
+    
+                    <button class="btn-incdec ceramic" (click)="incProduct()"><i class="fas fa-plus"></i></button>
+                </div>
             </div>
+            <div class="delete-product" (click)="removeProduct()">Eliminar</div>
         </div>
-        <div class="price-box">{{ getTotalPrice() | price }}</div>
+        <div class="price-box">{{ getSalePrice() * product.quantity | price }}</div>
     </div>
 </div>

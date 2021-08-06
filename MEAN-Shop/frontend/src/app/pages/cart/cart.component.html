@@ -2,19 +2,24 @@
     <div class="container">
         <h2>Cesta</h2>
         <hr class="spartan">
-        <div *ngIf="!cart.length">La cesta está vacía</div>
-        <div class="cart-box">
-            <div class="d-flex justify-content-between mx-3">
-                <p><b>Artículos en la cesta</b></p>
-                <p><b>Precio</b></p>
+        <div *ngIf="!cart.length; else cartBox">La cesta está vacía</div>
+        <ng-template #cartBox>
+            <div class="cart-box">
+                <div class="d-flex justify-content-between mx-3">
+                    <p>
+                        <b>Artículos en la cesta </b> 
+                        <span class="empty-cart" *ngIf="cart.length > 1" (click)="emptyCart()">Vaciar cesta</span>
+                    </p>
+                    <p><b>Precio</b></p>
+                </div>
+                <hr class="my-1">
+                <app-product-cart *ngFor="let product of cart" [product]="product"></app-product-cart>
             </div>
             <hr class="my-1">
-            <app-product-cart *ngFor="let product of cart" [product]="product"></app-product-cart>
-        </div>
-        <hr class="my-1">
-        <div class="d-flex justify-content-between mx-3">
-            <p><b>Precio total:</b></p>
-            <p><b>{{ getTotalPrice() | price }}</b></p>
-        </div>
+            <div class="d-flex justify-content-between mx-3">
+                <p><b>Precio total:</b></p>
+                <p><b>{{ getTotalPrice() | price }}</b></p>
+            </div>
+        </ng-template>
     </div>
 </div>

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/shared/interfaces/product';
+import { CartService } from 'src/app/shared/services/cart.service';
 
 @Component({
   selector: 'app-product-cart',
@@ -11,7 +12,10 @@ export class ProductCartComponent implements OnInit {
 
   @Input() product!: Product;
   
-  constructor( private router: Router ) { }
+  constructor( 
+    private router: Router,
+    private cartSvc: CartService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -20,8 +24,18 @@ export class ProductCartComponent implements OnInit {
     this.router.navigateByUrl(`/product/${this.product._id}`);
   }
 
-  getTotalPrice(): number {
-    return ( this.product.price * (100 - this.product.discount) / 100 ) * this.product.quantity;
+  getSalePrice(): number {
+    return ( this.product.price * (100 - this.product.discount) / 100 );
+  }
+
+  incProduct(): void {
+    this.cartSvc.addProduct( this.product );
+  }
+  decProduct(): void {
+    this.cartSvc.decrementProduct( this.product );
+  }
+  removeProduct(): void {
+    this.cartSvc.removeProduct( this.product );
   }
 
 }

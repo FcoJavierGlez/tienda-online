@@ -28,7 +28,7 @@ export class CartService {
 
   requestUpdateCart(token: string): void {
     this.http.put<Product[]>( this.URL, { cart: this.cart }, { headers: { authorization: `Bearer ${token}` } } ).subscribe(
-      cart => console.log('Carrito dentro de requestGetCart()',cart)
+      cart => cart/* console.log('Carrito dentro de requestGetCart()',cart) */
     );
   }
 
@@ -44,6 +44,20 @@ export class CartService {
     this.requestUpdateCart( this.cookiesSvc.getToken() );
   }
 
+  decrementProduct(product: Product): void {
+    const searchProduct = this.cart.find( e => e._id == product._id );
+    if (searchProduct) --searchProduct.quantity;
+    this.cart = this.cart.filter( e => e.quantity );
+    this.cart$.emit( this.cart );
+    this.requestUpdateCart( this.cookiesSvc.getToken() );
+  }
+
+  removeProduct(product: Product):void {
+    this.cart = this.cart.filter( e => e._id !== product._id );
+    this.cart$.emit( this.cart );
+    this.requestUpdateCart( this.cookiesSvc.getToken() );
+  }
+
   resetCart(): void {
     this.cart = [];
     this.cart$.emit(this.cart);
@@ -51,7 +65,7 @@ export class CartService {
 
   emptyCart(): void {
     this.resetCart();
-    //resetear en la API
+    this.requestUpdateCart( this.cookiesSvc.getToken() );
   }
 
   /* addProduct = (cart, product) => {
