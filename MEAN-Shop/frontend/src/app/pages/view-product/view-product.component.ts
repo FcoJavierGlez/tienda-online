@@ -21,6 +21,9 @@ export class ViewProductComponent implements OnInit, OnDestroy {
 
   private imageSelected!: number;
 
+  shwImgZoom: boolean = false;
+  imageZoom: boolean = false;
+
   private route$!: any;
   private product$!: any;
 
@@ -67,6 +70,18 @@ export class ViewProductComponent implements OnInit, OnDestroy {
     this.imageSelected = this.product.images.indexOf( src );
   }
 
+  toggleShowImg(): void {
+    this.shwImgZoom = !this.shwImgZoom;
+  }
+  toggleZoom(): void {
+    this.imageZoom = !this.imageZoom;
+  }
+  urlImgZoom(): any {
+    return {
+      'backgroundImage': `url(${this.getImage()})`
+    }
+  }
+
   private messageLoggedIn(): void {
     let messageLoggedInDialog = this.dialog.open(DialogComponent, {
       data: {
@@ -91,6 +106,12 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   addToCart(): void {
     if ( !this.appCookiesSvc.checkLogin() ) this.messageLoggedIn();
     else this.cartSvc.addProduct( this.product );
+  }
+
+  cssImgZoom(): any {
+    return {
+      'img-zoom-in': this.imageZoom
+    }
   }
   
 }

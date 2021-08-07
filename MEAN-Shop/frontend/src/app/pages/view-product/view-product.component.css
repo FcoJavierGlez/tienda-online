@@ -3,6 +3,64 @@
     flex-flow: column;
     min-height: 85vh;
 }
+.zoom-box {
+    background-color: rgba(0, 0, 0, 0.3);
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 5;
+}
+.img-zoom-box {
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow: 0 0 20px 4px black;
+    height: 66vh;
+    position: absolute;
+    top: 0;
+    margin: 17vh 7vw;
+    left: 0;
+    width: 86vw;
+    z-index: 5;
+}
+.close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid black;
+    border-radius: 50%;
+    height: 35px;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    width: 35px;
+}
+.close:hover {
+    cursor: pointer;
+}
+i.fas.fa-times-circle {
+    color: var(--red);
+    font-size: 35px;
+}
+.img-zoom-out {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-radius: 30px;
+    height: 100%;
+    width: auto;
+}
+.img-zoom-in {
+    background-size: cover;
+}
+/* .img-zoom-out:hover {
+    cursor: zoom-in;
+}
+.img-zoom-in:hover {
+    cursor: zoom-out;
+} */
 .name-box {
     display: -webkit-box;
     -webkit-line-clamp: 1;
@@ -32,7 +90,7 @@
     max-width: 100%;
 }
 .photo img:hover {
-    cursor: pointer;
+    cursor: zoom-in;
 }
 .text {
     padding: 0 10px;
@@ -121,6 +179,10 @@ span.price {
     .view-product {
         flex-flow: row;
         margin-top: 30px;
+    }
+    .img-zoom-box {
+        height: 86vh;
+        margin: 7vh 7vw;
     }
     .images-list {
         flex-flow: column;
