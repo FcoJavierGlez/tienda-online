@@ -52,6 +52,9 @@ i.fas.fa-times-circle {
     color: var(--red);
     font-size: 35px;
 }
+i.fas.fa-times-circle:hover {
+    color: var(--spartan_red);
+}
 .img-zoom-box img {
     display: block;
     margin: auto;
