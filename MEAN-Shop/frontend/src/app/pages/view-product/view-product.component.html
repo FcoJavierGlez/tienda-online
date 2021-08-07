@@ -5,7 +5,7 @@
             <div class="close" (click)="toggleShowImg()">
                 <i class="fas fa-times-circle"></i>
             </div>
-            <div class="img-zoom-out" [ngStyle]="urlImgZoom()"></div><!-- [ngClass]="cssImgZoom()" -->
+            <img [src]="getImage()" [ngClass]="cssImgZoom()" alt="Zoom de imagen del product" (click)="toggleZoom()">
         </div>
     </div>
 

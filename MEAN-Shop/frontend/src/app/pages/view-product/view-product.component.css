@@ -21,12 +21,16 @@
     border-radius: 10px;
     box-shadow: 0 0 20px 4px black;
     height: 66vh;
+    left: 0;
+    margin: 17vh 7vw;
+    overflow: scroll;
     position: absolute;
     top: 0;
-    margin: 17vh 7vw;
-    left: 0;
     width: 86vw;
     z-index: 5;
+}
+.img-zoom-box::-webkit-scrollbar {
+    display: none;
 }
 .close {
     display: flex;
@@ -35,9 +39,10 @@
     border: 2px solid black;
     border-radius: 50%;
     height: 35px;
-    position: absolute;
+    position: sticky;
     top: 10px;
-    right: 15px;
+    left: 100%;
+    margin: 10px;
     width: 35px;
 }
 .close:hover {
@@ -47,23 +52,28 @@ i.fas.fa-times-circle {
     color: var(--red);
     font-size: 35px;
 }
-.img-zoom-out {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    border-radius: 30px;
-    height: 100%;
+.img-zoom-box img {
+    display: block;
+    margin: auto;
+}
+img.img-zoom-out {
+    height: auto;
+    max-height: 90%;
     width: auto;
+    max-width: 90%;
 }
-.img-zoom-in {
-    background-size: cover;
+img.img-zoom-in {
+    height: auto;
+    width: auto;
+    max-width: 95%;
+    margin-bottom: 55px!important;
 }
-/* .img-zoom-out:hover {
+.img-zoom-out:hover {
     cursor: zoom-in;
 }
 .img-zoom-in:hover {
     cursor: zoom-out;
-} */
+}
 .name-box {
     display: -webkit-box;
     -webkit-line-clamp: 1;
