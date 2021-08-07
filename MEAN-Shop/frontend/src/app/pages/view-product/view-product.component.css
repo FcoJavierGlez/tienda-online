@@ -1,3 +1,6 @@
+.container-fluid {
+    padding-bottom: 25px;
+}
 .view-product {
     display: flex;
     flex-flow: column;
