@@ -68,7 +68,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   }
 
   private messageLoggedIn(): void {
-    let registerDialog = this.dialog.open(DialogComponent, {
+    let messageLoggedInDialog = this.dialog.open(DialogComponent, {
       data: {
         title: 'Debe iniciar sesión',
         message: 'Debe iniciar sesión para poder realizar esta acción.',
@@ -77,7 +77,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
         optionButtons: false
       }
     });
-    registerDialog.afterClosed().subscribe( () => this.router.navigate( ['/login'] ) );
+    messageLoggedInDialog.afterClosed().subscribe( () => this.router.navigate( ['/login'] ) );
   }
 
   buyNow(): void {

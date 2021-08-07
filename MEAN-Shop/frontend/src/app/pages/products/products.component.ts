@@ -13,7 +13,7 @@ import { CartService } from 'src/app/shared/services/cart.service';
 })
 export class ProductsComponent implements OnInit, DoCheck, OnDestroy {
 
-  search!: string;
+  search: string = "";
   products!: Product[];
 
   constructor( 
@@ -38,5 +38,11 @@ export class ProductsComponent implements OnInit, DoCheck, OnDestroy {
   ngDoCheck(): void { }
 
   ngOnDestroy(): void { }
+
+  cssHr(): any {
+    return {
+      'mb-0': this.search !== undefined
+    }
+  }
 
 }

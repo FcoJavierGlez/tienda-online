@@ -2,6 +2,23 @@
     margin-top: 5px;
 }
 
+hr.spartan {
+    margin-bottom: 20px;
+}
+
+.result {
+    font-size: 0.9rem;
+    margin-left: 14px;
+}
+.result p {
+    height: 16px;
+    margin: 2px 0;
+}
+.result span {
+    color: var(--ceramic_dark);
+    font-weight: 500;
+}
+
 .products-list {
     display: grid;
     grid-template-columns: repeat( auto-fill, minmax(300px, 1fr) );
@@ -13,5 +30,8 @@
 @media screen and (min-width: 765px) {
     .container {
         margin-top: 30px;
+    }
+    .result {
+        margin-left: 4px;
     }
 }

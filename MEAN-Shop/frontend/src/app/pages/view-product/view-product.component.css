@@ -25,13 +25,14 @@
     justify-content: center;
     margin: 20px auto;
     order: 2;
-    /* width: 95%; */
     width: 95%;
 }
 .photo img {
     max-height: 50vh;
-    /* max-width: 90%; */
     max-width: 100%;
+}
+.photo img:hover {
+    cursor: pointer;
 }
 .text {
     padding: 0 10px;

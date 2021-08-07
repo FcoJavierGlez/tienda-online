@@ -34,7 +34,7 @@ export class ProductCartComponent implements OnInit {
   }
 
   private messageLoggedIn(): void {
-    let registerDialog = this.dialog.open(DialogComponent, {
+    let messageLoggedInDialog = this.dialog.open(DialogComponent, {
       data: {
         title: 'Debe iniciar sesión',
         message: 'Parece que la sesión de su cuenta ha caducado. Debe iniciar sesión para poder realizar esta acción.',
@@ -43,7 +43,7 @@ export class ProductCartComponent implements OnInit {
         optionButtons: false
       }
     });
-    registerDialog.afterClosed().subscribe( () => this.router.navigate( ['/login'] ) );
+    messageLoggedInDialog.afterClosed().subscribe( () => this.router.navigate( ['/login'] ) );
   }
 
   incProduct(): void {

@@ -1,4 +1,4 @@
-import { Component, DoCheck, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Product } from 'src/app/shared/interfaces/product';
 import { AppCookiesService } from 'src/app/shared/services/app-cookies.service';
 import { CartService } from 'src/app/shared/services/cart.service';
@@ -8,7 +8,7 @@ import { CartService } from 'src/app/shared/services/cart.service';
   templateUrl: './cart-button.component.html',
   styleUrls: ['./cart-button.component.css']
 })
-export class CartButtonComponent implements OnInit, DoCheck {
+export class CartButtonComponent implements OnInit {
 
   @Input() login!: boolean;
 
@@ -23,12 +23,6 @@ export class CartButtonComponent implements OnInit, DoCheck {
       }
     );
     if (this.cookiesSvc.checkLogin()) this.cartSvc.requestGetCart( this.cookiesSvc.getToken() );
-  }
-
-  ngDoCheck(): void {
-    /* console.log('DoCheck cart-button', this.cart);
-    console.log('DoCheck longitud carrito', this.cart.length); */
-    //this.cartSvc.refreshCart();
   }
 
   getTotalItems(): string {

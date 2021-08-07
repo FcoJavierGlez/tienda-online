@@ -28,10 +28,8 @@ export class CartComponent implements OnInit, DoCheck {
     this.cart = this.cartSvc.getCart();
   }
 
-  ngOnDestroy(): void { }
-
   private messageLoggedIn(): void {
-    let registerDialog = this.dialog.open(DialogComponent, {
+    let messageLoggedInDialog = this.dialog.open(DialogComponent, {
       data: {
         title: 'Debe iniciar sesión',
         message: 'Parece que la sesión de su cuenta ha caducado. Debe iniciar sesión para poder realizar esta acción.',
@@ -40,7 +38,7 @@ export class CartComponent implements OnInit, DoCheck {
         optionButtons: false
       }
     });
-    registerDialog.afterClosed().subscribe( () => this.router.navigate( ['/login'] ) );
+    messageLoggedInDialog.afterClosed().subscribe( () => this.router.navigate( ['/login'] ) );
   }
     
   getTotalPrice(): number {
