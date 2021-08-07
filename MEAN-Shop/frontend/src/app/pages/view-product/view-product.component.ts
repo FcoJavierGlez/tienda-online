@@ -22,7 +22,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   private imageSelected!: number;
 
   shwImgZoom: boolean = false;
-  imageZoom: boolean = false;
+  //imageZoom: boolean = false;
 
   private route$!: any;
   private product$!: any;
@@ -73,9 +73,9 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   toggleShowImg(): void {
     this.shwImgZoom = !this.shwImgZoom;
   }
-  toggleZoom(): void {
+  /* toggleZoom(): void {
     this.imageZoom = !this.imageZoom;
-  }
+  } */
   urlImgZoom(): any {
     return {
       'backgroundImage': `url(${this.getImage()})`
@@ -108,10 +108,10 @@ export class ViewProductComponent implements OnInit, OnDestroy {
     else this.cartSvc.addProduct( this.product );
   }
 
-  cssImgZoom(): any {
+  /* cssImgZoom(): any {
     return {
       'img-zoom-in': this.imageZoom
     }
-  }
+  } */
   
 }

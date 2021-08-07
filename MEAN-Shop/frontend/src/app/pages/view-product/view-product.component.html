@@ -1,12 +1,15 @@
 <div class="container-fluid">
+    <!-- Zoom imagen -->
     <div class="zoom-box" *ngIf="shwImgZoom">
         <div class="img-zoom-box">
             <div class="close" (click)="toggleShowImg()">
                 <i class="fas fa-times-circle"></i>
             </div>
-            <div class="img-zoom-out" [ngClass]="cssImgZoom()" [ngStyle]="urlImgZoom()"></div><!-- (click)="toggleZoom()"  -->
+            <div class="img-zoom-out" [ngStyle]="urlImgZoom()"></div><!-- [ngClass]="cssImgZoom()" -->
         </div>
     </div>
+
+    <!-- Producto -->
     <div class="container view-product" *ngIf="product">
         <div class="images-list">
             <app-preview-image 
