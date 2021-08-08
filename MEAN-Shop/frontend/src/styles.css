@@ -51,14 +51,14 @@ hr.spartan {
 
 /* Ceramic buttons */
 .ceramic {
-    background: linear-gradient(180deg, var(--ceramic) 0%, var(--ceramic_dark) 100%);
-    border: 2px solid var(--charcoal);
-    color: white;
-}
-.ceramic:hover {
-    background: linear-gradient(180deg, var(--ceramic_light) 0%, var(--ceramic) 100%);
+    background: linear-gradient(180deg, var(--ceramic_light) 0%, var(--ceramic_dark) 100%);
     border: 2px solid var(--charcoal);
     color: var(--charcoal);
+    font-weight: 500;
+}
+.ceramic:hover {
+    color: var(--charcoal);
+    filter: brightness(1.1);
 }
 .ceramic:focus {
     box-shadow: 0 0 0 0.25rem rgb(255 176 58 / 25%);
@@ -159,6 +159,20 @@ form .input-group-text {
 
 form i.fas {
     font-size: 20px;
+}
+
+/* Login / register */
+a.login, 
+a.register {
+    color: black;
+    font-weight: 500;
+    text-decoration: none;
+    width: 100%;
+}
+a.login:hover, 
+a.register:hover {
+    color: var(--blue_greek);
+    cursor: pointer;
 }
 
 /* Show */
