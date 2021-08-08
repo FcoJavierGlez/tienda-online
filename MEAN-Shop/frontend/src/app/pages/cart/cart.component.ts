@@ -46,8 +46,16 @@ export class CartComponent implements OnInit, DoCheck {
     return this.cart.map( e => e.price * ( (100 - e.discount) / 100 ) * e.quantity ).reduce( (e, acc) => e + acc );
   }
 
+  getTotalProducts(): number {
+    return this.cart.map( e => e.quantity ).reduce( (e, acc) => e + acc);
+  }
+
   emptyCart(): void {
     if ( !this.cookiesSvc.checkLogin() ) this.messageLoggedIn();
     else this.cartSvc.emptyCart();
+  }
+
+  goToOrder(): void {
+    this.router.navigate(['/order']);
   }
 }

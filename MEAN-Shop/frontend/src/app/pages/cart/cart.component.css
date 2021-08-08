@@ -1,6 +1,10 @@
 .container {
     margin-top: 5px;
-    padding-bottom: 25px;
+    padding-bottom: 25px!important;
+}
+
+hr.spartan {
+    margin-bottom: 4px;
 }
 
 p {
@@ -21,9 +25,66 @@ hr.my-1 {
     cursor: pointer;
     text-decoration: underline;
 }
+span.total-price {
+    font-weight: 500;
+}
 
-@media screen and (min-width: 765px) {
+.process {
+    background-color: black;
+    border: 2px solid var(--ceramic);
+    border-radius: 10px;
+    color: var(--ceramic);
+    font-weight: 500;
+    margin: 0 auto;
+    padding: 8px 12px;
+    position: sticky;
+    right: 10px;
+    text-align: center;
+    top: 10px;
+    width: 300px;
+    z-index: 10;
+}
+.process:hover {
+    cursor: default;
+}
+.process p {
+    font-size: 18px;
+}
+.process span {
+    color: var(--red);
+    font-weight: bold;
+}
+.ceramic {
+    border-color: var(--spartan_red);
+    color: var(--charcoal);
+}
+.golden {
+    color: black;
+    background: linear-gradient(180deg, gold 0%, rgb(238, 181, 37) 100%);
+    border: 2px solid var(--spartan_red);
+    font-weight: 500;
+}
+.golden:hover {
+    background: linear-gradient(180deg, gold 0%, rgb(189, 142, 25) 100%);
+}
+
+@media screen and (min-width: 768px) {
     .container {
         margin-top: 30px;
+    }
+    hr.spartan {
+        margin-bottom: 16px;
+    }
+    .process {
+        background-color: rgba(0, 0, 0, 0.75);
+        display: block;
+        position: fixed;
+        left: auto;
+        top: 235px;
+        width: 300px;
+    }
+    .process:hover {
+        background-color: black;
+        cursor: default;
     }
 }
