@@ -25,7 +25,8 @@ export class CartComponent implements OnInit, DoCheck {
   ngOnInit(): void { }
 
   ngDoCheck(): void {
-    this.cart = this.cartSvc.getCart();
+    if (!this.cookiesSvc.checkLogin()) this.cart = [];
+    else this.cart = this.cartSvc.getCart();
   }
 
   private messageLoggedIn(): void {
