@@ -4,28 +4,33 @@
         <hr class="spartan">
         <div *ngIf="!cart.length; else cartBox">La cesta está vacía</div>
         <ng-template #cartBox>
-            <div class="cart-box">
+            <div class="view-cart">
                 <div class="process" *ngIf="cart.length">
                     <p>La cesta contiene <span>{{ getTotalProducts() }}</span> {{ getTotalProducts() > 1 ? 'productos' : 'producto'}}</p>
+                    <p>Precio total: <span>{{ getTotalPrice() | price }}</span></p>
                     <button class="btn golden" (click)="goToOrder()">Tramitar pedido</button>
                 </div>
-                <div class="d-flex justify-content-between mx-3">
-                    <p>
-                        <b>Artículos en la cesta </b> 
-                        <span class="empty-cart" *ngIf="cart.length > 1" (click)="emptyCart()">Vaciar cesta</span>
-                    </p>
-                    <p><b>Precio</b></p>
+                <div class="cart-box-view">
+                    <div class="cart-box">
+                        <div class="d-flex justify-content-between mx-3">
+                            <p>
+                                <b>Artículos en la cesta </b> 
+                                <span class="empty-cart" *ngIf="cart.length > 1" (click)="emptyCart()">Vaciar cesta</span>
+                            </p>
+                            <p><b>Precio</b></p>
+                        </div>
+                        <hr class="my-1">
+                        <app-product-cart *ngFor="let product of cart" [product]="product"></app-product-cart>
+                    </div>
+                    <hr class="my-1">
+                    <div class="d-flex justify-content-between mx-2">
+                        <div></div>
+                        <p>
+                            <b>Precio total: </b>
+                            <span class="total-price">{{ getTotalPrice() | price }}</span>
+                        </p>
+                    </div>
                 </div>
-                <hr class="my-1">
-                <app-product-cart *ngFor="let product of cart" [product]="product"></app-product-cart>
-            </div>
-            <hr class="my-1">
-            <div class="d-flex justify-content-between mx-2">
-                <div></div>
-                <p>
-                    <b>Precio total: </b>
-                    <span class="total-price">{{ getTotalPrice() | price }}</span>
-                </p>
             </div>
         </ng-template>
         <!-- <div class="process" *ngIf="cart.length">

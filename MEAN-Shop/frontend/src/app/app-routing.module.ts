@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'products', component: ProductsComponent },
   { path: 'product/:id', pathMatch: 'full', component: ViewProductComponent },
-  { path: 'order', component: OrderComponent },
+  { path: 'order', component: OrderComponent, canActivate: [LoggedInGuard] },
   { path: 'login', component: LoginComponent, canActivate: [InvitedGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [InvitedGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [LoggedInGuard] },

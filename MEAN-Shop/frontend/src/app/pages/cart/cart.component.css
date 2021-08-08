@@ -30,8 +30,9 @@ span.total-price {
 }
 
 .process {
-    background-color: black;
-    border: 2px solid var(--ceramic);
+    background-color: var(--charcoal);
+    /* border: 2px solid var(--ceramic); */
+    border: 4px solid var(--spartan_red);
     border-radius: 10px;
     color: var(--ceramic);
     font-weight: 500;
@@ -59,32 +60,30 @@ span.total-price {
     color: var(--charcoal);
 }
 .golden {
-    color: black;
-    background: linear-gradient(180deg, gold 0%, rgb(238, 181, 37) 100%);
     border: 2px solid var(--spartan_red);
-    font-weight: 500;
-}
-.golden:hover {
-    background: linear-gradient(180deg, gold 0%, rgb(189, 142, 25) 100%);
+    color: black;
 }
 
 @media screen and (min-width: 768px) {
     .container {
         margin-top: 30px;
     }
+}
+@media screen and (min-width: 992px) {
     hr.spartan {
         margin-bottom: 16px;
     }
-    .process {
-        background-color: rgba(0, 0, 0, 0.75);
-        display: block;
-        position: fixed;
-        left: auto;
-        top: 235px;
-        width: 300px;
+    .view-cart {
+        display: grid;
+        grid-template-columns: auto 315px;
     }
-    .process:hover {
-        background-color: black;
-        cursor: default;
+    .process {
+        display: block;
+        position: sticky;
+        left: 25px;
+        height: max-content;
+        order: 2;
+        top: 10px;
+        width: 300px;
     }
 }

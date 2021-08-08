@@ -57,10 +57,21 @@ hr.spartan {
     font-weight: 500;
 }
 .ceramic:hover {
-    color: var(--charcoal);
     filter: brightness(1.1);
 }
 .ceramic:focus {
+    box-shadow: 0 0 0 0.25rem rgb(255 176 58 / 25%);
+}
+.golden {
+    background: linear-gradient(180deg, gold 0%, rgb(189, 142, 25) 100%);
+    border: 2px solid var(--charcoal);
+    color: var(--charcoal);
+    font-weight: 500;
+}
+.golden:hover {
+    filter: brightness(1.1);
+}
+.golden:focus {
     box-shadow: 0 0 0 0.25rem rgb(255 176 58 / 25%);
 }
 
