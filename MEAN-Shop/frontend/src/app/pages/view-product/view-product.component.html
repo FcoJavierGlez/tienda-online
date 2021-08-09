@@ -82,22 +82,16 @@
             </div>
         </div>
     </div>
+
+    <!-- After add product in cart -->
     <div class="container product-added" *ngIf="addedCart">
-        <h4 class="mx-2">Producto añadido al carrito</h4>
-        <hr class="spartan">
-        <div class="banner-product-added">
-            <h6>Subtotal</h6>
-            <span class="price">{{ getTotalPrice() | price }}</span>
-            <div class="products-added-box">
-                <div class="img-banner" *ngFor="let item of cart">
-                    <div>
-                        <div matBadge={{item.quantity}} *ngIf="item.quantity > 1"></div>
-                        <img [src]="item.images[0]" alt="Imagen de product añadido a la cesta">
-                    </div>
-                </div>
-            </div>
+        <div class="message-product-added">
+            <h4>Producto añadido al carrito</h4>
         </div>
+        <app-banner [cart]="cart" [totalPrice]="getTotalPrice()"></app-banner>
     </div>
+
+    <!-- Suggests -->
     <div class="container suggest">
         <hr class="boundary-separate">
         <h4 class="mx-2">Quizás te interese</h4>

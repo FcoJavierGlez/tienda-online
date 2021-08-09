@@ -176,46 +176,24 @@ span.price {
     min-width: 180px;
 }
 
-/* PRODUCT ADDED */
+/* Product-added */
 .product-added {
     margin-top: 30px;
-    width: 100%;
 }
-
-.banner-product-added {
-    background-color: ghostwhite;
-    border-left: 1px solid black;
-    border-top: 1px solid black;
-    box-shadow: -2px 7px 12px 2px black;
-    position: fixed;
-    height: 100vh;
-    padding: 10px;
-    text-align: center;
-    top: 63px;
-    right: 0;
-    width: 120px;
-}
-.banner-product-added h6 {
-    margin-bottom: 2px;
-}
-.banner-product-added span.price {
-    color: var(--spartan_red);
-    font-weight: 500;
-}
-.products-added-box {
+.message-product-added {
     align-items: center;
+    background-color: var(--charcoal);
+    border: 2px solid var(--ceramic);
+    border-radius: 10px;
+    color: var(--ceramic);
     display: flex;
-    flex-flow: column;
-    margin-top: 10px;
-    row-gap: 10px;
+    height: 100px;
+    justify-content: center;
+    margin: 0 auto;
+    width: 85%;
 }
-.products-added-box img {
-    height: auto;
-    width: 80%;
-}
-.mat-badge-medium.mat-badge-overlap.mat-badge-after .mat-badge-content {
-    background-color: red!important;
-    right: 0px!important;
+.message-product-added h4 {
+    margin-bottom: 0;
 }
 
 /* SUGGEST */

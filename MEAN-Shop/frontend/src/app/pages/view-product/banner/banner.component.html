@@ -1,0 +1,12 @@
+<div class="banner-product-added">
+    <h6>Subtotal</h6>
+    <span class="price">{{ totalPrice | price }}</span>
+    <div class="products-added-box">
+        <div class="img-banner" *ngFor="let item of cart">
+            <div>
+                <div [matBadge]="item.quantity" *ngIf="item.quantity > 1"></div>
+                <img [src]="item.images[0]" loading="lazy" alt="Imagen de product añadido a la cesta" (click)="goToProduct(item)">
+            </div>
+        </div>
+    </div>
+</div>

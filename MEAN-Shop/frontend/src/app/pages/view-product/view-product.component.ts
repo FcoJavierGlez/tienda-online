@@ -54,6 +54,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
                         productDB =>  {
                           this.product = productDB;
                           this.imageSelected = 0;
+                          this.addedCart = false;
                         } 
                       );
 
@@ -140,7 +141,6 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   }
 
   goToProduct(item: Product): void {
-    this.addedCart = false;
     this.router.navigateByUrl(`/product/${item._id}`)  
   }
   

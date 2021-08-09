@@ -1,0 +1,49 @@
+.banner-product-added {
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    box-shadow: -2px 7px 12px 2px black;
+    display: none;
+    height: 100vh;
+    padding: 10px;
+    position: fixed;
+    text-align: center;
+    top: 63px;
+    right: 0;
+    width: 120px;
+}
+.banner-product-added h6 {
+    margin-bottom: 2px;
+}
+.banner-product-added span.price {
+    color: var(--spartan_red);
+    font-weight: 500;
+}
+.products-added-box {
+    align-items: center;
+    display: flex;
+    flex-flow: column-reverse;
+    margin-top: 10px;
+    row-gap: 25px;
+}
+.img-banner {
+    align-items: center;
+    display: flex;
+    height: 80px;
+}
+.products-added-box img {
+    height: auto;
+    width: 65%;
+}
+.products-added-box img:hover {
+    cursor: pointer;
+}
+.mat-badge-medium.mat-badge-overlap.mat-badge-after .mat-badge-content {
+    background-color: red!important;
+    right: 0px!important;
+}
+
+@media screen and (min-width: 1750px) {
+    .banner-product-added {
+        display: block;
+    }
+}
