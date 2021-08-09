@@ -5,7 +5,7 @@ import Tag from "../models/Tag.model";
 const lowerTags = newProduct =>  newProduct.tags = newProduct.tags.map( e => e.toLowerCase() );
 
 async function addNewTags( newProduct ) {
-    if (!newProduct.tags.length) return;
+    if (!newProduct.tags?.length) return;
     const tags = lowerTags( newProduct );
     for (let i = 0; i < tags.length; i++) {
         try {
