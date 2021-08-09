@@ -16,6 +16,7 @@ import { ProductCartComponent } from './cart/product-cart/product-cart.component
 import { DescriptionComponent } from './view-product/description/description.component';
 import { OrderComponent } from './order/order.component';
 import {IvyCarouselModule} from 'angular-responsive-carousel';
+import { MatBadgeModule } from '@angular/material/badge';
 
 
 
@@ -38,6 +39,7 @@ import {IvyCarouselModule} from 'angular-responsive-carousel';
     CommonModule,
     ReactiveFormsModule,
     IvyCarouselModule,
+    MatBadgeModule,
     SharedModule
   ],
   exports: [

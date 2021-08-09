@@ -10,7 +10,7 @@
     </div>
 
     <!-- Producto -->
-    <div class="container view-product" *ngIf="product">
+    <div class="container view-product" *ngIf="product && !addedCart">
         <div class="images-list">
             <app-preview-image 
             *ngFor="let src of product.images, index as i" 
@@ -82,21 +82,37 @@
             </div>
         </div>
     </div>
+    <div class="container product-added" *ngIf="addedCart">
+        <h4 class="mx-2">Producto añadido al carrito</h4>
+        <hr class="spartan">
+        <div class="banner-product-added">
+            <h6>Subtotal</h6>
+            <span class="price">{{ getTotalPrice() | price }}</span>
+            <div class="products-added-box">
+                <div class="img-banner" *ngFor="let item of cart">
+                    <div>
+                        <div matBadge={{item.quantity}} *ngIf="item.quantity > 1"></div>
+                        <img [src]="item.images[0]" alt="Imagen de product añadido a la cesta">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container suggest">
         <hr class="boundary-separate">
         <h4 class="mx-2">Quizás te interese</h4>
         <carousel [overflowCellsLimit]="7" *ngIf="productsWithSameTag" >
-            <div class="carousel-cell" title={{item.name}} (click)="goToProduct(item)" *ngFor="let item of productsWithSameTag">
+            <div class="carousel-cell" title={{product.name}} (click)="goToProduct(product)" *ngFor="let product of productsWithSameTag">
                 <div class="cell-img">
-                    <img [src]="item.images[0]" loading="lazy">
+                    <img [src]="product.images[0]" loading="lazy">
                 </div>
                 <div class="cell-info">
                     <div class="cell-name-box">
-                        <p class="cell-name">{{ item.name }}</p>
+                        <p class="cell-name">{{ product.name }}</p>
                     </div>
                     <div class="cell-price">
-                        <p class="price">{{ item.price * (100 - item.discount) / 100 | price }}</p>
-                        <p class="old-price" *ngIf="item.discount">{{ item.price | price }}</p>
+                        <p class="price">{{ product.price * (100 - product.discount) / 100 | price }}</p>
+                        <p class="old-price" *ngIf="product.discount">{{ product.price | price }}</p>
                     </div>
                 </div>
             </div>

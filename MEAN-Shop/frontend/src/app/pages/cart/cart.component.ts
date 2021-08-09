@@ -43,8 +43,7 @@ export class CartComponent implements OnInit, DoCheck {
   }
     
   getTotalPrice(): number {
-    if (!this.cart.length) return 0;
-    return this.cart.map( e => e.price * ( (100 - e.discount) / 100 ) * e.quantity ).reduce( (e, acc) => e + acc );
+    return this.cartSvc.getTotalPrice();
   }
 
   getTotalProducts(): number {

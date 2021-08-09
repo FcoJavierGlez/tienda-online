@@ -1,4 +1,4 @@
-import { NgModule, QueryList } from '@angular/core';
+import { QueryList } from '@angular/core';
 import { Component, OnInit, OnDestroy, ViewChildren } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -20,6 +20,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   private idProduct!: string;
   product!: Product;
   productsWithSameTag: Product[] = [];
+  cart: Product[] = [];
 
   private imageSelected!: number;
 
@@ -31,6 +32,8 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   private suggestProduct$!: any;
 
   @ViewChildren(PreviewImageComponent) childrens!: QueryList<PreviewImageComponent>;
+
+  addedCart: boolean = false;
 
   constructor( 
     private searchSvc: SearchService, 
@@ -117,7 +120,12 @@ export class ViewProductComponent implements OnInit, OnDestroy {
 
   addToCart(): void {
     if ( !this.appCookiesSvc.checkLogin() ) this.messageLoggedIn();
-    else this.cartSvc.addProduct( this.product );
+    else {
+      this.addedCart = true;
+      this.cartSvc.addProduct( this.product );
+      this.cart = this.cartSvc.getCart()
+      console.log(this.cart);
+    }
   }
 
   cssImgZoom(): any {
@@ -126,12 +134,13 @@ export class ViewProductComponent implements OnInit, OnDestroy {
       'img-zoom-in': this.imageZoom,
     }
   }
-
-  getCellsToShow(): number {
-    return 2;
+  
+  getTotalPrice(): number {
+    return this.cartSvc.getTotalPrice();
   }
 
   goToProduct(item: Product): void {
+    this.addedCart = false;
     this.router.navigateByUrl(`/product/${item._id}`)  
   }
   
