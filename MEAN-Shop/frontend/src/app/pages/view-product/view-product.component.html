@@ -96,7 +96,7 @@
                     </div>
                     <div class="cell-price">
                         <p class="price">{{ item.price * (100 - item.discount) / 100 | price }}</p>
-                        <p class="old-price">{{ item.price | price }}</p>
+                        <p class="old-price" *ngIf="item.discount">{{ item.price | price }}</p>
                     </div>
                 </div>
             </div>
