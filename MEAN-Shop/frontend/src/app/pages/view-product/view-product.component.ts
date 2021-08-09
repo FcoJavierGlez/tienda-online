@@ -55,6 +55,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
                           this.product = productDB;
                           this.imageSelected = 0;
                           this.addedCart = false;
+                          window.scroll(0,0);
                         } 
                       );
 
