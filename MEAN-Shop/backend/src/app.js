@@ -7,6 +7,7 @@ import accessRoutes from './routes/access.routes';
 import productRoutes from './routes/product.routes';
 import cartRoutes from './routes/cart.routes';
 import searchRoutes from './routes/search.routes';
+import suggestProductRoutes from './routes/suggest_product.routes';
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use( '/api/access', accessRoutes );
 app.use( '/api/product', productRoutes );
 app.use( '/api/cart', cartRoutes );
 app.use( '/api/search', searchRoutes );
+app.use( '/api/suggest_products', suggestProductRoutes );
 
 
 app.get('/', (req,res) => {
