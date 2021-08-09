@@ -116,7 +116,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
     if ( !this.appCookiesSvc.checkLogin() ) this.messageLoggedIn();
     else {
       this.addToCart();
-      //pasar a tramitar el pedido
+      this.router.navigate(['/order']);
     }
   }
 
