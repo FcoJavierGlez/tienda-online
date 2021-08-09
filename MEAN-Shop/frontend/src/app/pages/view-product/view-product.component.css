@@ -1,5 +1,5 @@
 .container-fluid {
-    padding-bottom: 25px!important;
+    padding-bottom: 25px !important;
 }
 .view-product {
     display: flex;
@@ -13,7 +13,7 @@
     top: 0;
     left: 0;
     width: 100vw;
-    z-index: 5;
+    z-index: 10;
 }
 .img-zoom-box {
     background-color: white;
@@ -27,7 +27,7 @@
     position: absolute;
     top: 0;
     width: 86vw;
-    z-index: 5;
+    z-index: 10;
 }
 .img-zoom-box::-webkit-scrollbar {
     display: none;
@@ -36,7 +36,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* border: 2px solid black; */
     border-radius: 50%;
     height: 35px;
     position: sticky;
@@ -208,15 +207,15 @@ span.price {
     background: linear-gradient(90deg, transparent 0%, black 50%, transparent 100%);
 }
 carousel {
-    *height: 225px!important;
     padding: 10px;
+    z-index: 5 !important;
 }
 .carousel-cells {
     width: max-content !important;
 }
 .carousel-cell {
     *border: 1px solid black;
-    width: 200px!important;
+    width: 200px !important;
 }
 .carousel-cell:hover {
     cursor: pointer;
