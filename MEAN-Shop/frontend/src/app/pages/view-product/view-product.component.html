@@ -84,8 +84,8 @@
     </div>
     <div class="container suggest">
         <hr class="boundary-separate">
-        <h4 class="pl-4">Quizás te interese</h4>
-        <carousel [overflowCellsLimit]="7" *ngIf="productsWithSameTag" > <!-- [cellsToShow]="getCellsToShow()" -->
+        <h4 class="mx-2">Quizás te interese</h4>
+        <carousel [overflowCellsLimit]="7" *ngIf="productsWithSameTag" >
             <div class="carousel-cell" title={{item.name}} (click)="goToProduct(item)" *ngFor="let item of productsWithSameTag">
                 <div class="cell-img">
                     <img [src]="item.images[0]" loading="lazy">
