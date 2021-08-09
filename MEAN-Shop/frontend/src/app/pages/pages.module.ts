@@ -15,6 +15,7 @@ import { PreviewImageComponent } from './view-product/preview-image/preview-imag
 import { ProductCartComponent } from './cart/product-cart/product-cart.component';
 import { DescriptionComponent } from './view-product/description/description.component';
 import { OrderComponent } from './order/order.component';
+import {IvyCarouselModule} from 'angular-responsive-carousel';
 
 
 
@@ -36,6 +37,7 @@ import { OrderComponent } from './order/order.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    IvyCarouselModule,
     SharedModule
   ],
   exports: [

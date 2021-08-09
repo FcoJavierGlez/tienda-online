@@ -16,6 +16,7 @@ import { SearchBarComponent } from './components/nav/search-bar/search-bar.compo
 import { UserButtonComponent } from './components/nav/user-button/user-button.component';
 import { FormsModule } from '@angular/forms';
 
+
 @NgModule({
   declarations: [
     AppComponent,

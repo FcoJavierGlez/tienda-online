@@ -82,9 +82,26 @@
             </div>
         </div>
     </div>
-    <div class="container">
-        <div>
-            AAAAAAAAAAAAAAA
-        </div>
+    <div class="container suggest">
+        <hr class="boundary-separate">
+        <h4 class="pl-4">Quizás te interese</h4>
+        <carousel [overflowCellsLimit]="7" *ngIf="productsWithSameTag" > <!-- [cellsToShow]="getCellsToShow()" -->
+            <div class="carousel-cell" title={{item.name}} (click)="goToProduct(item)" *ngFor="let item of productsWithSameTag">
+                <div class="cell-img">
+                    <img [src]="item.images[0]" loading="lazy">
+                </div>
+                <div class="cell-info">
+                    <div class="cell-name-box">
+                        <p class="cell-name">{{ item.name }}</p>
+                    </div>
+                    <div class="cell-price">
+                        <p class="price">{{ item.price * (100 - item.discount) / 100 | price }}</p>
+                        <p class="old-price">{{ item.price | price }}</p>
+                    </div>
+                </div>
+            </div>
+        </carousel>
+        <!-- <hr> -->
+        <hr class="boundary-separate">
     </div>
 </div>

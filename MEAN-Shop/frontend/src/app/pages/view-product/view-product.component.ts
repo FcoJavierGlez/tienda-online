@@ -1,4 +1,4 @@
-import { QueryList } from '@angular/core';
+import { NgModule, QueryList } from '@angular/core';
 import { Component, OnInit, OnDestroy, ViewChildren } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -7,6 +7,7 @@ import { Product } from 'src/app/shared/interfaces/product';
 import { AppCookiesService } from 'src/app/shared/services/app-cookies.service';
 import { CartService } from 'src/app/shared/services/cart.service';
 import { SearchService } from 'src/app/shared/services/search.service';
+import { SuggestProductsService } from 'src/app/shared/services/suggest-products.service';
 import { PreviewImageComponent } from './preview-image/preview-image.component';
 
 @Component({
@@ -18,6 +19,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
 
   private idProduct!: string;
   product!: Product;
+  productsWithSameTag: Product[] = [];
 
   private imageSelected!: number;
 
@@ -26,11 +28,13 @@ export class ViewProductComponent implements OnInit, OnDestroy {
 
   private route$!: any;
   private product$!: any;
+  private suggestProduct$!: any;
 
   @ViewChildren(PreviewImageComponent) childrens!: QueryList<PreviewImageComponent>;
 
   constructor( 
     private searchSvc: SearchService, 
+    private suggestProductSvc: SuggestProductsService,
     private appCookiesSvc: AppCookiesService,
     private activatedRouter: ActivatedRoute,
     private router: Router,
@@ -42,12 +46,18 @@ export class ViewProductComponent implements OnInit, OnDestroy {
     this.route$ = this.activatedRouter.params
                     .subscribe( param => {
                       this.idProduct = param['id'];
+
                       this.product$ = this.searchSvc.getProduct( this.idProduct ).subscribe(
                         productDB =>  {
                           this.product = productDB;
                           this.imageSelected = 0;
                         } 
-                      )
+                      );
+
+                      this.suggestProduct$ = this.suggestProductSvc
+                      .getProductsWithSameTag( this.idProduct ).subscribe(
+                        productsList => this.productsWithSameTag = productsList
+                      );
                     });
     
   }
@@ -55,6 +65,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.route$.unsubscribe();
     this.product$.unsubscribe();
+    this.suggestProduct$.unsubscribe();
   }
 
   getProduct(): Product {
@@ -114,6 +125,14 @@ export class ViewProductComponent implements OnInit, OnDestroy {
       'img-zoom-out': !this.imageZoom,
       'img-zoom-in': this.imageZoom,
     }
+  }
+
+  getCellsToShow(): number {
+    return 2;
+  }
+
+  goToProduct(item: Product): void {
+    this.router.navigateByUrl(`/product/${item._id}`)  
   }
   
 }
