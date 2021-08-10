@@ -35,3 +35,7 @@ button.mat-focus-indicator.mat-menu-item:hover {
     color: black;
     filter: brightness(1.1);
 }
+
+a:hover {
+    text-decoration: underline !important;
+}

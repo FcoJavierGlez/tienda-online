@@ -1,0 +1,14 @@
+.container {
+    margin-bottom: 25px;
+    margin-top: 30px;
+}
+
+a {
+    color: var(--blue_greek);
+    font-size: 0.9rem;
+    height: 16px;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}

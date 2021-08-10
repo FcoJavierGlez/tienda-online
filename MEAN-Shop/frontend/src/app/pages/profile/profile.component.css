@@ -1,0 +1,13 @@
+.container {
+    margin-bottom: 25px;
+    margin-top: 30px;
+}
+
+.optionsList {
+    align-items: center;
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat( auto-fill, minmax(300px, 1fr) );
+    justify-content: center;
+    justify-items: center;
+}

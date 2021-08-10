@@ -1,1 +1,10 @@
-<h1>profile works!</h1>
+<div class="container-fluid">
+    <div class="container">
+        <h2>Mi cuenta</h2>
+        <hr class="spartan">
+        <div class="optionsList">
+            <app-profile-card *ngFor="let option of options" [option]="option"></app-profile-card>
+        </div>
+    </div>
+    <!-- <router-outlet></router-outlet> -->
+</div>

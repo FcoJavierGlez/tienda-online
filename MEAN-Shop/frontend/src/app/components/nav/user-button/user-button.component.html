@@ -16,6 +16,7 @@
         <button mat-menu-item (click)="goTo('/register')">Crear cuenta</button>
     </div>
     <ng-template #menuLoggedIn>
+        <a href="/profile" class="mx-2 text-decoration-none">Mi cuenta</a>
         <button mat-menu-item (click)="logout()">Cerrar sesión</button>
     </ng-template>
 </mat-menu>

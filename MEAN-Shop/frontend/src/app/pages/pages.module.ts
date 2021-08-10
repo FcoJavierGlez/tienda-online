@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -15,13 +18,15 @@ import { PreviewImageComponent } from './view-product/preview-image/preview-imag
 import { ProductCartComponent } from './cart/product-cart/product-cart.component';
 import { DescriptionComponent } from './view-product/description/description.component';
 import { OrderComponent } from './order/order.component';
-import {IvyCarouselModule} from 'angular-responsive-carousel';
-import { MatBadgeModule } from '@angular/material/badge';
 import { BannerComponent } from './view-product/banner/banner.component';
 import { SuggestsComponent } from './view-product/suggests/suggests.component';
 import { AmzGuaranteeComponent } from './view-product/amz-guarantee/amz-guarantee.component';
 import { PriceComponent } from './view-product/price/price.component';
-
+import { AddressComponent } from './address/address.component';
+import { MyOrdersComponent } from './my-orders/my-orders.component';
+import { PaymentsComponent } from './payments/payments.component';
+import { ProfileCardComponent } from './profile/profile-card/profile-card.component';
+import { AppRoutingModule } from '../app-routing.module';
 
 
 @NgModule({
@@ -41,13 +46,20 @@ import { PriceComponent } from './view-product/price/price.component';
     BannerComponent,
     SuggestsComponent,
     AmzGuaranteeComponent,
-    PriceComponent
+    PriceComponent,
+    AddressComponent,
+    MyOrdersComponent,
+    PaymentsComponent,
+    ProfileCardComponent
   ],
   imports: [
+    AppRoutingModule,
     CommonModule,
     ReactiveFormsModule,
+    FormsModule,
     IvyCarouselModule,
     MatBadgeModule,
+    MatTabsModule,
     SharedModule
   ],
   exports: [

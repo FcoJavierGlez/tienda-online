@@ -12,16 +12,22 @@ import { CartComponent } from './pages/cart/cart.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { ViewProductComponent } from './pages/view-product/view-product.component';
 import { OrderComponent } from './pages/order/order.component';
+import { AddressComponent } from './pages/address/address.component';
+import { MyOrdersComponent } from './pages/my-orders/my-orders.component';
+import { PaymentsComponent } from './pages/payments/payments.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'cart', component: CartComponent },
   { path: 'products', component: ProductsComponent },
   { path: 'product/:id', pathMatch: 'full', component: ViewProductComponent },
-  { path: 'order', component: OrderComponent, canActivate: [LoggedInGuard] },
+  { path: 'order', component: OrderComponent/* , canActivate: [LoggedInGuard] */ },
   { path: 'login', component: LoginComponent, canActivate: [InvitedGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [InvitedGuard] },
-  { path: 'profile', component: ProfileComponent, canActivate: [LoggedInGuard] },
+  { path: 'profile', component: ProfileComponent, /* canActivate: [LoggedInGuard], */ },
+  { path: 'myorders', component: MyOrdersComponent },
+  { path: 'addresses', component: AddressComponent },
+  { path: 'payments', component: PaymentsComponent },
   { path: '**', pathMatch: 'full', redirectTo: '' },
 ];
 

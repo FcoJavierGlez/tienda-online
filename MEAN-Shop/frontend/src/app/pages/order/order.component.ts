@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-order',
@@ -7,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderComponent implements OnInit {
 
-  constructor() { }
+  order!: FormGroup;
+
+  constructor( private fb: FormBuilder ) { }
 
   ngOnInit(): void {
+    this.createForm();
+  }
+
+  onSubmit(event: Event): void {
+    console.log(this.order.value);
+    
+  }
+
+  createForm(): void {
+    this.order = this.fb.group(
+      {
+        pago: ['', [Validators.required] ]
+      }
+    );
   }
 
 }

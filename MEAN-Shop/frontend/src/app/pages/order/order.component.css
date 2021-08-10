@@ -2,3 +2,13 @@
     margin-top: 30px;
     padding-bottom: 25px;
 }
+
+section {
+    margin: 0 auto;
+    padding: 15px 0;
+    width: 90%;
+}
+
+section h5 {
+    text-align: left;
+}
