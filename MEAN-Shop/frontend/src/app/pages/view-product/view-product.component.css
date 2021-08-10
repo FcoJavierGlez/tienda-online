@@ -164,32 +164,6 @@ span.price {
     margin: 10px;
     margin-top: 15px;
 }
-.amz-guarantee {
-    margin: 15px auto;
-}
-div.ceramic {
-    background: none;
-    background: linear-gradient( 180deg, rgb(55,55,55) 0%, rgb(30,30,30) 25%, var(--charcoal) 100% );
-    background-color: var(--charcoal);
-    border: 3px solid var(--red);
-    border-radius: 10px;
-    color: white;
-    padding-top: 2px;
-    margin: 0 auto;
-    width: 90%;
-}
-div.ceramic:hover {
-    box-shadow: 0 0 8px 2px goldenrod; 
-}
-div.amz-guarantee small {
-    color: var(--blue_greek);
-    font-weight: bold;
-}
-.amz-vendor {
-    display: block;
-    margin: 0 auto;
-    width: 90%;
-}
 .text .buttons-panel {
     flex-flow: column;
     justify-content: center;
