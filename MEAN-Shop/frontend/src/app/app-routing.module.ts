@@ -21,13 +21,13 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'products', component: ProductsComponent },
   { path: 'product/:id', pathMatch: 'full', component: ViewProductComponent },
-  { path: 'order', component: OrderComponent/* , canActivate: [LoggedInGuard] */ },
+  { path: 'order', component: OrderComponent,/* canActivate: [LoggedInGuard] */ },
   { path: 'login', component: LoginComponent, canActivate: [InvitedGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [InvitedGuard] },
-  { path: 'profile', component: ProfileComponent, /* canActivate: [LoggedInGuard], */ },
-  { path: 'myorders', component: MyOrdersComponent },
-  { path: 'addresses', component: AddressComponent },
-  { path: 'payments', component: PaymentsComponent },
+  { path: 'profile', component: ProfileComponent, canActivate: [LoggedInGuard], },
+  { path: 'myorders', component: MyOrdersComponent, canActivate: [LoggedInGuard], },
+  { path: 'addresses', component: AddressComponent, canActivate: [LoggedInGuard], },
+  { path: 'payments', component: PaymentsComponent, canActivate: [LoggedInGuard], },
   { path: '**', pathMatch: 'full', redirectTo: '' },
 ];
 
