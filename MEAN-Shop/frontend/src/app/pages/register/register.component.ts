@@ -50,6 +50,7 @@ export class RegisterComponent implements OnInit {
   private translateFieldName(fieldName: string) : string {
     switch (fieldName) {
       case 'name': return 'nombre';
+      case (fieldName.match(/(surname(s)?)/i))?.input: return 'apellidos';
       case 'email': return 'correo';
       case 'street': return 'calle';
       case (fieldName.match(/(zip|code)/i))?.input: return 'código postal';
@@ -154,6 +155,7 @@ export class RegisterComponent implements OnInit {
     this.form = this.formBuilder.group(
       {
         name: [ '', [Validators.required] ],
+        surname: [ '', [Validators.required] ],
         email: [ '', [Validators.required, Validators.pattern( this.REGEXP_EMAIL )] ],
         password: [ '', [Validators.required, Validators.minLength(8)] ],
         repeatPassword: [ '', [Validators.required, this.repeatPassword] ],

@@ -1,0 +1,16 @@
+<carousel [overflowCellsLimit]="7">
+    <div class="carousel-cell" title={{product.name}} (click)="goToProduct(product)" *ngFor="let product of products">
+        <div class="cell-img">
+            <img [src]="product.images[0]" loading="lazy">
+        </div>
+        <div class="cell-info">
+            <div class="cell-name-box">
+                <p class="cell-name">{{ product.name }}</p>
+            </div>
+            <div class="cell-price">
+                <p class="price">{{ product.price * (100 - product.discount) / 100 | price }}</p>
+                <p class="old-price" *ngIf="product.discount">{{ product.price | price }}</p>
+            </div>
+        </div>
+    </div>
+</carousel>

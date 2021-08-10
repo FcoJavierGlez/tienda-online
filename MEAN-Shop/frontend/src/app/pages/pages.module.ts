@@ -18,6 +18,7 @@ import { OrderComponent } from './order/order.component';
 import {IvyCarouselModule} from 'angular-responsive-carousel';
 import { MatBadgeModule } from '@angular/material/badge';
 import { BannerComponent } from './view-product/banner/banner.component';
+import { SuggestsComponent } from './view-product/suggests/suggests.component';
 
 
 
@@ -35,7 +36,8 @@ import { BannerComponent } from './view-product/banner/banner.component';
     ProductCartComponent,
     DescriptionComponent,
     OrderComponent,
-    BannerComponent
+    BannerComponent,
+    SuggestsComponent
   ],
   imports: [
     CommonModule,

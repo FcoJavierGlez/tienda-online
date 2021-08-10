@@ -1,10 +1,14 @@
 .box-container {
     margin-top: 5px;
+    padding-bottom: 25px;
 }
-
 form {
     margin: 0 auto;
     width: 95%;
+}
+
+.form-label {
+    margin-top: 10px;
 }
 
 .pointer:hover {
@@ -21,5 +25,8 @@ form {
     }
     .container {
         max-width: 650px;
+    }
+    .form-label {
+        margin-top: 15px;
     }
 }
