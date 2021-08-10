@@ -1,6 +1,12 @@
 import User from '../models/User.model';
 import userAddress from '../models/UserAddress.model';
 
+const checkSomeDefaultAddress = addresses => {
+    for (let i = 0; i < addresses.length; i++) 
+        if ( addresses[i].defaultAddress ) return true;
+    return false;
+}
+
 const userController = {
     /* User */
     /* [...] */
@@ -15,7 +21,7 @@ const userController = {
             res.status(500).json( { success: false, message: 'Ha habido un error' } );
         }
     },
-    updateAddresses: async function (req,res) {
+    updateAddress: async function (req,res) {
         try {
             const searchUser = await User.findOne( { uid: req.uid } );
             if (!searchUser.addresses?.length) {
@@ -29,6 +35,19 @@ const userController = {
             addresses.push( await new userAddress( req.body ) );
             await User.findOneAndUpdate( { uid: req.uid }, { addresses: addresses } );
             res.status(200).json( { success: true, message: "Dirección añadida" } );
+        } catch (error) {
+            console.error(error);
+            res.status(500).json( { success: false, message: 'Ha habido un error' } );
+        }
+    },
+    deleteAddress: async function (req,res) {
+        try {
+            console.log( 'id',req.params.id );
+            let addresses = ( await User.findOne( { uid: req.uid } ) ).addresses;
+            addresses = addresses.filter( address => !(address._id == req.params.id) );
+            if ( addresses.length && !checkSomeDefaultAddress( addresses ) ) addresses[0].defaultAddress = true;
+            await User.findOneAndUpdate( { uid: req.uid }, { addresses: addresses } ); 
+            res.status(200).json( { success: true, message: "Eliminada dirección" } );
         } catch (error) {
             console.error(error);
             res.status(500).json( { success: false, message: 'Ha habido un error' } );

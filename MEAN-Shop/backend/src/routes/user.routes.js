@@ -17,8 +17,8 @@ const verifyUid = (req,res,next) => {
 
 /* Direcciones */
 router.get( '/addresses', verifyUid, userCtl.getAddresses );
-router.put( '/addresses', verifyUid, userCtl.updateAddresses );
-// router.delete('/addresses/:id');
+router.put( '/addresses', verifyUid, userCtl.updateAddress );
+router.delete( '/addresses/:id', verifyUid, userCtl.deleteAddress );
 
 /* Formas de pago */
 /* router.get('/payments');
