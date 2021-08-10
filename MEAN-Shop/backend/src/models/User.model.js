@@ -1,5 +1,6 @@
 import { Schema, model } from "mongoose";
 import { ProductSchema } from './Product.model';
+import { UserAddressSchema } from './UserAddress.model';
 
 const userSchema = new Schema(
     {
@@ -23,11 +24,12 @@ const userSchema = new Schema(
             required: true,
             trim: true
         },
-        /* address: {
-            streetType: String
-        }, */
+        addresses: {
+            type: [UserAddressSchema],
+            default: []
+        },
         cart: {
-            type: [ProductSchema],//[Object]
+            type: [ProductSchema],
             default: []
         },
         uid: {
@@ -48,41 +50,5 @@ const userSchema = new Schema(
         versionKey: false
     }
 );
-
-/* const Product = new Schema(
-    {
-        name: {
-            type: String,
-            required: true,
-            trim: true
-        },
-        description: {
-            type: String,
-            required: true,
-            trim: true
-        },
-        images: {
-            type: [String],
-            default: []
-        },
-        quantity: {
-            type: Number,
-            default: 1
-
-        },
-        price: {
-            type: Number,
-            required: true
-        },
-        discount: {
-            type: Number,
-            default: 0
-        }
-    },
-    {
-        timestamps: true,
-        versionKey: false
-    }
-); */
 
 export default model( 'User', userSchema );
