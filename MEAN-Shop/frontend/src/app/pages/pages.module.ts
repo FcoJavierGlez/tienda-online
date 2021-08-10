@@ -20,6 +20,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { BannerComponent } from './view-product/banner/banner.component';
 import { SuggestsComponent } from './view-product/suggests/suggests.component';
 import { AmzGuaranteeComponent } from './view-product/amz-guarantee/amz-guarantee.component';
+import { PriceComponent } from './view-product/price/price.component';
 
 
 
@@ -39,7 +40,8 @@ import { AmzGuaranteeComponent } from './view-product/amz-guarantee/amz-guarante
     OrderComponent,
     BannerComponent,
     SuggestsComponent,
-    AmzGuaranteeComponent
+    AmzGuaranteeComponent,
+    PriceComponent
   ],
   imports: [
     CommonModule,

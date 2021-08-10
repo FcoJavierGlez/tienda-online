@@ -1,0 +1,20 @@
+<div *ngIf="product.discount; else withoutDiscount" class="show-price">
+    <p class="old-price">Precio recomendado:</p>
+    <p><span class="line">{{ product.price | price }}</span></p>
+
+    <p class="old-price">Ahorras:</p>
+    <p><span class="offer">{{ product.price - product.price * (100 - product.discount) / 100 | price }} ({{ product.discount }}%)</span></p>
+    
+    <p class="old-price">Precio:</p>
+    <p><span class="offer price">{{ product.price * (100 - product.discount) / 100 | price }}</span></p>
+    <div></div>
+    <p class="final-price">Precio final del producto</p>
+</div>
+<ng-template #withoutDiscount>
+    <div class="show-price">
+        <p class="old-price">Precio: </p>
+        <p><span class="offer price">{{ product.price | price }}</span></p>
+        <div></div>
+        <p class="final-price">Precio final del producto</p>
+    </div>
+</ng-template>
