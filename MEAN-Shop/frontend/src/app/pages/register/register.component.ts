@@ -37,11 +37,22 @@ export class RegisterComponent implements OnInit {
     this.params.queryParams.subscribe(
       res => this.tokenActivate = res['activate']
     );
-    console.log(this.tokenActivate);
     if (this.tokenActivate) 
       this.accessSvc.activate( this.tokenActivate ).subscribe(
         res => {
           this.messageActivate = res.message;
+        }, 
+        err => {
+          let registerDialog = this.dialog.open(DialogComponent, {
+            data: {
+              title: 'Registro',
+              message: `${err.error.message}.`,
+              alertMessage: false,
+              continueMessage: false,
+              optionButtons: false
+            }
+          });
+          registerDialog.afterClosed().subscribe( () => this.router.navigate( ['/login'] ) );
         }
       )
     else this.createForm();
@@ -91,7 +102,6 @@ export class RegisterComponent implements OnInit {
     if (!this.form.valid) return;
     this.accessSvc.register( this.form.value ).subscribe(
       res => {
-        console.log('Registrado con éxito');
         let registerDialog = this.dialog.open(DialogComponent, {
           data: {
             title: 'Registro',
@@ -107,7 +117,7 @@ export class RegisterComponent implements OnInit {
         let registerDialog = this.dialog.open(DialogComponent, {
           data: {
             title: 'Registro',
-            message: `${err.error.message}.`,
+            message: `${err.error.message}`,
             alertMessage: true,
             optionButtons: false
           }
@@ -157,7 +167,7 @@ export class RegisterComponent implements OnInit {
         name: [ '', [Validators.required] ],
         surname: [ '', [Validators.required] ],
         email: [ '', [Validators.required, Validators.pattern( this.REGEXP_EMAIL )] ],
-        password: [ '', [Validators.required, Validators.minLength(8)] ],
+        password: [ '', [Validators.required, /* Validators.minLength(8) */] ],
         repeatPassword: [ '', [Validators.required, this.repeatPassword] ],
       }
     );

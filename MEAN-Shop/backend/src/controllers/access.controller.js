@@ -34,13 +34,19 @@ const saveToken = ( userUID, token = '' ) => {
 const dataMail = ( user, token = '' ) => {
     return (
         {
-            from: '"Registro Amz-shop 👻" <developerdaw86.sendmail@gmail.com>', // sender address
+            from: '"Amz-shop" <developerdaw86.sendmail@gmail.com>',
             to: user.email,
             subject: "Activación de cuenta",
             html: `
-                <b>
-                    <a href='${appConfig.urlSPA}/register?activate=${token}'>Para activar su cuenta pulse en el siguiente enlace</a>
-                </b>`,
+                <div style="margin: 0px auto; width: 90%;">
+                    <h1 style="text-align: center;">Registro de cuenta en Amazona</h1>
+                    <hr style="border-color: #C80000; margin-top: 0px;"/>
+                    <h2 style="margin: 5px 0;">Bienvenido/a.</h2>
+                    <p>Su cuenta de Amazona está <u>pendiente de ser activada</u>.</p>
+                    <p>
+                        <b><a href='${appConfig.urlSPA}/register?activate=${token}'>Para activar su cuenta pulse éste enlace</a></b>
+                    </p>
+                </div>`,
         }
     );
 }
@@ -78,8 +84,8 @@ const accessController = {
             const registerToken = jwt.genToken( { uid: user.uid }, { expiresIn: '3d' } );
             //console.log( registerToken );
             await new Token( { uid: user.uid } ).save();
-            //await mailTransport.sendMail( dataMail(user, registerToken) );
-            res.status(200).json( { success: true, code_error: 0, message: "Registrado satisfactoriamente. En breve recibirás un correo de confirmación." } );
+            await mailTransport.sendMail( dataMail(user, registerToken) );
+            res.status(200).json( { success: true, code_error: 0, message: `Tu cuenta ha sido registrada. En breve recibirás un correo para activar tu cuenta.` } );
         } catch (error) {
             //console.log(error);
             res.status(500).json( { success: false, code_error: 2, message: "Algo salió mal." } );
