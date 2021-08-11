@@ -23,11 +23,11 @@ import { BannerComponent } from './view-product/banner/banner.component';
 import { SuggestsComponent } from './view-product/suggests/suggests.component';
 import { AmzGuaranteeComponent } from './view-product/amz-guarantee/amz-guarantee.component';
 import { PriceComponent } from './view-product/price/price.component';
-import { AddressesComponent } from './addresses/address.component';
+import { AddressesComponent } from './addresses/addresses.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { PaymentsComponent } from './payments/payments.component';
 import { ProfileCardComponent } from './profile/profile-card/profile-card.component';
-import { AddressCardComponent } from './address/address-card/address-card.component';
+import { AddressCardComponent } from './addresses/address-card/address-card.component';
 
 
 @NgModule({
