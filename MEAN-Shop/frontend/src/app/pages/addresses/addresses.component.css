@@ -14,18 +14,20 @@ a:hover {
 }
 
 .addresses-list {
-    *background-color: red;
+    /* background-color: red; */
     display: grid;
     gap: 15px;
-    grid-template-columns: repeat( auto-fill, minmax( 325px, 1fr ) );
-    padding: 25px 15px;
+    grid-template-columns: repeat( auto-fill, minmax( 300px, 300px ) );
+    justify-content: center;
+    margin: 0 auto;
+    padding: 25px 0;
     width: 90%;
 }
 
 .new-address {
     align-items: center;
     background-color: ghostwhite;
-    border: 2px dashed lightslategrey;
+    border: 2px dashed gainsboro;
     border-radius: 10px;
     color: lightslategrey;
     display: flex;

@@ -1,13 +1,45 @@
 .address-card {
-    align-items: center;
     background-color: ghostwhite;
-    border: 2px solid lightslategrey;
+    border: 2px solid gainsboro;
     border-radius: 10px;
     color: lightslategrey;
     display: flex;
     flex-direction: column;
-    font-size: 32px;
+    font-size: 14px;
     height: 300px;
     justify-content: center;
     width: 300px;
+}
+
+header, footer {
+    align-items: center;
+    display: flex;
+    gap: 10px;
+    height: 50px;
+    padding: 0 10px;
+}
+
+header {
+    border-bottom: 1px solid gainsboro;
+    justify-content: flex-start;
+}
+footer {
+    border-top: 1px solid gainsboro;
+    justify-content: flex-end;
+}
+
+footer a {
+    color: var(--blue_greek);
+    text-decoration: none;
+}
+footer a:hover {
+    text-decoration: underline;
+}
+
+.info {
+    flex-grow: 1;
+}
+
+.name {
+    font-weight: 700;
 }
