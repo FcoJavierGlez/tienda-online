@@ -24,10 +24,10 @@ const routes: Routes = [
   { path: 'order', component: OrderComponent,/* canActivate: [LoggedInGuard] */ },
   { path: 'login', component: LoginComponent, canActivate: [InvitedGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [InvitedGuard] },
-  { path: 'profile', component: ProfileComponent, canActivate: [LoggedInGuard], },
-  { path: 'myorders', component: MyOrdersComponent, canActivate: [LoggedInGuard], },
-  { path: 'addresses', component: AddressComponent, canActivate: [LoggedInGuard], },
-  { path: 'payments', component: PaymentsComponent, canActivate: [LoggedInGuard], },
+  { path: 'profile', component: ProfileComponent, /* canActivate: [LoggedInGuard] */ },
+  { path: 'myorders', component: MyOrdersComponent, /* canActivate: [LoggedInGuard] */ },
+  { path: 'addresses', component: AddressComponent, /* canActivate: [LoggedInGuard] */ },
+  { path: 'payments', component: PaymentsComponent, /* canActivate: [LoggedInGuard] */ },
   { path: '**', pathMatch: 'full', redirectTo: '' },
 ];
 

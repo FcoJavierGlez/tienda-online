@@ -12,3 +12,32 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+.addresses-list {
+    *background-color: red;
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat( auto-fill, minmax( 325px, 1fr ) );
+    padding: 25px 15px;
+    width: 90%;
+}
+
+.new-address {
+    align-items: center;
+    background-color: ghostwhite;
+    border: 2px dashed lightslategrey;
+    border-radius: 10px;
+    color: lightslategrey;
+    display: flex;
+    flex-direction: column;
+    font-size: 32px;
+    height: 300px;
+    justify-content: center;
+    width: 300px;
+}
+.new-address:hover {
+    cursor: pointer;
+}
+.new-address .fas {
+    color: mediumseagreen;
+}

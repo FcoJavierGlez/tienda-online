@@ -5,6 +5,7 @@ import { SharedModule } from '../shared/shared.module';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatTabsModule } from '@angular/material/tabs';
+import { AppRoutingModule } from '../app-routing.module';
 
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -22,11 +23,11 @@ import { BannerComponent } from './view-product/banner/banner.component';
 import { SuggestsComponent } from './view-product/suggests/suggests.component';
 import { AmzGuaranteeComponent } from './view-product/amz-guarantee/amz-guarantee.component';
 import { PriceComponent } from './view-product/price/price.component';
-import { AddressComponent } from './address/address.component';
+import { AddressesComponent } from './addresses/address.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { PaymentsComponent } from './payments/payments.component';
 import { ProfileCardComponent } from './profile/profile-card/profile-card.component';
-import { AppRoutingModule } from '../app-routing.module';
+import { AddressCardComponent } from './address/address-card/address-card.component';
 
 
 @NgModule({
@@ -47,10 +48,11 @@ import { AppRoutingModule } from '../app-routing.module';
     SuggestsComponent,
     AmzGuaranteeComponent,
     PriceComponent,
-    AddressComponent,
+    AddressesComponent,
     MyOrdersComponent,
     PaymentsComponent,
-    ProfileCardComponent
+    ProfileCardComponent,
+    AddressCardComponent
   ],
   imports: [
     AppRoutingModule,
