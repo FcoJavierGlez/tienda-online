@@ -9,7 +9,8 @@
                 <h3>Añadir dirección</h3>
             </div>
 
-            <app-address-card *ngFor="let address of addresses; index as i" [address]="address" [index]="i + 1"></app-address-card>
+            <app-address-card *ngFor="let address of addresses; index as i" 
+            [address]="address" [index]="i + 1" (refeshList)="refreshList($event)"></app-address-card>
         </div>
     </div>
 </div>

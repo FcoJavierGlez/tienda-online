@@ -16,4 +16,16 @@ export class UserService {
   getAddresses(token: string): Observable<UserAddress[]> {
     return this.http.get<UserAddress[]>( `${this.URL}/addresses`, { headers: { authorization: `Bearer ${token}` } } );
   }
+  getAddress(token: string, idAddress: string): Observable<UserAddress> {
+    return this.http.get<UserAddress>( `${this.URL}/address/${idAddress}`, { headers: { authorization: `Bearer ${token}` } } );
+  }
+  addAddress(token: string, address: any): Observable<any> {
+    return this.http.post<any>( `${this.URL}/address`, address, { headers: { authorization: `Bearer ${token}` } } );
+  }
+  updateAddress(token: string, address: any, idAddress: string): Observable<any> {
+    return this.http.put<any>( `${this.URL}/address/${idAddress}`, address, { headers: { authorization: `Bearer ${token}` } } );
+  }
+  deleteAddress(token: string, idAddress: string): Observable<any> {
+    return this.http.delete<any>( `${this.URL}/address/${idAddress}`, { headers: { authorization: `Bearer ${token}` } } );
+  }
 }

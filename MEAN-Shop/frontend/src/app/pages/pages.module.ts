@@ -29,6 +29,7 @@ import { PaymentsComponent } from './payments/payments.component';
 import { ProfileCardComponent } from './profile/profile-card/profile-card.component';
 import { AddressCardComponent } from './addresses/address-card/address-card.component';
 import { AddressComponent } from './address/address.component';
+import { AddressFormComponent } from './address/address-form/address-form.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { AddressComponent } from './address/address.component';
     PaymentsComponent,
     ProfileCardComponent,
     AddressCardComponent,
-    AddressComponent
+    AddressComponent,
+    AddressFormComponent
   ],
   imports: [
     AppRoutingModule,

@@ -17,8 +17,10 @@ const verifyUid = (req,res,next) => {
 
 /* Direcciones */
 router.get( '/addresses', verifyUid, userCtl.getAddresses );
-router.put( '/addresses', verifyUid, userCtl.updateAddress );
-router.delete( '/addresses/:id', verifyUid, userCtl.deleteAddress );
+router.post( '/address', verifyUid, userCtl.addAddress );
+router.get( '/address/:id', verifyUid, userCtl.getAddress );
+router.put( '/address/:id', verifyUid, userCtl.updateAddress );
+router.delete( '/address/:id', verifyUid, userCtl.deleteAddress );
 
 /* Formas de pago */
 /* router.get('/payments');

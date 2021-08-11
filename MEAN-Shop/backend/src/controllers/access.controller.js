@@ -63,7 +63,7 @@ const accessController = {
                 return res.status(401).json( DATA_LOGIN );
             }
             DATA_LOGIN.success = true;
-            DATA_LOGIN.token   = jwt.genToken( { uid: user.uid }, { expiresIn: appConfig.tokenTimeLife } );
+            DATA_LOGIN.token   = jwt.genToken( { uid: user.uid }, { expiresIn: appConfig.tokenTimeLife } );/* '1d' */
             DATA_LOGIN.refresh = jwt.genToken( { uid: user.uid }, { expiresIn: appConfig.refreshTokenTimeLife } );
             DATA_LOGIN.profile = jwt.genToken( { uid: user.uid, profile: user.profile }, { expiresIn: '1h' } );
             //console.log(DATA_LOGIN);

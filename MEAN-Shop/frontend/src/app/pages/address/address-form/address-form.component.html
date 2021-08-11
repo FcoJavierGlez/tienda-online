@@ -1,0 +1,88 @@
+
+<div class="container-fluid">
+    
+    <div class="container">
+    
+        <form (submit)="onSubmit($event)" [formGroup]="form">
+
+            <div class="col-md-12" [ngClass]="displayFieldCss('country')">
+                <label for="country" class="form-label required">País</label>
+                <select name="country" id="country" class="form-select" formControlName="country" required>
+                    <option value="">Elegir opción</option>
+                    <option value="España" [selected]="true">España</option>
+                </select>
+                <div *ngIf="form.get('country')?.touched && form.get('country')?.invalid" class="text-danger">{{ getErrorMessage('country') }}</div>
+            </div>
+
+            <div class="col-md-12" [ngClass]="displayFieldCss('name')">
+                <label for="name" class="form-label required">Nombre completo</label>
+                <input type="text" class="form-control" id="name" formControlName="name" [value]="data ? data.name : ''"
+                placeholder="Nombre destinatario" required>
+                <div *ngIf="form.get('name')?.touched && form.get('name')?.invalid" class="text-danger">{{ getErrorMessage('name') }}</div>
+            </div>
+
+            <div class="col-md-12" [ngClass]="displayFieldCss('phone')">
+                <label for="phone" class="form-label required">Número de teléfono</label>
+                <input type="number" class="form-control" id="phone" [value]="data ? data.phone : ''"
+                formControlName="phone" required>
+                <div class="form-text">Se puede utilizar para ayudar a la entrega.</div>
+                <div *ngIf="form.get('phone')?.touched && form.get('phone')?.invalid" class="text-danger">{{ getErrorMessage('phone') }}</div>
+            </div>
+
+            <div class="col-md-12" [ngClass]="displayFieldCss('address')">
+                <label for="address" class="form-label required">Dirección</label>
+                <input type="text" class="form-control" id="address" [value]="data ? data.address : ''"
+                formControlName="address" placeholder="Nombre y número de la vía" required>
+                <div *ngIf="form.get('address')?.touched && form.get('address')?.invalid" class="text-danger">{{ getErrorMessage('address') }}</div>
+            </div>
+            <div class="col-md-12" [ngClass]="displayFieldCss('apartment')">
+                <input type="text" class="form-control mt-1" id="apartment" [value]="data ? data.apartment : ''"
+                formControlName="apartment" placeholder="Apartamento, piso, escalera">
+                <div *ngIf="form.get('apartment')?.touched && form.get('apartment')?.invalid" class="text-danger">{{ getErrorMessage('apartment') }}</div>
+            </div>
+
+            <div class="form-group row">
+                <div class="form-group col-md-4" [ngClass]="displayFieldCss('zipCode')">
+                    <label for="zipCode" class="form-label required">Código postal</label>
+                    <input type="number" class="form-control" id="zipCode" [value]="data ? data.zipCode : ''"
+                    formControlName="zipCode" required>
+                    <div *ngIf="form.get('zipCode')?.touched && form.get('zipCode')?.invalid" class="text-danger">{{ getErrorMessage('zipCode') }}</div>
+                </div>
+                <div class="form-group col-md-8" [ngClass]="displayFieldCss('city')">
+                    <label for="city" class="form-label required">Ciudad</label>
+                    <input type="text" class="form-control" id="city" [value]="data ? data.city : ''"
+                    formControlName="city" required>
+                    <div *ngIf="form.get('city')?.touched && form.get('city')?.invalid" class="text-danger">{{ getErrorMessage('city') }}</div>
+                </div>
+            </div>
+
+            <div class="col-md-12" [ngClass]="displayFieldCss('province')">
+                <label for="province" class="form-label required">Provincia</label>
+                <input type="text" class="form-control" id="province" [value]="data ? data.province : ''"
+                formControlName="province" required>
+                <div *ngIf="form.get('province')?.touched && form.get('province')?.invalid" class="text-danger">{{ getErrorMessage('province') }}</div>
+            </div>
+
+            <div class="col-md-12" [ngClass]="displayFieldCss('nif')">
+                <label for="nif" class="form-label required">NIF</label>
+                <input type="text" class="form-control" id="nif" [value]="data ? data.nif : ''"
+                formControlName="nif" required>
+                <div *ngIf="form.get('nif')?.touched && form.get('nif')?.invalid" class="text-danger">{{ getErrorMessage('nif') }}</div>
+            </div>
+
+            <div class="form-group">
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="defaultAddress" [checked]="data ? data.defaultAddress : ''"
+                    formControlName="defaultAddress">
+                    <label class="form-check-label" for="defaultAddress">Convertir en mi dirección predeterminada.</label>
+                </div>
+            </div>
+    
+            <div class="buttons-panel">
+                <button class="btn btn-danger" (click)="cancel($event)">Cancelar</button>
+                <button type="submit" class="btn btn-success">Aceptar</button>
+            </div>
+        </form>
+    </div>
+
+</div>

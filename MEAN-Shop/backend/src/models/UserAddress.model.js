@@ -6,10 +6,19 @@ const userAddressSchema = new Schema (
             type: String,
             default: 'España'
         },
+        name: {
+            type: String,
+            required: true,
+            trim: true
+        },
         address: {
             type: String,
             required: true,
             trim: true
+        },
+        apartment: {
+            type: String,
+            default: ''
         },
         phone: {
             type: Number,

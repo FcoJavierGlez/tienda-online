@@ -1,0 +1,22 @@
+form {
+    margin: 0 auto;
+    width: 40%;
+    min-width: 335px;
+    padding-bottom: 30px;
+}
+
+form label {
+    margin-top: 5px;
+}
+
+.mb-3.form-check {
+    align-items: center;
+    display: flex;
+    gap: 10px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
