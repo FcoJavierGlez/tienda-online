@@ -13,6 +13,7 @@ import { ProductsComponent } from './pages/products/products.component';
 import { ViewProductComponent } from './pages/view-product/view-product.component';
 import { OrderComponent } from './pages/order/order.component';
 import { AddressesComponent } from './pages/addresses/addresses.component';
+import { AddressComponent } from './pages/address/address.component';
 import { MyOrdersComponent } from './pages/my-orders/my-orders.component';
 import { PaymentsComponent } from './pages/payments/payments.component';
 
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent, canActivate: [InvitedGuard] },
   { path: 'profile', component: ProfileComponent, /* canActivate: [LoggedInGuard] */ },
   { path: 'myorders', component: MyOrdersComponent, /* canActivate: [LoggedInGuard] */ },
+  { path: 'address', component: AddressComponent, /* canActivate: [LoggedInGuard] */ },
   { path: 'addresses', component: AddressesComponent, /* canActivate: [LoggedInGuard] */ },
   { path: 'payments', component: PaymentsComponent, /* canActivate: [LoggedInGuard] */ },
   { path: '**', pathMatch: 'full', redirectTo: '' },

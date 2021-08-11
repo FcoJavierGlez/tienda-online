@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserAddress } from 'src/app/shared/interfaces/user-address';
 import { AppCookiesService } from 'src/app/shared/services/app-cookies.service';
 import { UserService } from 'src/app/shared/services/user.service';
@@ -10,14 +11,14 @@ import { UserService } from 'src/app/shared/services/user.service';
 })
 export class AddressesComponent implements OnInit {
 
-  showFormNewAddress: boolean = false;
-
   addresses: UserAddress[] = [];
+
   private userSvc$: any;
 
   constructor( 
     private userSvc: UserService,
-     private cookiesSvc: AppCookiesService 
+    private cookiesSvc: AppCookiesService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -34,13 +35,8 @@ export class AddressesComponent implements OnInit {
     this.userSvc$.unsubscribe();
   }
 
-  toggleShowFormNewAddress(): void {
-    this.showFormNewAddress = !this.showFormNewAddress;
-  }
-
-  cancelFormNewAddress(event: Event): void {
-    event.preventDefault();
-    this.showFormNewAddress = false;
+  goToNewAddress(): void {
+    this.router.navigate( ['/address'] );
   }
 
 }
