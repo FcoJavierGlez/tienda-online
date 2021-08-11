@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserAddress } from 'src/app/shared/interfaces/user-address';
 import { AccessService } from 'src/app/shared/services/access.service';
 import { AppCookiesService } from 'src/app/shared/services/app-cookies.service';
@@ -13,7 +13,8 @@ import { UserService } from 'src/app/shared/services/user.service';
 })
 export class AddressFormComponent implements OnInit {
 
-  @Input() data!: UserAddress;
+  idAddress!: string;
+  data!: UserAddress;
 
   form!: FormGroup;
 
@@ -22,6 +23,7 @@ export class AddressFormComponent implements OnInit {
 
   constructor( 
     private router: Router,
+    private params: ActivatedRoute,
     private formBuilder: FormBuilder,
     private cookiesSvc: AppCookiesService,
     private accessSvc: AccessService,
@@ -29,23 +31,32 @@ export class AddressFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.createForm();
+    this.params.queryParams.subscribe(
+      param => {
+        this.idAddress = param['id'];
+        if ( this.idAddress !== undefined ) 
+          this.userSvc$ = this.userSvc.getAddress( this.cookiesSvc.getToken(), this.idAddress )
+            .subscribe( data => {
+              this.data = data;
+              this.createForm();
+            });
+          else
+            this.createForm();
+      }
+    );
   }
-
-  ngOnChanges(): void { }
 
   ngOnDestroy(): void {
     this.userSvc$?.unsubscribe();
+    this.accessSvc$?.unsubscribe();
   }
 
   onSubmit(event: Event): void {
     event.preventDefault();
     this.checkForm( this.form );
-    // console.log(this.form.value);
     if ( !this.form.valid ) return;
     if( this.data ) this.updateAddress( this.form.value );
     else this.addAddress( this.form.value );
-    // this.resetForm();
   }
 
   addAddress( address: UserAddress ): void {
@@ -72,13 +83,27 @@ export class AddressFormComponent implements OnInit {
         );
   }
   updateAddress( address: UserAddress ): void {
-    /* if ( !this.cookiesSvc.checkLogin() ) return;
-    this.userSvc$ = this.userSvc.updateAddress( this.cookiesSvc.getToken(), address, this.data._id )
-                              .subscribe(
-                                res => {
-                                  this.router.navigate( ['/addresses'] );
-                                }
-                              ); */
+    if ( !this.cookiesSvc.checkLogin() ) return;
+    if ( this.cookiesSvc.getToken() == '' ) 
+      this.accessSvc$ = this.accessSvc.refreshToken( this.cookiesSvc.getToken(true) )
+        .subscribe(
+          res => {
+            this.cookiesSvc.login( res.token, res.refresh );
+            this.userSvc$ = this.userSvc.updateAddress( this.cookiesSvc.getToken(), address, this.data._id)
+            .subscribe(
+              res => {
+                this.router.navigate( ['/addresses'] );
+              }
+            );
+          }
+        );
+    else
+      this.userSvc$ = this.userSvc.updateAddress( this.cookiesSvc.getToken(), address, this.data._id)
+        .subscribe(
+          res => {
+            this.router.navigate( ['/addresses'] );
+          }
+        );
   }
 
   private translateFieldName(fieldName: string) : string {
@@ -122,8 +147,8 @@ export class AddressFormComponent implements OnInit {
 
   displayFieldCss(field: string): any {
     return {
-      'has-error': this.isFieldTouched(field) && !this.isFieldValid(field),
-      'has-success': this.isFieldTouched(field) && this.isFieldValid(field)
+      'has-error': this.isFieldTouched(field) && !this.isFieldValid(field) || false,
+      'has-success': this.isFieldTouched(field) && this.isFieldValid(field) || false
     };
   }
 
@@ -158,16 +183,16 @@ export class AddressFormComponent implements OnInit {
   private createForm(): void {
     this.form = this.formBuilder.group(
       {
-        country: ['España', [Validators.required]],
-        name: [ '', [Validators.required, Validators.minLength(10)] ],
-        phone: [ '', [Validators.required] ],
-        address: [ '', [Validators.required, Validators.minLength(5)] ],
-        apartment: [ '' ],
-        zipCode: [ '' , [Validators.required]],
-        city: [ '', [Validators.required]],
-        province: [ '', [Validators.required]],
-        nif: [ '', [Validators.required, this.validateDNI] ],
-        defaultAddress: [ false ] 
+        country: [ this.data !== undefined ? this.data.country : 'España', [Validators.required]],
+        name: [ this.data !== undefined ? this.data.name : '', [Validators.required, Validators.minLength(10)] ],
+        phone: [ this.data !== undefined ? this.data.phone : '', [Validators.required] ],
+        address: [ this.data !== undefined ? this.data.address : '', [Validators.required, Validators.minLength(5)] ],
+        apartment: [ this.data !== undefined && this.data.apartment !== 'undefined'  ? this.data.apartment : '' ],
+        zipCode: [ this.data !== undefined ? this.data.zipCode : '' , [Validators.required]],
+        city: [ this.data !== undefined ? this.data.city : '', [Validators.required]],
+        province: [ this.data !== undefined ? this.data.province : '', [Validators.required]],
+        nif: [ this.data !== undefined ? this.data.nif : '', [Validators.required, this.validateDNI] ],
+        defaultAddress: [ this.data !== undefined ? this.data.defaultAddress : false ] 
       }
     );
   }

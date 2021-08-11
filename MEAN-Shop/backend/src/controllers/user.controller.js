@@ -68,6 +68,10 @@ const userController = {
             req.body._id = req.params.id;
             const addresses = ( await User.findOne( { uid: req.uid } ) ).addresses;
             if ( req.body.defaultAddress ) for ( let address of addresses ) address.defaultAddress = false;
+            else if ( !req.body.defaultAddress ) {
+                if ( addresses.length == 1 ) req.body.defaultAddress = true;
+                else addresses.filter( e => !( e._id == req.params.id ) )[0].defaultAddress = true;
+            }
             const newAddresses = getUpdatedArrayAddresses( req.body, addresses );
             await User.findOneAndUpdate( { uid: req.uid }, { addresses: newAddresses } );
             res.status(200).json( { success: true, message: "Dirección actualizada" } );
