@@ -21,6 +21,7 @@ header, footer {
 
 header {
     border-bottom: 1px solid gainsboro;
+    font-size: 12px;
     justify-content: flex-start;
 }
 footer {
@@ -33,11 +34,16 @@ footer a {
     text-decoration: none;
 }
 footer a:hover {
+    cursor: pointer;
     text-decoration: underline;
 }
 
 .info {
+    color: black;
     flex-grow: 1;
+}
+.info div:hover {
+    cursor: default;
 }
 
 .name {

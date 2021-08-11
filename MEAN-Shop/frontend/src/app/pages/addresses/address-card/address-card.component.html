@@ -1,14 +1,17 @@
 <div class="address-card">
-    <header>
-        AAAAAA
-    </header>
+    <header>{{ address.defaultAddress ? 'Predeterminada' : 'Dirección: ' + index }}</header>
     <div class="info">
-        <div class="d-block name mx-2 mt-2 text-truncate"> Praeterea iter est quasdam res quas ex communi</div>
-        <div class="d-block mx-2 text-truncate"> Praeterea iter est quasdam res quas ex communi</div>
+        <div class="d-block name mx-2 mt-2 text-truncate" [title]="address.name">{{ address.name }}</div>
+        <div class="d-block mx-2 text-truncate" [title]="address.address">{{ address.address }}</div>
+        <div class="d-block mx-2 text-truncate" [title]="address.apartment" *ngIf="address.apartment">{{ address.apartment }}</div>
+        <div class="d-block mx-2 text-truncate" [title]="getLocation()">{{ address.province }}, {{ address.city }} {{ address.zipCode }}</div>
+        <div class="d-block mx-2 text-truncate">{{ address.country }}</div>
+        <div class="d-block mx-2 text-truncate" [title]="address.phone" *ngIf="address.phone">Número de teléfono: {{ address.phone }}</div>
+        <div class="d-block mx-2 text-truncate" [title]="address.nif">NIF: {{ address.nif }}</div>
     </div>
     <footer>
-        <a href="#">Editar</a>
+        <a (click)="log($event)">Editar</a>
         <div>|</div>
-        <a href="#">Descartar</a>
+        <a (click)="log($event)">Descartar</a>
     </footer>
 </div>

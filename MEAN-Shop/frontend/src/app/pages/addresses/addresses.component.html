@@ -3,19 +3,20 @@
         <h2>Mis direcciones</h2>
         <hr class="spartan mb-0">
         <a routerLink="/profile" class="mx-2"><i class="fas fa-arrow-left"></i> Volver a mi perfil</a>
-        <div class="addresses-list">
-            <div class="new-address">
+        <div class="addresses-list" *ngIf="!showFormNewAddress; else newAddress">
+            <div class="new-address" (click)="toggleShowFormNewAddress()">
                 <div><i class="fas fa-plus"></i></div>
                 <h3>Añadir dirección</h3>
             </div>
 
-            <app-address-card></app-address-card>
-            <app-address-card></app-address-card>
-            <app-address-card></app-address-card>
-            <app-address-card></app-address-card>
-            <app-address-card></app-address-card>
-            <app-address-card></app-address-card>
-            <app-address-card></app-address-card>
+            <app-address-card *ngFor="let address of addresses; index as i" [address]="address" [index]="i + 1"></app-address-card>
         </div>
+        <ng-template #newAddress>
+            <form action="">
+
+                <button class="btn btn-danger" (click)="cancelFormNewAddress($event)">Cancelar</button>
+                <button class="btn btn-success">Aceptar</button>
+            </form>
+        </ng-template>
     </div>
 </div>
