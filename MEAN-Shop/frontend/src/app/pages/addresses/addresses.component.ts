@@ -29,7 +29,7 @@ export class AddressesComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    this.userSvc$.unsubscribe();
+    this.userSvc$?.unsubscribe();
   }
 
   getAddresses(): void {
