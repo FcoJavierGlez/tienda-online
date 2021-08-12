@@ -54,6 +54,9 @@ hr.spartan {
     background-color: #1ea524!important;
     border-color: #19921f!important;
 }
+.btn:focus {
+    box-shadow: none;
+}
 
 /* Ceramic buttons */
 .ceramic {

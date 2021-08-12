@@ -41,11 +41,11 @@
                 </div>
             </div>
             <div class="form">
-                <div class="col-md-12" [ngClass]="displayFieldCss('number')">
-                    <label for="number" class="form-label required">Número de tarjeta</label>
-                    <input type="number" class="form-control" id="number"
-                    formControlName="number" required>
-                    <div *ngIf="form.get('number')?.touched && form.get('number')?.invalid" class="text-danger">{{ getErrorMessage('number') }}</div>
+                <div class="col-md-12" [ngClass]="displayFieldCss('cardNumber')">
+                    <label for="cardNumber" class="form-label required">Número de tarjeta</label>
+                    <input type="number" class="form-control" id="cardNumber"
+                    formControlName="cardNumber" required>
+                    <div *ngIf="form.get('cardNumber')?.touched && form.get('cardNumber')?.invalid" class="text-danger">{{ getErrorMessage('cardNumber') }}</div>
                 </div>
     
                 <div class="col-md-12" [ngClass]="displayFieldCss('name')">
@@ -60,14 +60,14 @@
                     <div class="col-md-6" [ngClass]="displayFieldCss('month')">
                         <label for="month" class="form-label mt-0 required">Mes</label>
                         <select name="month" id="month" class="form-select" formControlName="month" required>
-                            <option value="month" [id]="i == 0 ? 'monthDefault' : ''" *ngFor="let month of monthList(); index as i">{{ month }}</option>
+                            <option [value]="month" [id]="i == 0 ? 'monthDefault' : ''" *ngFor="let month of monthList(); index as i">{{ month }}</option>
                         </select>
                         <div *ngIf="form.get('month')?.touched && form.get('month')?.invalid" class="text-danger">{{ getErrorMessage('month') }}</div>
                     </div>
                     <div class="col-md-6" [ngClass]="displayFieldCss('year')">
                         <label for="year" class="form-label mt-0 required">Año</label>
                         <select name="year" id="year" class="form-select" formControlName="year" required>
-                            <option value="year" [id]="i == 0 ? 'yearDefault' : ''" *ngFor="let year of yearList(); index as i">{{ year }}</option>
+                            <option [value]="year" [id]="i == 0 ? 'yearDefault' : ''" *ngFor="let year of yearList(); index as i">{{ year }}</option>
                         </select>
                         <div *ngIf="form.get('year')?.touched && form.get('year')?.invalid" class="text-danger">{{ getErrorMessage('year') }}</div>
                     </div>

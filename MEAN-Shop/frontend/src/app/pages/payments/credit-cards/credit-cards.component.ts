@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-credit-cards',
@@ -49,17 +49,18 @@ export class CreditCardsComponent implements OnInit {
   }
 
   onSubmit(event: Event): void {
-
+    this.checkForm( this.form );
+    if ( !this.form.valid ) return;
+    console.log(this.form.value);
+    
   }
 
   private translateFieldName(fieldName: string) : string {
     switch (fieldName) {
       case 'name': return 'nombre';
-      case 'address': return 'dirección';
-      case (fieldName.match(/(zip|code)/i))?.input: return 'código postal';
-      case 'city': return 'ciudad';
-      case 'province': return 'provincia';
-      case 'country': return 'país';
+      case 'cardNumber': return 'número de tarjeta';
+      case 'month': return 'mes';
+      case 'year': return 'año';
       default: return fieldName;
     }
   }
@@ -79,7 +80,7 @@ export class CreditCardsComponent implements OnInit {
       min: `El campo ${this.translateFieldName(fieldName)} debe valer como mínimo ${error?.min?.min}`,
       max: `El campo ${this.translateFieldName(fieldName)} debe valer como máximo ${error?.max?.max}`,
       pattern: `El campo ${this.translateFieldName(fieldName)} es incorrecto`,
-      nif: `El ${this.translateFieldName(fieldName)} no es válido`
+      creditCard: `El ${this.translateFieldName(fieldName)} no es válido`
     }
     return ERROR_MESSAGE[errorName]
   }
@@ -99,7 +100,7 @@ export class CreditCardsComponent implements OnInit {
     const YEAR_OPTION_DEFAULT  = document.getElementById("yearDefault");
     this.form.reset(
       {
-        number: '',
+        cardNumber: null,
         name: '',
         month: '01',
         year: ( new Date() ).getFullYear()
@@ -125,13 +126,21 @@ export class CreditCardsComponent implements OnInit {
     };
   }
 
+  private validateCreditNumber( creditNumber: AbstractControl ): { [key: string]: boolean } | null {
+    const REGEXP = /^[1-6]\d{11,18}$/;
+    
+    if (creditNumber.value == 0) return { creditCard: true };
+    else if (creditNumber.value == null) return null;
+    return REGEXP.test( `${creditNumber.value}` ) ? null : { creditCard: true };
+  }
+
   private createForm(): void {
     this.form = this.formBuilder.group(
       {
-        number: [ '', [Validators.required]],
-        name: [ '', [Validators.required, Validators.minLength(3)] ],
-        month: [ '01', [Validators.required] ],
-        year: [ ( new Date() ).getFullYear() , [Validators.required] ]
+        cardNumber: [ null, [ /* Validators.required,  */this.validateCreditNumber ] ],
+        name: [ '', [ Validators.required, Validators.minLength(3) ] ],
+        month: [ '01', [ Validators.required] ],
+        year: [ ( new Date() ).getFullYear() , [ Validators.required ] ]
       }
     );
   }
