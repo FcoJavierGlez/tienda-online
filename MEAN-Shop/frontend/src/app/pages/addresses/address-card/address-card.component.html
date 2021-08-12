@@ -5,7 +5,7 @@
         <div class="d-block mx-2 text-truncate" [title]="address.address">{{ address.address }}</div>
         <div class="d-block mx-2 text-truncate" [title]="address.apartment" *ngIf="address.apartment !== 'undefined'">{{ address.apartment }}</div>
         <div class="d-block mx-2 text-truncate" [title]="getLocation()">{{ address.province }}, {{ address.city }} {{ address.zipCode }}</div>
-        <div class="d-block mx-2 text-truncate">{{ address.country }}</div>
+        <div class="d-block mx-2 text-truncate" [title]="address.country">{{ address.country }}</div>
         <div class="d-block mx-2 text-truncate" [title]="address.phone" *ngIf="address.phone">Número de teléfono: {{ address.phone }}</div>
         <div class="d-block mx-2 text-truncate" [title]="address.nif">NIF: {{ address.nif }}</div>
     </div>

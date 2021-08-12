@@ -24,6 +24,9 @@ header {
     font-size: 12px;
     justify-content: flex-start;
 }
+header:hover {
+    cursor: default;
+}
 footer {
     border-top: 1px solid gainsboro;
     justify-content: flex-end;
