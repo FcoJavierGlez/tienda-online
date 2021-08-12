@@ -5,6 +5,7 @@ import { SharedModule } from '../shared/shared.module';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { AppRoutingModule } from '../app-routing.module';
 
 import { HomeComponent } from './home/home.component';
@@ -30,6 +31,7 @@ import { ProfileCardComponent } from './profile/profile-card/profile-card.compon
 import { AddressCardComponent } from './addresses/address-card/address-card.component';
 import { AddressComponent } from './address/address.component';
 import { AddressFormComponent } from './address/address-form/address-form.component';
+import { CreditCardsComponent } from './payments/credit-cards/credit-cards.component';
 
 
 @NgModule({
@@ -56,7 +58,8 @@ import { AddressFormComponent } from './address/address-form/address-form.compon
     ProfileCardComponent,
     AddressCardComponent,
     AddressComponent,
-    AddressFormComponent
+    AddressFormComponent,
+    CreditCardsComponent
   ],
   imports: [
     AppRoutingModule,
@@ -66,6 +69,7 @@ import { AddressFormComponent } from './address/address-form/address-form.compon
     IvyCarouselModule,
     MatBadgeModule,
     MatTabsModule,
+    MatExpansionModule,
     SharedModule
   ],
   exports: [

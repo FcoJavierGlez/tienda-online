@@ -31,6 +31,11 @@ hr.spartan {
     width: 95%;
 }
 
+.text-spartan {
+    color: var(--spartan_red);
+}
+
+
 /* Panel buttons */
 .button-main-panel {
     margin: 0 auto;

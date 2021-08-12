@@ -1,0 +1,133 @@
+.description-cards {
+    border-bottom: 1px solid gainsboro;
+    display: flex;
+    font-size: 14px;
+    font-weight: 500;
+    justify-content: space-between;
+}
+
+a.text-blue {
+    text-decoration: none;
+}
+a.text-blue:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.mat-expansion-panel-header-title {
+    flex-grow: 8;
+}
+
+.box-add-card {
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    z-index: 10;
+}
+
+.add-card {
+    background-color: ghostwhite;
+    border: 1px solid var(--charcoal);
+    border-radius: 10px;
+    display: flex;
+    flex-flow: column;
+    width: 40%;
+    min-width: 320px;
+}
+
+header, 
+footer {
+    align-items: center;
+    display: flex;
+    height: 50px;
+    padding: 0 15px;
+}
+
+header {
+    border-bottom: 1px solid var(--charcoal);
+    justify-content: space-between;
+}
+footer {
+    border-top: 1px solid var(--charcoal);
+    column-gap: 10px;
+}
+
+section {
+    background-color: white;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+.close {
+    font-size: 8px;
+}
+
+.form {
+    border-top: 1px solid gainsboro;
+    padding: 0 10px;
+}
+.info {
+    padding: 0 10px;
+    text-align: justify;
+}
+
+legend {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+form label {
+    margin-top: 5px;
+}
+
+.credit-logo-list {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.credit-logo {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: 1px solid gainsboro;
+    border-radius: 4px;
+    height: 32px;
+    width: 56px;
+}
+.mastercard {
+    background-image: url(../../../../assets/icon/mastercard.svg);
+    background-color: #282570;
+}
+.visa {
+    background-image: url(../../../../assets/icon/visa.svg);
+}
+.american-express {
+    background-size: cover;
+    background-image: url(../../../../assets/icon/american-express.svg);
+}
+
+@media screen and (min-width: 768px) {
+    .description-cards {
+        font-size: 16px;
+    }
+}
+@media screen and (min-width: 1000px) {
+    section {
+        grid-template-columns: 35% auto;
+    }
+    .form {
+        border-top: 0;
+        border-left: 1px solid gainsboro;
+    }
+}

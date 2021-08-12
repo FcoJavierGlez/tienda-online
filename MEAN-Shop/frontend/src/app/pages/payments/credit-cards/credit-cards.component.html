@@ -1,0 +1,82 @@
+<div class="description-cards mx-4 my-2">
+    <div>
+        Mis tarjetas de crédito y débito
+    </div>
+    <a class="text-blue" (click)="toggleShowAddCredit($event)">
+        Añadir tarjeta
+    </a>
+</div>
+<mat-accordion *ngIf="creditCards; else emptyCards">
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Self aware panel
+            </mat-panel-title>
+            <mat-panel-description>
+                Info
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>I'm visible because I am open</p>
+        <div>Hola</div>
+    </mat-expansion-panel>
+</mat-accordion>
+
+<ng-template #emptyCards>
+    <div class="text-center text-spartan">No hay añadida ninguna tarjeta</div>
+</ng-template>
+
+<div class="box-add-card" [ngClass]="cssAddCard()">
+    <form class="add-card" (submit)="onSubmit($event)" [formGroup]="form">
+        <header>
+            <div>Añadir tarjeta</div>
+            <button class="btn btn-danger close" (click)="toggleShowAddCredit($event)"><i class="fas fa-times"></i></button>
+        </header>
+        <section>
+            <div class="info">
+                <p>Amazona acepta la mayoría de tarjetas de crédito y de débito:</p>
+                <div class="credit-logo-list">
+                    <div class="credit-logo mastercard"></div>
+                    <div class="credit-logo visa"></div>
+                    <div class="credit-logo american-express"></div>
+                </div>
+            </div>
+            <div class="form">
+                <div class="col-md-12" [ngClass]="displayFieldCss('number')">
+                    <label for="number" class="form-label required">Número de tarjeta</label>
+                    <input type="number" class="form-control" id="number"
+                    formControlName="number" required>
+                    <div *ngIf="form.get('number')?.touched && form.get('number')?.invalid" class="text-danger">{{ getErrorMessage('number') }}</div>
+                </div>
+    
+                <div class="col-md-12" [ngClass]="displayFieldCss('name')">
+                    <label for="name" class="form-label mt-0 required">Nombre en la tarjeta</label>
+                    <input type="text" class="form-control" id="name" formControlName="name"
+                    placeholder="Nombre del propietario/a" required>
+                    <div *ngIf="form.get('name')?.touched && form.get('name')?.invalid" class="text-danger">{{ getErrorMessage('name') }}</div>
+                </div>
+    
+                <fieldset class="form-group row">
+                    <legend class="mt-3 mb-0">Fecha de vencimiento:</legend>
+                    <div class="col-md-6" [ngClass]="displayFieldCss('month')">
+                        <label for="month" class="form-label mt-0 required">Mes</label>
+                        <select name="month" id="month" class="form-select" formControlName="month" required>
+                            <option value="month" [id]="i == 0 ? 'monthDefault' : ''" *ngFor="let month of monthList(); index as i">{{ month }}</option>
+                        </select>
+                        <div *ngIf="form.get('month')?.touched && form.get('month')?.invalid" class="text-danger">{{ getErrorMessage('month') }}</div>
+                    </div>
+                    <div class="col-md-6" [ngClass]="displayFieldCss('year')">
+                        <label for="year" class="form-label mt-0 required">Año</label>
+                        <select name="year" id="year" class="form-select" formControlName="year" required>
+                            <option value="year" [id]="i == 0 ? 'yearDefault' : ''" *ngFor="let year of yearList(); index as i">{{ year }}</option>
+                        </select>
+                        <div *ngIf="form.get('year')?.touched && form.get('year')?.invalid" class="text-danger">{{ getErrorMessage('year') }}</div>
+                    </div>
+                </fieldset>
+            </div>
+        </section>
+        <footer>
+            <button class="btn btn-success">Aceptar</button>
+            <button class="btn btn-danger" (click)="toggleShowAddCredit($event)">Cancelar</button>
+        </footer>
+    </form>
+</div>

@@ -12,3 +12,25 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+.box-payments {
+    margin: 0 auto;
+    margin-top: 30px;
+    width: 90%;
+}
+
+@media screen and (min-width: 1000px) {
+    .box-payments {
+        width: 70%;
+    }
+}
+@media screen and (min-width: 1200px) {
+    .box-payments {
+        width: 60%;
+    }
+}
+@media screen and (min-width: 1400px) {
+    .box-payments {
+        width: 50%;
+    }
+}
