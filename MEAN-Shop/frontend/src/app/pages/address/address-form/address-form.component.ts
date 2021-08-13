@@ -59,51 +59,32 @@ export class AddressFormComponent implements OnInit {
     else this.addAddress( this.form.value );
   }
 
-  addAddress( address: UserAddress ): void {
-    if ( !this.cookiesSvc.checkLogin() ) return;
-    if ( this.cookiesSvc.getToken() == '' ) 
-      this.accessSvc$ = this.accessSvc.refreshToken( this.cookiesSvc.getToken(true) )
-        .subscribe(
-          res => {
+  async refreshToken () {
+    await this.accessSvc.refreshToken( this.cookiesSvc.getToken(true) )
+          .toPromise().then( res => {
             this.cookiesSvc.login( res.token, res.refresh );
-            this.userSvc$ = this.userSvc.addAddress( this.cookiesSvc.getToken(), address)
-            .subscribe(
-              res => {
-                this.router.navigate( ['/addresses'] );
-              }
-            );
-          }
-        );
-    else
-      this.userSvc$ = this.userSvc.addAddress( this.cookiesSvc.getToken(), address)
-        .subscribe(
-          res => {
-            this.router.navigate( ['/addresses'] );
-          }
-        );
+          });
   }
-  updateAddress( address: UserAddress ): void {
+
+  async addAddress( address: UserAddress ): Promise<void> {
     if ( !this.cookiesSvc.checkLogin() ) return;
-    if ( this.cookiesSvc.getToken() == '' ) 
-      this.accessSvc$ = this.accessSvc.refreshToken( this.cookiesSvc.getToken(true) )
-        .subscribe(
-          res => {
-            this.cookiesSvc.login( res.token, res.refresh );
-            this.userSvc$ = this.userSvc.updateAddress( this.cookiesSvc.getToken(), address, this.data._id)
-            .subscribe(
-              res => {
-                this.router.navigate( ['/addresses'] );
-              }
-            );
-          }
-        );
-    else
-      this.userSvc$ = this.userSvc.updateAddress( this.cookiesSvc.getToken(), address, this.data._id)
-        .subscribe(
-          res => {
-            this.router.navigate( ['/addresses'] );
-          }
-        );
+    if ( this.cookiesSvc.getToken() == '' ) await this.refreshToken();
+    this.userSvc$ = this.userSvc.addAddress( this.cookiesSvc.getToken(), address)
+      .subscribe(
+        res => {
+          this.router.navigate( ['/addresses'] );
+        }
+      );
+  }
+  async updateAddress( address: UserAddress ): Promise<void> {
+    if ( !this.cookiesSvc.checkLogin() ) return;
+    if ( this.cookiesSvc.getToken() == '' ) await this.refreshToken();
+    this.userSvc$ = this.userSvc.updateAddress( this.cookiesSvc.getToken(), address, this.data._id)
+      .subscribe(
+        res => {
+          this.router.navigate( ['/addresses'] );
+        }
+      );
   }
 
   private translateFieldName(fieldName: string) : string {
