@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ComponentsModule } from './components/components.module';
 import { PricePipe } from './pipes/price.pipe';
+import { NormalizeDigitsPipe } from './pipes/normalize-digits.pipe';
 
 
 
 @NgModule({
   declarations: [
-    PricePipe
+    PricePipe,
+    NormalizeDigitsPipe
   ],
   imports: [
     CommonModule, 
@@ -15,7 +17,8 @@ import { PricePipe } from './pipes/price.pipe';
   ],
   exports: [
     ComponentsModule,
-    PricePipe
+    PricePipe,
+    NormalizeDigitsPipe
   ]
 })
 export class SharedModule { }

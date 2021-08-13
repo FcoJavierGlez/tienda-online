@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UserAddress } from '../interfaces/user-address';
 
@@ -9,6 +9,9 @@ import { UserAddress } from '../interfaces/user-address';
 export class UserService {
 
   private readonly URL = 'http://localhost:3000/api/user';
+
+  private creditCards = [];
+  creditCards$ = new EventEmitter<any>();
 
   constructor( private http: HttpClient ) { }
 
@@ -28,4 +31,6 @@ export class UserService {
   deleteAddress(token: string, idAddress: string): Observable<any> {
     return this.http.delete<any>( `${this.URL}/address/${idAddress}`, { headers: { authorization: `Bearer ${token}` } } );
   }
+
+  /* Credit cards */
 }

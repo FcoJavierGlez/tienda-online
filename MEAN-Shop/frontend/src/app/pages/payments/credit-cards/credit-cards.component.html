@@ -60,7 +60,7 @@
                     <div class="col-md-6" [ngClass]="displayFieldCss('month')">
                         <label for="month" class="form-label mt-0 required">Mes</label>
                         <select name="month" id="month" class="form-select" formControlName="month" required>
-                            <option [value]="month" [id]="i == 0 ? 'monthDefault' : ''" *ngFor="let month of monthList(); index as i">{{ month }}</option>
+                            <option [value]="month" [id]="i == 0 ? 'monthDefault' : ''" *ngFor="let month of monthList(); index as i">{{ month | normalizeDigits }}</option>
                         </select>
                         <div *ngIf="form.get('month')?.touched && form.get('month')?.invalid" class="text-danger">{{ getErrorMessage('month') }}</div>
                     </div>

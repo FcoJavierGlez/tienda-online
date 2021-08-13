@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-payments',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaymentsComponent implements OnInit {
 
-  constructor() { }
+  creditCards: any[] = [];
+  private userSvc$!: any;
+
+  constructor(
+    private userSvc: UserService
+  ) { }
 
   ngOnInit(): void {
+    this.userSvc.creditCards$.subscribe();
   }
 
 }

@@ -24,9 +24,9 @@ export class CreditCardsComponent implements OnInit {
 
   private formatNumber = (number: number): string => number < 10 ? `0${number}` : `${number}`;
 
-  monthList(): string[] {
+  monthList(): number[] {
     const dayList = [];
-    for (let i = 1; i < 13; i++) dayList.push( this.formatNumber(i) );
+    for (let i = 1; i < 13; i++) dayList.push( i );
     return dayList;
   }
   yearList(): number[] {
@@ -102,7 +102,7 @@ export class CreditCardsComponent implements OnInit {
       {
         cardNumber: null,
         name: '',
-        month: '01',
+        month: 1,
         year: ( new Date() ).getFullYear()
       }
     );
@@ -139,7 +139,7 @@ export class CreditCardsComponent implements OnInit {
       {
         cardNumber: [ null, [ /* Validators.required,  */this.validateCreditNumber ] ],
         name: [ '', [ Validators.required, Validators.minLength(3) ] ],
-        month: [ '01', [ Validators.required] ],
+        month: [ 1, [ Validators.required] ],
         year: [ ( new Date() ).getFullYear() , [ Validators.required ] ]
       }
     );
