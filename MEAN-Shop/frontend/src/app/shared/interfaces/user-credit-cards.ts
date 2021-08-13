@@ -1,6 +1,6 @@
 export interface UserCreditCards {
     _id?: string,
-    cardNumber: string,
+    cardNumber: number,
     name: string,
     month: number,
     year: number,
