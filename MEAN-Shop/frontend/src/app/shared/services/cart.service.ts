@@ -1,7 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Product } from '../interfaces/product';
 import { AccessService } from './access.service';
 import { AppCookiesService } from './app-cookies.service';
