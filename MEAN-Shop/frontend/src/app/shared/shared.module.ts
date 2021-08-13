@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { ComponentsModule } from './components/components.module';
 import { PricePipe } from './pipes/price.pipe';
 import { NormalizeDigitsPipe } from './pipes/normalize-digits.pipe';
+import { CreditCardLastNumbersPipe } from './pipes/credit-card-last-numbers.pipe';
 
 
 
 @NgModule({
   declarations: [
     PricePipe,
-    NormalizeDigitsPipe
+    NormalizeDigitsPipe,
+    CreditCardLastNumbersPipe
   ],
   imports: [
     CommonModule, 
@@ -18,7 +20,8 @@ import { NormalizeDigitsPipe } from './pipes/normalize-digits.pipe';
   exports: [
     ComponentsModule,
     PricePipe,
-    NormalizeDigitsPipe
+    NormalizeDigitsPipe,
+    CreditCardLastNumbersPipe
   ]
 })
 export class SharedModule { }

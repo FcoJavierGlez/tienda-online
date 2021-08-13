@@ -14,8 +14,43 @@ a.text-blue:hover {
     text-decoration: underline;
 }
 
-.mat-expansion-panel-header-title {
-    flex-grow: 8;
+span.mat-content {
+    display: grid !important;
+    grid-template-columns: 80% auto;
+    width: 100% !important;
+    overflow: hidden;
+}
+mat-expansion-panel-header {
+    background-color: gainsboro;
+}
+mat-expansion-panel-header:hover {
+    background-color: gainsboro !important;
+}
+mat-expansion-panel-header:focus {
+    background-color: gainsboro !important;
+}
+.mat-expansion-panel-header-title, .mat-expansion-panel-header-description {
+    color: var(--charcoal);
+}
+.mat-expansion-panel-header-description {
+    align-items: center;
+    display: flex;
+    font-size: 12px;
+    justify-content: flex-end;
+    margin-right: 16px;
+}
+.credit-logo-expansion-panel {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: 1px solid gainsboro;
+    border-radius: 4px;
+    height: 25px;
+    margin-right: 8px;
+    width: 44px;
+}
+div.buttons-panel {
+    margin-top: 16px;
 }
 
 .box-add-card {
@@ -127,10 +162,16 @@ input::-webkit-inner-spin-button {
     .description-cards {
         font-size: 16px;
     }
+    .mat-expansion-panel-header-description {
+        font-size: 14px;
+    }
 }
 @media screen and (min-width: 1000px) {
     section {
         grid-template-columns: 35% auto;
+    }
+    .mat-expansion-panel-header-description {
+        font-size: 16px;
     }
     .form {
         border-top: 0;

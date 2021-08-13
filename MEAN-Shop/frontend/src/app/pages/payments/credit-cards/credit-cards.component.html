@@ -6,18 +6,21 @@
         Añadir tarjeta
     </a>
 </div>
-<mat-accordion *ngIf="creditCards; else emptyCards">
-    <mat-expansion-panel>
+<mat-accordion *ngIf="creditCards.length; else emptyCards">
+    <mat-expansion-panel *ngFor="let card of creditCards">
         <mat-expansion-panel-header>
             <mat-panel-title>
-                Self aware panel
+                <!-- <img src="" alt="" srcset=""> -->
+                <div [class]="getInfoCard(card).class"></div>
+                {{ getInfoCard(card).type }}
+                acabada en: {{ card.cardNumber | creditCardLastNumbers }}
             </mat-panel-title>
-            <mat-panel-description>
-                Info
-            </mat-panel-description>
+            <mat-panel-description>Caduca: {{ card.month | normalizeDigits }}/{{ card.year }}</mat-panel-description>
         </mat-expansion-panel-header>
-        <p>I'm visible because I am open</p>
-        <div>Hola</div>
+        <div class="buttons-panel">
+            <!-- <button class="btn btn-primary" (click)="edit($event, card)">Editar</button> -->
+            <button class="btn btn-danger"  (click)="delete($event, card)">Eliminar</button>
+        </div>
     </mat-expansion-panel>
 </mat-accordion>
 

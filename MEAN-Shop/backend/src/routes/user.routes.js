@@ -23,8 +23,7 @@ router.put( '/address/:id', verifyUid, userCtl.updateAddress );
 router.delete( '/address/:id', verifyUid, userCtl.deleteAddress );
 
 /* Formas de pago */
-/* router.get('/payments');
-router.put('/payments');
-router.delete('/payments/:id'); */
+router.get('/payments', verifyUid, userCtl.getPayments );
+router.put('/payments', verifyUid, userCtl.updatePayments );
 
 export default router;

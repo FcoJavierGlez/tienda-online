@@ -44,9 +44,18 @@ export class AddressCardComponent implements OnInit {
     this.router.navigateByUrl(`/address?id=${this.address._id}`);
   }
 
-  deleteAddress(event: Event): void {
+  async refreshToken () {
+    await this.accessSvc.refreshToken( this.cookiesSvc.getToken(true) )
+          .toPromise().then( res => {
+            this.cookiesSvc.login( res.token, res.refresh );
+          });
+  }
+
+  async deleteAddress(event: Event): Promise<void> {
     event.preventDefault();
     if ( !this.cookiesSvc.checkLogin() ) return;
+    if ( this.cookiesSvc.getToken() == '' ) await this.refreshToken();
+
     let deleteAddressDialog = this.dialog.open(DialogComponent, {
       data: {
         title: 'Login fallido',
@@ -56,35 +65,16 @@ export class AddressCardComponent implements OnInit {
         optionButtons: true
       }
     });
-    
-    if ( this.cookiesSvc.getToken() == '' ) 
-      this.accessSvc$ = this.accessSvc.refreshToken( this.cookiesSvc.getToken(true) )
-        .subscribe(
-          res => {
-            this.cookiesSvc.login( res.token, res.refresh );
-            deleteAddressDialog.afterClosed().subscribe(
-              res => {
-                if (res) {
-                  this.userDeleteAddressSvc$ = this.userSvc.deleteAddress( this.cookiesSvc.getToken(), this.address._id )
-                  .subscribe(
-                    res => this.refeshList.emit()
-                  );
-                }
-              }
+    deleteAddressDialog.afterClosed().subscribe(
+      res => {
+        if (res) {
+          this.userDeleteAddressSvc$ = this.userSvc.deleteAddress( this.cookiesSvc.getToken(), this.address._id )
+            .subscribe(
+              res => this.refeshList.emit()
             );
-          }
-        );
-    else
-      deleteAddressDialog.afterClosed().subscribe(
-        res => {
-          if (res) {
-            this.userDeleteAddressSvc$ = this.userSvc.deleteAddress( this.cookiesSvc.getToken(), this.address._id )
-              .subscribe(
-                res => this.refeshList.emit()
-              );
-          }
         }
-      );
+      }
+    );
   }
 
   cssHeader(): any {

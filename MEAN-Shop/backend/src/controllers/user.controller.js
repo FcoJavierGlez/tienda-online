@@ -83,7 +83,7 @@ const userController = {
     },
     deleteAddress: async function (req,res) {
         try {
-            console.log( 'id',req.params.id );
+            // console.log( 'id',req.params.id );
             let addresses = ( await User.findOne( { uid: req.uid } ) ).addresses;
             addresses = addresses.filter( address => !(address._id == req.params.id) );
             if ( addresses.length && !checkSomeDefaultAddress( addresses ) ) addresses[0].defaultAddress = true;
@@ -94,6 +94,26 @@ const userController = {
             res.status(500).json( { success: false, message: 'Ha habido un error' } );
         }
     },
+
+    /* payments */
+    getPayments: async function (req,res) {
+        try {
+            const creditCards = ( await User.findOne( { uid: req.uid } ) ).creditCards;
+            res.status(200).json( creditCards );
+        } catch (error) {
+            console.error(error);
+            res.status(500).json( { success: false, message: 'Ha habido un error' } );
+        }
+    },
+    updatePayments: async function (req,res) {
+        try {
+            await User.findOneAndUpdate( { uid: req.uid }, { creditCards: req.body } );
+            res.status(200).json( { success: true, message: 'Lista de tarjetas actualizada' } );
+        } catch (error) {
+            console.error(error);
+            res.status(500).json( { success: false, message: 'Ha habido un error' } );
+        }
+    }
 }
 
 export default userController;

@@ -1,6 +1,7 @@
 import { Schema, model } from "mongoose";
 import { ProductSchema } from './Product.model';
 import { UserAddressSchema } from './UserAddress.model';
+import { UserCreditCards } from './UserCreditCards.model';
 
 const userSchema = new Schema(
     {
@@ -30,6 +31,10 @@ const userSchema = new Schema(
         },
         cart: {
             type: [ProductSchema],
+            default: []
+        },
+        creditCards: {
+            type: [UserCreditCards],
             default: []
         },
         uid: {

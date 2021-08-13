@@ -1,5 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from 'src/app/shared/components/dialog/dialog.component';
+import { UserCreditCards } from 'src/app/shared/interfaces/user-credit-cards';
+import { AccessService } from 'src/app/shared/services/access.service';
+import { AppCookiesService } from 'src/app/shared/services/app-cookies.service';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-credit-cards',
@@ -13,8 +19,14 @@ export class CreditCardsComponent implements OnInit {
   showAddCard: boolean = false;
   form!: FormGroup;
 
+  private userDeleteCreditCardSvc$!: any;
+
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private cookiesSvc: AppCookiesService,
+    private accessSvc: AccessService,
+    private userSvc: UserService,
+    private dialog: MatDialog
   ) { 
     this.createForm();
   }
@@ -22,7 +34,52 @@ export class CreditCardsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  private formatNumber = (number: number): string => number < 10 ? `0${number}` : `${number}`;
+  ngOnDestroy(): void {
+    this.userDeleteCreditCardSvc$?.unsubscribe
+  }
+
+  edit(event: Event, card: UserCreditCards): void {
+    event.preventDefault();
+    console.log( card );
+  }
+  /* delete(event: Event, card: UserCreditCards): void {
+    event.preventDefault();
+    console.log( card );
+  } */
+
+  async delete(event: Event, card: UserCreditCards): Promise<void> {
+    event.preventDefault();
+    if ( !this.cookiesSvc.checkLogin() ) return;
+    if ( this.cookiesSvc.getToken() == '' ) await this.refreshToken();
+
+    let deleteCreditCard = this.dialog.open(DialogComponent, {
+      data: {
+        title: 'Login fallido',
+        message: 'Está a punto de borrar esta tarjeta de crédito/débito.',
+        alertMessage: true,
+        continueMessage: true,
+        optionButtons: true
+      }
+    });
+    deleteCreditCard.afterClosed().subscribe(
+      res => {
+        if (res) {
+          this.userDeleteCreditCardSvc$ = this.userSvc.deleteCreditCard( this.cookiesSvc.getToken(), card );
+        }
+      }
+    );
+  }
+
+  getInfoCard(card: UserCreditCards): any {
+    const cardNumber = `${card.cardNumber}`;
+    switch (cardNumber) {
+      case (cardNumber.match(/^(5[1-5]|222[1-9]|22[3-9]\d|2[3-6]\d{2}|27[0-1]\d|2720)/))?.input: 
+        return ( { type: 'MasterCard / 4B / Euro6000', class: 'credit-logo-expansion-panel mastercard' } );
+      case (cardNumber.match(/^(4)/))?.input: return ( { type: 'Visa / Visa Electron', class: 'credit-logo-expansion-panel visa' } );
+      case (cardNumber.match(/^(34|37)/))?.input: return ( { type: 'American Express', class: 'credit-logo-expansion-panel american-express' } );
+      default: return ( { type: 'MasterCard / 4B / Euro6000', class: 'credit-logo-expansion-panel mastercard' } );
+    }
+  }
 
   monthList(): number[] {
     const dayList = [];
@@ -48,10 +105,24 @@ export class CreditCardsComponent implements OnInit {
     }
   }
 
-  onSubmit(event: Event): void {
+  async refreshToken () {
+    await this.accessSvc.refreshToken( this.cookiesSvc.getToken(true) )
+          .toPromise().then( res => {
+            this.cookiesSvc.login( res.token, res.refresh );
+          });
+  }
+
+  async onSubmit(event: Event): Promise<void> {
+    event.preventDefault();
     this.checkForm( this.form );
     if ( !this.form.valid ) return;
-    console.log(this.form.value);
+    this.form.value.month = typeof this.form.value.month == 'string' ? parseInt(this.form.value.month) : this.form.value.month;
+    this.form.value.year = typeof this.form.value.year == 'string' ? parseInt(this.form.value.year) : this.form.value.year;
+    
+    // console.log(this.form.value);
+    if (this.cookiesSvc.getToken() == '' ) await this.refreshToken();
+    this.userSvc.addCreditCard( this.cookiesSvc.getToken(), this.form.value );
+    this.toggleShowAddCredit(event);
     
   }
 
@@ -137,7 +208,7 @@ export class CreditCardsComponent implements OnInit {
   private createForm(): void {
     this.form = this.formBuilder.group(
       {
-        cardNumber: [ null, [ /* Validators.required,  */this.validateCreditNumber ] ],
+        cardNumber: [ null, [ Validators.required, this.validateCreditNumber ] ],
         name: [ '', [ Validators.required, Validators.minLength(3) ] ],
         month: [ 1, [ Validators.required] ],
         year: [ ( new Date() ).getFullYear() , [ Validators.required ] ]
