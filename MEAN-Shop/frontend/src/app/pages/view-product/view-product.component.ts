@@ -126,7 +126,6 @@ export class ViewProductComponent implements OnInit, OnDestroy {
       this.addedCart = true;
       this.cartSvc.addProduct( this.product );
       this.cart = this.cartSvc.getCart()
-      console.log(this.cart);
     }
   }
 

@@ -42,10 +42,6 @@ export class CreditCardsComponent implements OnInit {
     event.preventDefault();
     console.log( card );
   }
-  /* delete(event: Event, card: UserCreditCards): void {
-    event.preventDefault();
-    console.log( card );
-  } */
 
   async delete(event: Event, card: UserCreditCards): Promise<void> {
     event.preventDefault();

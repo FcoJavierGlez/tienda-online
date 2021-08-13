@@ -12,3 +12,43 @@ section {
 section h5 {
     text-align: left;
 }
+
+.address-selected {
+    background-color: ghostwhite;
+    border: 1px solid gainsboro;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.credit-logo {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: 1px solid gainsboro;
+    border-radius: 4px;
+    height: 25px;
+    margin-right: 8px;
+    width: 44px;
+}
+.mastercard {
+    background-image: url(../../../assets/icon/mastercard.svg);
+    background-color: #282570;
+}
+.visa {
+    background-image: url(../../../assets/icon/visa.svg);
+}
+.american-express {
+    background-size: cover;
+    background-image: url(../../../assets/icon/american-express.svg);
+}
+
+@media screen and (min-width: 768px) {
+    select {
+        width: 70%;
+    }
+}
+@media screen and (min-width: 1000px) {
+    select {
+        width: 50%;
+    }
+}
