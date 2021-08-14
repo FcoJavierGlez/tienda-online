@@ -10,12 +10,13 @@
     <mat-expansion-panel *ngFor="let card of creditCards">
         <mat-expansion-panel-header>
             <mat-panel-title>
-                <!-- <img src="" alt="" srcset=""> -->
                 <div [class]="getInfoCard(card).class"></div>
                 {{ getInfoCard(card).type }}
                 acabada en: {{ card.cardNumber | creditCardLastNumbers }}
             </mat-panel-title>
-            <mat-panel-description>Caduca: {{ card.month | normalizeDigits }}/{{ card.year }}</mat-panel-description>
+            <mat-panel-description [ngClass]="cssCardExpired(card)">
+                Caduca: {{ card.month | normalizeDigits }}/{{ card.year }}
+            </mat-panel-description>
         </mat-expansion-panel-header>
         <div class="buttons-panel">
             <!-- <button class="btn btn-primary" (click)="edit($event, card)">Editar</button> -->

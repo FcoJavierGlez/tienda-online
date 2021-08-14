@@ -157,6 +157,10 @@ input::-webkit-inner-spin-button {
     background-size: cover;
     background-image: url(../../../../assets/icon/american-express.svg);
 }
+.expired {
+    color: var(--red);
+    text-decoration: line-through;
+}
 
 @media screen and (min-width: 768px) {
     .description-cards {

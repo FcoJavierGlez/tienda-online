@@ -77,6 +77,17 @@ export class CreditCardsComponent implements OnInit {
     }
   }
 
+  cardExpired(card: UserCreditCards): boolean {
+    const currentDate = new Date();
+    return card.year < currentDate.getFullYear() || card.year == currentDate.getFullYear() && card.month < currentDate.getMonth() + 1;
+  }
+
+  cssCardExpired(card: UserCreditCards): any {
+    return {
+      'expired': this.cardExpired(card)
+    }
+  }
+
   monthList(): number[] {
     const dayList = [];
     for (let i = 1; i < 13; i++) dayList.push( i );

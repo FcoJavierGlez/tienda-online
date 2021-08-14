@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Product } from 'src/app/shared/interfaces/product';
 import { UserAddress } from 'src/app/shared/interfaces/user-address';
 import { UserCreditCards } from 'src/app/shared/interfaces/user-credit-cards';
 import { AccessService } from 'src/app/shared/services/access.service';
 import { AppCookiesService } from 'src/app/shared/services/app-cookies.service';
+import { CartService } from 'src/app/shared/services/cart.service';
 import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
@@ -17,29 +20,22 @@ export class OrderComponent implements OnInit {
 
   addressesList: UserAddress[] = [];
   creditCards: UserCreditCards[] = [];
+  cart!: Product[];
 
-  addressSelected: UserAddress = {
-    _id: '',
-    address: '',
-    apartment: '',
-    city: '',
-    country: '',
-    defaultAddress: false,
-    name: '',
-    nif: '',
-    phone: 0,
-    province: '',
-    zipCode: 0
-  };
+  addressSelected!: UserAddress;
+  cardSelected!: UserCreditCards;
 
   private userAddressesSvc$!: any;
   private userCreditCardsSvc$!: any;
+  private cartSvc$!: any;
 
   constructor( 
     private fb: FormBuilder,
     private userSvc: UserService,
+    private cartSvc: CartService,
     private cookiesSvc: AppCookiesService,
-    private accessSvc: AccessService
+    private accessSvc: AccessService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -49,22 +45,30 @@ export class OrderComponent implements OnInit {
   ngOnDestroy(): void {
     this.userAddressesSvc$?.unsubscribe();
     this.userCreditCardsSvc$?.unsubscribe();
+    this.cartSvc$?.unsubscribe();
   }
 
   addressChange(): void {
     this.addressSelected = this.addressesList.find( e => e._id == this.order.get('address')?.value ) || this.addressSelected;
   }
+  cardChange(): void {
+    this.cardSelected = this.creditCards.find( e => e.id == this.order.get('payment')?.value ) || this.cardSelected;
+  }
 
-  log(): void {
-    console.log('credit',this.order.get('payment')?.value);
-    //this.addressSelected = this.addressesList.find( e => e._id == this.order.get('address')?.value ) || this.addressSelected;
-    // console.log('address after',this.order.get('address')?.value);
-    
+  goTo(route: string): void {
+    this.router.navigate( [`/${route}`] );
   }
 
   private async initServices(): Promise<void> {
     if ( this.cookiesSvc.getToken() == ''  ) await this.refreshToken();
-    this.userSvc.creditCards$.subscribe( creditcards => this.creditCards = creditcards );
+    this.cartSvc$ = this.cartSvc.cart$.subscribe( cart => this.cart = cart );
+    this.userSvc.creditCards$
+      .subscribe( 
+        creditcards => {
+          this.creditCards = creditcards;
+          if ( this.creditCards.length ) this.cardSelected = this.creditCards[0];
+        } 
+      );
     this.userCreditCardsSvc$ = this.userSvc.getPayments( this.cookiesSvc.getToken() );
     this.userAddressesSvc$ = this.userSvc.getAddresses( this.cookiesSvc.getToken() )
       .subscribe(
@@ -73,7 +77,7 @@ export class OrderComponent implements OnInit {
           if (this.addressesList.length) this.addressSelected = this.addressesList[0];
           this.createForm();
         }
-      );
+    );
   }
 
   async refreshToken () {
@@ -84,7 +88,11 @@ export class OrderComponent implements OnInit {
   }
 
   onSubmit(event: Event): void {
-    console.log(this.order.value);
+    const order: any = {};
+    order.address = this.addressSelected;
+    order.creditCard = this.cardSelected;
+    order.cart = this.cart;
+    console.log( order );
     
   }
 
@@ -92,7 +100,7 @@ export class OrderComponent implements OnInit {
     return this.order.get('address')?.value !== '';
   }
   checkPaymentSelected(): boolean {
-    return this.order.get('payment')?.value !== '';
+    return this.order.get('payment')?.value !== '' && !this.cardExpired( this.cardSelected );
   }
 
   getInfoCard(card: UserCreditCards): any {
@@ -103,6 +111,17 @@ export class OrderComponent implements OnInit {
       case (cardNumber.match(/^(4)/))?.input: return ( { type: 'Visa / Visa Electron', class: 'credit-logo visa' } );
       case (cardNumber.match(/^(34|37)/))?.input: return ( { type: 'American Express', class: 'credit-logo american-express' } );
       default: return ( { type: 'MasterCard / 4B / Euro6000', class: 'credit-logo mastercard' } );
+    }
+  }
+
+  private cardExpired(card: UserCreditCards): boolean {
+    const currentDate = new Date();
+    return card.year < currentDate.getFullYear() || card.year == currentDate.getFullYear() && card.month < currentDate.getMonth() + 1;
+  }
+
+  cssCardExpired(card: UserCreditCards): any {
+    return {
+      'expired': this.cardExpired(card)
     }
   }
 
@@ -119,8 +138,6 @@ export class OrderComponent implements OnInit {
         ]
       }
     );
-    console.log('Creado form',this.order.get('payment')?.value);
-    
   }
 
 }

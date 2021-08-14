@@ -13,7 +13,7 @@ section h5 {
     text-align: left;
 }
 
-.address-selected {
+.option-selected {
     background-color: ghostwhite;
     border: 1px solid gainsboro;
     border-radius: 10px;
@@ -40,6 +40,36 @@ section h5 {
 .american-express {
     background-size: cover;
     background-image: url(../../../assets/icon/american-express.svg);
+}
+.expired {
+    color: var(--red);
+    text-decoration: line-through;
+}
+
+.addConfig {
+    text-decoration: none;
+}
+.addConfig:hover {
+    text-decoration: underline;
+}
+
+.order {
+    /* background-color: var(--ceramic); */
+    background-color: ghostwhite;
+    border: 2px solid var(--charcoal);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+textarea {
+    border-radius: 5px;
+    height: 180px;
+    margin: 0 auto;
+    resize: none;
+    width: 100%;
+}
+textarea:focus {
+    outline: none;
 }
 
 @media screen and (min-width: 768px) {
