@@ -30,9 +30,7 @@ export class CartButtonComponent implements OnInit, OnChanges {
   }
 
   getTotalItems(): string {
-    if (!this.cart.length) return '0';
-    const totalItems =  this.cart.map( e => e.quantity ).reduce( (e, acc) => e + acc);
-    return this.formatTotalItems(totalItems);
+    return this.formatTotalItems( this.cartSvc.getTotalItems() );
   }
 
   private formatTotalItems(totalItems: number): string {

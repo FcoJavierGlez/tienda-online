@@ -45,6 +45,11 @@ export class CartService {
     return this.cart;
   }
 
+  getTotalItems(): number {
+    if (!this.cart.length) return 0;
+    const totalItems =  this.cart.map( e => e.quantity ).reduce( (e, acc) => e + acc);
+    return totalItems;
+  }
   getTotalPrice(): number {
     if (!this.cart.length) return 0;
     return this.cart.map( e => e.price * ( (100 - e.discount) / 100 ) * e.quantity ).reduce( (e, acc) => e + acc );

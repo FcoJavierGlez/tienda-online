@@ -95,6 +95,7 @@ select.form-select {
 }
 .visa {
     background-image: url(../../../assets/icon/visa.svg);
+    background-color: white;
 }
 .american-express {
     background-size: cover;
@@ -120,6 +121,18 @@ select.form-select {
     padding: 10px;
 }
 
+.order p {
+    margin-bottom: 2px;
+}
+
+.order .d-flex {
+    flex-flow: column;
+}
+
+.text-right {
+    text-align: right;
+}
+
 textarea {
     border-radius: 5px;
     height: 180px;
@@ -130,6 +143,16 @@ textarea {
 }
 textarea:focus {
     outline: none;
+}
+
+hr.ghost {
+    background: linear-gradient(90deg, transparent 0%, black 50%, transparent 100%);
+}
+
+button.golden {
+    /* border-color: var(--red); */
+    border-radius: 50px;
+    width: 100%;
 }
 
 @media screen and (min-width: 768px) {
@@ -152,6 +175,13 @@ textarea:focus {
         padding: 10px;
         text-align: right;
         width: 400px;
+    }
+    .order .d-flex {
+        flex-flow: row;
+    }
+    button.golden {
+        border-radius: 50px;
+        width: max-content;
     }
 }
 @media screen and (min-width: 1000px) {

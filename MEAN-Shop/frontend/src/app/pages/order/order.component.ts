@@ -27,7 +27,6 @@ export class OrderComponent implements OnInit {
 
   private userAddressesSvc$!: any;
   private userCreditCardsSvc$!: any;
-  // private cartSvc$!: any;
 
   constructor( 
     private fb: FormBuilder,
@@ -45,7 +44,6 @@ export class OrderComponent implements OnInit {
   ngOnDestroy(): void {
     this.userAddressesSvc$?.unsubscribe();
     this.userCreditCardsSvc$?.unsubscribe();
-    // this.cartSvc$?.unsubscribe();    
   }
 
   addressChange(): void {
@@ -61,7 +59,6 @@ export class OrderComponent implements OnInit {
 
   private async initServices(): Promise<void> {
     if ( this.cookiesSvc.getToken() == ''  ) await this.refreshToken();
-    //this.cartSvc$ = this.cartSvc.cart$.subscribe();
     this.cart = this.cartSvc.getCart();
     
     this.userSvc.creditCards$
@@ -87,6 +84,13 @@ export class OrderComponent implements OnInit {
           .toPromise().then( res => {
             this.cookiesSvc.login( res.token, res.refresh );
           });
+  }
+
+  getTotalProducts(): number {
+    return this.cartSvc.getTotalItems();
+  }
+  getTotalPrice(): number {
+    return this.cartSvc.getTotalPrice();
   }
 
   onSubmit(event: Event): void {
