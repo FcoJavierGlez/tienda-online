@@ -27,7 +27,7 @@ export class OrderComponent implements OnInit {
 
   private userAddressesSvc$!: any;
   private userCreditCardsSvc$!: any;
-  private cartSvc$!: any;
+  // private cartSvc$!: any;
 
   constructor( 
     private fb: FormBuilder,
@@ -45,7 +45,7 @@ export class OrderComponent implements OnInit {
   ngOnDestroy(): void {
     this.userAddressesSvc$?.unsubscribe();
     this.userCreditCardsSvc$?.unsubscribe();
-    this.cartSvc$?.unsubscribe();
+    // this.cartSvc$?.unsubscribe();    
   }
 
   addressChange(): void {
@@ -61,7 +61,9 @@ export class OrderComponent implements OnInit {
 
   private async initServices(): Promise<void> {
     if ( this.cookiesSvc.getToken() == ''  ) await this.refreshToken();
-    this.cartSvc$ = this.cartSvc.cart$.subscribe( cart => this.cart = cart );
+    //this.cartSvc$ = this.cartSvc.cart$.subscribe();
+    this.cart = this.cartSvc.getCart();
+    
     this.userSvc.creditCards$
       .subscribe( 
         creditcards => {
@@ -92,6 +94,7 @@ export class OrderComponent implements OnInit {
     order.address = this.addressSelected;
     order.creditCard = this.cardSelected;
     order.cart = this.cart;
+    order.instructions = this.order.get('instructions')?.value;
     console.log( order );
     
   }
@@ -107,16 +110,25 @@ export class OrderComponent implements OnInit {
     const cardNumber = `${card.cardNumber}`;
     switch (cardNumber) {
       case (cardNumber.match(/^(5[1-5]|222[1-9]|22[3-9]\d|2[3-6]\d{2}|27[0-1]\d|2720)/))?.input: 
-        return ( { type: 'MasterCard / 4B / Euro6000', class: 'credit-logo mastercard' } );
-      case (cardNumber.match(/^(4)/))?.input: return ( { type: 'Visa / Visa Electron', class: 'credit-logo visa' } );
-      case (cardNumber.match(/^(34|37)/))?.input: return ( { type: 'American Express', class: 'credit-logo american-express' } );
-      default: return ( { type: 'MasterCard / 4B / Euro6000', class: 'credit-logo mastercard' } );
+        return ( { type: 'MasterCard / 4B / Euro6000', class: 'mastercard' } );
+      case (cardNumber.match(/^(4)/))?.input: return ( { type: 'Visa / Visa Electron', class: 'visa' } );
+      case (cardNumber.match(/^(34|37)/))?.input: return ( { type: 'American Express', class: 'american-express' } );
+      default: return ( { type: 'MasterCard / 4B / Euro6000', class: 'mastercard' } );
     }
   }
 
   private cardExpired(card: UserCreditCards): boolean {
     const currentDate = new Date();
     return card.year < currentDate.getFullYear() || card.year == currentDate.getFullYear() && card.month < currentDate.getMonth() + 1;
+  }
+
+  cssCreditCard(card: UserCreditCards): any {
+    return {
+      'mastercard': this.getInfoCard(card).class == 'mastercard',
+      'visa': this.getInfoCard(card).class == 'visa',
+      'american-express': this.getInfoCard(card).class == 'american-express',
+      'expired': this.cardExpired(card)
+    }
   }
 
   cssCardExpired(card: UserCreditCards): any {
@@ -135,7 +147,8 @@ export class OrderComponent implements OnInit {
         payment: [ 
           this.creditCards.length ? 
             this.creditCards[0].id : '', [Validators.required] 
-        ]
+        ],
+        instructions: [ '' ]
       }
     );
   }

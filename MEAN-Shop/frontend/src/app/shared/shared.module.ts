@@ -4,6 +4,7 @@ import { ComponentsModule } from './components/components.module';
 import { PricePipe } from './pipes/price.pipe';
 import { NormalizeDigitsPipe } from './pipes/normalize-digits.pipe';
 import { CreditCardLastNumbersPipe } from './pipes/credit-card-last-numbers.pipe';
+import { CardNumberHidePipe } from './pipes/card-number-hide.pipe';
 
 
 
@@ -11,7 +12,8 @@ import { CreditCardLastNumbersPipe } from './pipes/credit-card-last-numbers.pipe
   declarations: [
     PricePipe,
     NormalizeDigitsPipe,
-    CreditCardLastNumbersPipe
+    CreditCardLastNumbersPipe,
+    CardNumberHidePipe
   ],
   imports: [
     CommonModule, 
@@ -21,7 +23,8 @@ import { CreditCardLastNumbersPipe } from './pipes/credit-card-last-numbers.pipe
     ComponentsModule,
     PricePipe,
     NormalizeDigitsPipe,
-    CreditCardLastNumbersPipe
+    CreditCardLastNumbersPipe,
+    CardNumberHidePipe
   ]
 })
 export class SharedModule { }
