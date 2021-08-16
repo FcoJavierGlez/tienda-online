@@ -56,7 +56,7 @@ select.form-select {
     background-position-x: 4px;
     background-size: 45%;
     background-color: #282570;
-    border: 2px solid orange !important;
+    border: 2px solid orange;
     color: white;
 }
 .creditCard.visa {
@@ -65,7 +65,7 @@ select.form-select {
     background-position-x: 5px;
     background-size: 45%;
     background-color: white;
-    border: 2px solid #00579f !important;
+    border: 2px solid #00579f;
     color: #00579f;
 }
 .creditCard.american-express {
@@ -74,7 +74,7 @@ select.form-select {
     background-position-x: 5px;
     background-size: 45%;
     background-color: #016fd0;
-    border: 2px solid black !important;
+    border: 2px solid black;
     color: white;
 }
 
