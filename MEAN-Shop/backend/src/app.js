@@ -9,6 +9,7 @@ import cartRoutes from './routes/cart.routes';
 import searchRoutes from './routes/search.routes';
 import suggestProductRoutes from './routes/suggest_product.routes';
 import userRoutes from './routes/user.routes';
+import orderRoutes from './routes/order.routes';
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use( '/api/cart', cartRoutes );
 app.use( '/api/search', searchRoutes );
 app.use( '/api/suggest_products', suggestProductRoutes );
 app.use( '/api/user', userRoutes );
+app.use( '/api/order', orderRoutes );
 
 
 app.get('/', (req,res) => {

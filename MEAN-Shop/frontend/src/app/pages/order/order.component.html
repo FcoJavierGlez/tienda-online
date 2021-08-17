@@ -2,130 +2,140 @@
     <div class="container">
         <h2>Tramitar pedido</h2>
         <hr class="spartan">
-        <form [formGroup]="order" (submit)="onSubmit($event)" *ngIf="order">
-            <mat-tab-group>
-                <mat-tab label="Dirección">
-                    <section class="mt-4">
-                        <label for="selectAddress" class="label-section my-1">Dirección de entrega</label>
-                        <select id="selectAddress" class="form-select mx-auto" formControlName="address" (change)="addressChange()">
-                            <option value="" *ngIf="!addressesList.length; else addresses" [selected]="true">
-                                No hay direcciones disponibles
-                            </option>
-                            <ng-template #addresses>
-                                <option [value]="address._id"
-                                    *ngFor="let address of addressesList; index as i" [selected]="i == 0">
-                                    Dirección {{ i + 1 }}: {{ address.address }}
+
+        <div *ngIf="!orderPlaced; else orderPlacedSuccess">
+            <form [formGroup]="order" (submit)="onSubmit($event)" *ngIf="order">
+                <mat-tab-group>
+                    <mat-tab label="Dirección">
+                        <section class="mt-4">
+                            <label for="selectAddress" class="label-section my-1">Dirección de entrega</label>
+                            <select id="selectAddress" class="form-select mx-auto" formControlName="address" (change)="addressChange()">
+                                <option value="" *ngIf="!addressesList.length; else addresses" [selected]="true">
+                                    No hay direcciones disponibles
                                 </option>
-                            </ng-template>
-                        </select>
-                        <div class="mt-3 option-selected" *ngIf="addressSelected; else noAddressSelected">
-                            <h4>Dirección elegida</h4>
-                            <ul>
-                                <li><b>{{ addressSelected.name }}</b></li>
-                                <li>{{ addressSelected.city }}, ({{ addressSelected.province }}) {{ addressSelected.address }}</li>
-                                <li *ngIf="addressSelected.apartment !== 'undefined'">{{ addressSelected.apartment }}</li>
-                                <li>{{ addressSelected.country }}</li>
-                                <li>{{ addressSelected.phone }}</li>
-                                <li>{{ addressSelected.zipCode }}</li>
-                            </ul>
-                        </div>
-                        <ng-template #noAddressSelected>
-                            <div class="mt-3 option-selected">
-                            <h4>Dirección elegida</h4>
-                                <p>-- No hay direcciones disponibles --</p>
-                                <button class="btn btn-success" (click)="goTo('address')">Añadir dirección</button>
+                                <ng-template #addresses>
+                                    <option [value]="address._id"
+                                        *ngFor="let address of addressesList; index as i" [selected]="i == 0">
+                                        Dirección {{ i + 1 }}: {{ address.address }}
+                                    </option>
+                                </ng-template>
+                            </select>
+                            <div class="mt-3 option-selected" *ngIf="addressSelected; else noAddressSelected">
+                                <h4>Dirección elegida</h4>
+                                <ul>
+                                    <li><b>{{ addressSelected.name }}</b></li>
+                                    <li>{{ addressSelected.city }}, ({{ addressSelected.province }}) {{ addressSelected.address }}</li>
+                                    <li *ngIf="addressSelected.apartment !== 'undefined'">{{ addressSelected.apartment }}</li>
+                                    <li>{{ addressSelected.country }}</li>
+                                    <li>{{ addressSelected.phone }}</li>
+                                    <li>{{ addressSelected.zipCode }}</li>
+                                </ul>
                             </div>
-                        </ng-template>
-                    </section>
-                </mat-tab>
-                <mat-tab label="Pago" [disabled]="!checkAddressSelected()">
-                    <section class="mt-4">
-                        <label for="selectCreditCard" class="label-section my-1">Elección de tarjeta</label>
-                        <select id="selectCreditCard" class="form-select mx-auto" formControlName="payment" (change)="cardChange()">
-                            <option value="" *ngIf="!creditCards.length; else creditCard" [selected]="true">
-                                No hay tarjetas disponibles
-                            </option>
-                            <ng-template #creditCard>
-                                <option [value]="card.id"
-                                    *ngFor="let card of creditCards; index as i" [selected]="i == 0">
-                                    Tarjeta {{ i + 1 }}: 
-                                    {{ getInfoCard(card).type }}
-                                    acabada en {{ card.cardNumber | creditCardLastNumbers }}
+                            <ng-template #noAddressSelected>
+                                <div class="mt-3 option-selected">
+                                <h4>Dirección elegida</h4>
+                                    <p>-- No hay direcciones disponibles --</p>
+                                    <button class="btn btn-success" (click)="goTo('address')">Añadir dirección</button>
+                                </div>
+                            </ng-template>
+                        </section>
+                    </mat-tab>
+                    <mat-tab label="Pago" [disabled]="!checkAddressSelected()">
+                        <section class="mt-4">
+                            <label for="selectCreditCard" class="label-section my-1">Elección de tarjeta</label>
+                            <select id="selectCreditCard" class="form-select mx-auto" formControlName="payment" (change)="cardChange()">
+                                <option value="" *ngIf="!creditCards.length; else creditCard" [selected]="true">
+                                    No hay tarjetas disponibles
                                 </option>
-                            </ng-template>
-                        </select>
-                        <div class="mt-3 option-selected" *ngIf="cardSelected; else noCard">
-                            <h4>Tarjeta elegida</h4>
-                            <div class="creditCard" [ngClass]="cssCreditCard(cardSelected)">
-                                <h5>{{ getInfoCard(cardSelected).type }}</h5>
-                                <div class="creditCard-info">
-                                    <div>{{ cardSelected.name }}</div>
-                                    <div>{{ cardSelected.cardNumber | cardNumberHide }}</div>
-                                    <div [ngClass]="cssCardExpired(cardSelected)">{{ cardSelected.month | normalizeDigits }}/{{ cardSelected.year }}</div>
-                                </div>
-                            </div>
-                        </div>
-                        <ng-template #noCard>
-                            <div class="mt-3 option-selected">
-                            <h4>Tarjeta elegida</h4>
-                                <p>-- No hay tarjetas disponibles --</p>
-                                <button class="btn btn-success" (click)="goTo('payments')">Añadir tarjeta</button>
-                            </div>
-                        </ng-template>
-                    </section>
-                </mat-tab>
-                <mat-tab label="Confirmación" [disabled]="!(checkAddressSelected() && checkPaymentSelected())">
-                    <section>
-                        <div class="order" *ngIf="addressSelected">
-                            <div class="d-flex justify-content-around">
-                                <div>
-                                    <h6>Direcciónde envío</h6>
-                                    <hr>
-                                    <p>{{ addressSelected.name }}</p>
-                                    <p>{{ addressSelected.city }}, ({{ addressSelected.province }}) {{ addressSelected.address }}</p>
-                                    <p *ngIf="addressSelected.apartment !== 'undefined'">{{ addressSelected.apartment }}</p>
-                                    <p>{{ addressSelected.country }}</p>
-                                    <p>{{ addressSelected.phone }}</p>
-                                    <p>{{ addressSelected.zipCode }}</p>
-                                </div>
-                                <div *ngIf="cardSelected">
-                                    <h6>Tarjeta seleccionada</h6>
-                                    <hr>
-                                    <div class="d-flex flex-row align-items-center justify-content-end">
-                                        <div class="credit-logo" [ngClass]="getInfoCard(cardSelected).class"></div>
-                                        Acabada en: {{ cardSelected.cardNumber | creditCardLastNumbers }}
+                                <ng-template #creditCard>
+                                    <option [value]="card.id"
+                                        *ngFor="let card of creditCards; index as i" [selected]="i == 0">
+                                        Tarjeta {{ i + 1 }}: 
+                                        {{ getInfoCard(card).type }}
+                                        acabada en {{ card.cardNumber | creditCardLastNumbers }}
+                                    </option>
+                                </ng-template>
+                            </select>
+                            <div class="mt-3 option-selected" *ngIf="cardSelected; else noCard">
+                                <h4>Tarjeta elegida</h4>
+                                <div class="creditCard" [ngClass]="cssCreditCard(cardSelected)">
+                                    <h5>{{ getInfoCard(cardSelected).type }}</h5>
+                                    <div class="creditCard-info">
+                                        <div>{{ cardSelected.name }}</div>
+                                        <div>{{ cardSelected.cardNumber | cardNumberHide }}</div>
+                                        <div [ngClass]="cssCardExpired(cardSelected)">{{ cardSelected.month | normalizeDigits }}/{{ cardSelected.year }}</div>
                                     </div>
-                                    <div class="text-right" [ngClass]="cssCardExpired(cardSelected)">{{ cardSelected.month | normalizeDigits }}/{{ cardSelected.year }}</div>
                                 </div>
                             </div>
+                            <ng-template #noCard>
+                                <div class="mt-3 option-selected">
+                                <h4>Tarjeta elegida</h4>
+                                    <p>-- No hay tarjetas disponibles --</p>
+                                    <button class="btn btn-success" (click)="goTo('payments')">Añadir tarjeta</button>
+                                </div>
+                            </ng-template>
+                        </section>
+                    </mat-tab>
+                    <mat-tab label="Confirmación" [disabled]="!(checkAddressSelected() && checkPaymentSelected())">
+                        <section>
+                            <div class="order" *ngIf="addressSelected">
+                                <div class="d-flex justify-content-around">
+                                    <div>
+                                        <h6>Direcciónde envío</h6>
+                                        <hr>
+                                        <p>{{ addressSelected.name }}</p>
+                                        <p>{{ addressSelected.city }}, ({{ addressSelected.province }}) {{ addressSelected.address }}</p>
+                                        <p *ngIf="addressSelected.apartment !== 'undefined'">{{ addressSelected.apartment }}</p>
+                                        <p>{{ addressSelected.country }}</p>
+                                        <p>{{ addressSelected.phone }}</p>
+                                        <p>{{ addressSelected.zipCode }}</p>
+                                    </div>
+                                    <div *ngIf="cardSelected">
+                                        <h6>Tarjeta seleccionada</h6>
+                                        <hr>
+                                        <div class="d-flex flex-row align-items-center justify-content-end">
+                                            <div class="credit-logo" [ngClass]="getInfoCard(cardSelected).class"></div>
+                                            Acabada en: {{ cardSelected.cardNumber | creditCardLastNumbers }}
+                                        </div>
+                                        <div class="text-right" [ngClass]="cssCardExpired(cardSelected)">{{ cardSelected.month | normalizeDigits }}/{{ cardSelected.year }}</div>
+                                    </div>
+                                </div>
+    
+                                <hr class="ghost">
+                                <div class="my-3 mx-4">
+                                    <div>
+                                        <b>Productos:</b> {{ getTotalProducts() }}
+                                    </div>
+                                    <div>
+                                        <b>Precio total:</b> {{ getTotalPrice() | price }}
+                                    </div>
+                                </div>
+                                <hr class="ghost">
+    
+                                <label for="instructions" class="mx-2 my-1">Añadir instrucciones de entrega</label>
+                                <textarea #instructions id="instructions" formControlName="instructions" 
+                                    placeholder="¿Necesitamos indicaciones adicionales para encontrar esta dirección?" 
+                                    [maxlength]="250">
+                                </textarea>
+                                <div class="mx-2">
+                                    {{ instructions.value.length }}/250
+                                </div>
+                            </div>
+                            <button class="btn golden">Confirmar pedido</button>
+                        </section>
+                    </mat-tab>
+                  </mat-tab-group>
+                  <ng-template #emptyCart>
+                      La cesta está vacía
+                  </ng-template>
+            </form>
+        </div>
 
-                            <hr class="ghost">
-                            <div class="my-3 mx-4">
-                                <div>
-                                    <b>Productos:</b> {{ getTotalProducts() }}
-                                </div>
-                                <div>
-                                    <b>Precio total:</b> {{ getTotalPrice() | price }}
-                                </div>
-                            </div>
-                            <hr class="ghost">
-
-                            <label for="instructions" class="mx-2 my-1">Añadir instrucciones de entrega</label>
-                            <textarea #instructions id="instructions" formControlName="instructions" 
-                                placeholder="¿Necesitamos indicaciones adicionales para encontrar esta dirección?" 
-                                [maxlength]="250">
-                            </textarea>
-                            <div class="mx-2">
-                                {{ instructions.value.length }}/250
-                            </div>
-                        </div>
-                        <button class="btn golden">Confirmar pedido</button>
-                    </section>
-                </mat-tab>
-              </mat-tab-group>
-              <ng-template #emptyCart>
-                  La cesta está vacía
-              </ng-template>
-        </form>
+        <ng-template #orderPlacedSuccess>
+            <p class="text-center">{{ messageOrderPlaced }}</p>
+            <div class="button-main-panel">
+                <button class="btn btn-success" (click)="goTo('myorders')">Aceptar</button>
+            </div>
+        </ng-template>
     </div>
 </div>

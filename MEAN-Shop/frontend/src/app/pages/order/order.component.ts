@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { DialogComponent } from 'src/app/shared/components/dialog/dialog.component';
 import { Product } from 'src/app/shared/interfaces/product';
 import { UserAddress } from 'src/app/shared/interfaces/user-address';
 import { UserCreditCards } from 'src/app/shared/interfaces/user-credit-cards';
 import { AccessService } from 'src/app/shared/services/access.service';
 import { AppCookiesService } from 'src/app/shared/services/app-cookies.service';
 import { CartService } from 'src/app/shared/services/cart.service';
+import { OrdersService } from 'src/app/shared/services/orders.service';
 import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
@@ -17,16 +20,19 @@ import { UserService } from 'src/app/shared/services/user.service';
 export class OrderComponent implements OnInit {
 
   order!: FormGroup;
+  orderPlaced: boolean = false;
+  messageOrderPlaced!: string;
 
   addressesList: UserAddress[] = [];
   creditCards: UserCreditCards[] = [];
-  cart!: Product[];
+  // cart!: Product[];
 
   addressSelected!: UserAddress;
   cardSelected!: UserCreditCards;
 
   private userAddressesSvc$!: any;
   private userCreditCardsSvc$!: any;
+  private orderSvc$!: any;
 
   constructor( 
     private fb: FormBuilder,
@@ -34,7 +40,9 @@ export class OrderComponent implements OnInit {
     private cartSvc: CartService,
     private cookiesSvc: AppCookiesService,
     private accessSvc: AccessService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog,
+    private orderSvc: OrdersService
   ) { }
 
   ngOnInit(): void {
@@ -44,6 +52,7 @@ export class OrderComponent implements OnInit {
   ngOnDestroy(): void {
     this.userAddressesSvc$?.unsubscribe();
     this.userCreditCardsSvc$?.unsubscribe();
+    this.orderSvc$?.unsubscribe();
   }
 
   addressChange(): void {
@@ -59,7 +68,7 @@ export class OrderComponent implements OnInit {
 
   private async initServices(): Promise<void> {
     if ( this.cookiesSvc.getToken() == ''  ) await this.refreshToken();
-    this.cart = this.cartSvc.getCart();
+    // this.cart = this.cartSvc.getCart();
     
     this.userSvc.creditCards$
       .subscribe( 
@@ -93,13 +102,40 @@ export class OrderComponent implements OnInit {
     return this.cartSvc.getTotalPrice();
   }
 
-  onSubmit(event: Event): void {
-    const order: any = {};
+  private prepareOrder(order: any): void {
     order.address = this.addressSelected;
     order.creditCard = this.cardSelected;
-    order.cart = this.cart;
+    order.order = this.cartSvc.getCart();
     order.instructions = this.order.get('instructions')?.value;
-    console.log( order );
+  }
+
+  async onSubmit(event: Event): Promise<void> {
+    event.preventDefault();
+    if ( !this.cookiesSvc.checkLogin()  ) this.router.navigate( ['/login'] );
+    if ( this.cookiesSvc.getToken() == ''  ) await this.refreshToken();
+    const order: any = {};
+    this.prepareOrder(order);
+
+    let messageLoggedInDialog = this.dialog.open(DialogComponent, {
+      data: {
+        title: 'Confirmación de pedido',
+        message: '¿Desea realizar el pedido con los datos seleccionados?',
+        alertMessage: false,
+        continueMessage: false,
+        optionButtons: true
+      }
+    });
+    messageLoggedInDialog.afterClosed().subscribe( res => {
+      if (res) {
+        this.orderSvc$ = this.orderSvc.newOrder( this.cookiesSvc.getToken(), order ).subscribe(
+          res => {
+            this.messageOrderPlaced = res.message;
+            this.cartSvc.resetCart();
+            this.orderPlaced = true;
+          }
+        );
+      }
+    } );
     
   }
 

@@ -150,9 +150,11 @@ hr.ghost {
 }
 
 button.golden {
-    /* border-color: var(--red); */
     border-radius: 50px;
     width: 100%;
+}
+.button-main-panel {
+    width: 95%;
 }
 
 @media screen and (min-width: 768px) {
@@ -181,6 +183,9 @@ button.golden {
     }
     button.golden {
         border-radius: 50px;
+        width: max-content;
+    }
+    .button-main-panel {
         width: max-content;
     }
 }
