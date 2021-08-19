@@ -22,11 +22,12 @@ export class OrderCardComponent implements OnInit {
 
   cssStatus(): any {
     return {
-      'canceled fw-bold': this.order.status == 'Cancelado',
-      'pending fw-bold': this.order.status == 'Pendiente',
-      'preparing fw-bold': this.order.status == 'Preparando',
-      'sended fw-bold': this.order.status == 'Enviado',
-      'delivered fw-bold': this.order.status == 'Entregado'
+      'canceled': this.order.status == 'Cancelado',
+      'pending': this.order.status == 'Pendiente',
+      'preparing': this.order.status == 'Preparando',
+      'sended': this.order.status == 'Enviado',
+      'delivered': this.order.status == 'Entregado',
+      'fw-bold': true
     }
   }
 
