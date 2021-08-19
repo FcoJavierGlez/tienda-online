@@ -12,8 +12,8 @@ export class OrdersService {
 
   constructor( private http: HttpClient) { }
 
-  getUserOrders() {
-
+  getUserOrders(token: string): Observable<Orders[]> {
+    return this.http.get<Orders[]>( `${this.URL}`, { headers: { authorization: `Bearer ${token}` } } );
   }
   getOneUserOrder() {
     

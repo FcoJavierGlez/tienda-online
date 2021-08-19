@@ -1,0 +1,30 @@
+<div class="order-card">
+    <header>
+        <div><b>Fecha:</b> {{ order.createdAt | date: 'dd/MM/yyyy HH:mm:ss' }}</div>
+        <div><b>Estado:</b> <span [ngClass]="cssStatus()"> {{ order.status }}</span></div>
+    </header>
+    <section>
+        <div>
+            <b>Ref: </b>{{ order._id }}
+        </div>
+        <div class="info">
+            <div class="d-flex justify-content-center"> <!--  justify-content-center -->
+                <img [src]="order.order[0].images[0]" alt="Imagen del primer producto">
+            </div>
+            <div>
+                <div>
+                    <div class="box-info">
+                        <p><b>{{ order.order[0].name }}</b></p>
+                    </div>
+                    <p>x{{ order.order[0].quantity }}</p>
+                </div>
+                <div class="d-flex justify-content-end" *ngIf="totalProducts() > 1">
+                    <b>
+                        Y otros {{ totalProducts() }} productos...
+                    </b>
+                </div>
+            </div>
+        </div>
+        
+    </section>
+</div>

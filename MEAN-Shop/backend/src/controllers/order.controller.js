@@ -44,9 +44,11 @@ const newOrderMail = ( user, order ) => {
 const orderController = {
     getUserOrders: async function (req,res) {
         try {
-            
+            const userOrders = await Order.find( { uid: req.uid } );
+            res.status(200).json( userOrders );
         } catch (error) {
-            
+            console.log(error);
+            res.status(500).json( { message: 'Parecido que algo ha ido mal.' } );
         }
     },
     getOneUserOrder: async function (req,res) {

@@ -1,0 +1,73 @@
+.order-card {
+    margin: 10px auto;
+    width: 95%;
+}
+
+.order-card:hover {
+    cursor: pointer;
+}
+
+header {
+    align-items: center;
+    background-color: ghostwhite;
+    border: 2px solid black;
+    border-bottom: none;
+    display: flex;
+    font-size: 0.9rem;
+    justify-content: space-between;
+    padding: 5px 8px;
+    width: 100%;
+}
+
+.canceled {
+    color: red;
+}
+.pending {
+    color: orange;
+}
+.preparing {
+    color: #0dcaf0;
+}
+.sended {
+    color: #09be88;
+}
+.delivered {
+    color: rgb(0, 190, 0);
+}
+
+section {
+    border: 2px solid black;
+    display: flex;
+    flex-flow: column;
+    padding: 5px 10px;
+}
+
+section img {
+    height: 100px;
+    width: auto;
+}
+
+.info {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 90px auto;
+    margin: 6px 0;
+}
+
+.box-info {
+    display: -webkit-box;
+    height: 20px;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.box-info p {
+    text-overflow: ellipsis;
+}
+
+@media screen and (min-width: 500px) {
+    header {
+        font-size: 1rem;
+    }
+}
