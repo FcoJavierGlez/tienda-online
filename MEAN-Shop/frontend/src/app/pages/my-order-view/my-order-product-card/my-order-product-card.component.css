@@ -39,8 +39,15 @@
 .info {
     display: flex;
     flex-flow: column;
-    justify-content: space-between;
     row-gap: 5px;
+}
+
+.price-quantity {
+    height: -webkit-fill-available;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    width: max-content;
 }
 
 div.product-name {
@@ -69,17 +76,28 @@ span.vendor:hover {
 div.price p {
     margin-bottom: 2px;
 }
-div.price span {
+div.price span,
+div.total-price span {
     font-weight: 500;
-    *text-align: center;
     width: 100%;
 }
 .quantity,
-.price {
+.price, 
+.total-price {
     align-items: center;
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-column-gap: 10px;
     column-gap: 10px;
-    justify-content: flex-start;
+    justify-items: end;
+}
+.quantity{
+    justify-items: center;
+}
+.total-price span {
+    color: var(--red);
+    font-weight: bold !important;
+    width: 100%;
 }
 .total-quantity {
     text-align: center;
@@ -97,20 +115,11 @@ button.btn-incdec:focus {
     box-shadow: none;
 }
 
-.delete-product {
-    color: var(--spartan_red);
-    font-weight: 500;
-}
-.delete-product:hover {
-    cursor: pointer;
-    text-decoration: underline;
-}
-
 @media screen and (min-width: 600px) {
     .product-cart {
         column-gap: 10px;
         display: flex;
-        margin: 15px 5px;
+        margin: 10px 5px;
         min-height: 175px;
     }
     .product-cart img {

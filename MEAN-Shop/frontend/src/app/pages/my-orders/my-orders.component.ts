@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Orders } from 'src/app/shared/interfaces/orders';
 import { AccessService } from 'src/app/shared/services/access.service';
 import { AppCookiesService } from 'src/app/shared/services/app-cookies.service';
@@ -18,16 +19,14 @@ export class MyOrdersComponent implements OnInit {
   constructor( 
     private ordersSvc: OrdersService,
     private cookiesSvc: AppCookiesService,
-    private accessSvc: AccessService
+    private accessSvc: AccessService,
+    private router: Router
   ) { }
 
   async ngOnInit(): Promise<void> {
     if ( this.cookiesSvc.getToken() == '' ) await this.refreshToken();
     this.ordersSvc$ = this.ordersSvc.getUserOrders( this.cookiesSvc.getToken() ).subscribe(
-      ordersList => {
-        this.ordersList = ordersList;
-        console.log(this.ordersList);
-      }
+      ordersList => this.ordersList = ordersList
     );
   }
 
@@ -40,6 +39,11 @@ export class MyOrdersComponent implements OnInit {
           .toPromise().then( res => {
             this.cookiesSvc.login( res.token, res.refresh );
           });
+  }
+
+  async goToOrder(order: Orders): Promise<void> {
+    if ( this.cookiesSvc.getToken() == '' ) await this.refreshToken();
+    this.router.navigateByUrl( `/order/${order._id}` );
   }
 
 }

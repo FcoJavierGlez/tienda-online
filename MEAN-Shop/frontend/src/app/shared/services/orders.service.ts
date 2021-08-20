@@ -15,10 +15,9 @@ export class OrdersService {
   getUserOrders(token: string): Observable<Orders[]> {
     return this.http.get<Orders[]>( `${this.URL}`, { headers: { authorization: `Bearer ${token}` } } );
   }
-  getOneUserOrder() {
-    
+  getOneUserOrder(token: string, idOrder: string): Observable<Orders> {
+    return this.http.get<Orders>( `${this.URL}/${idOrder}`, { headers: { authorization: `Bearer ${token}` } } );
   }
-
   newOrder(token: string, order: Orders): Observable<any> {
     return this.http.post<any>( `${this.URL}`, order, { headers: { authorization: `Bearer ${token}` } } );
   }

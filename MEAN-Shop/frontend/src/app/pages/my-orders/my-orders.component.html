@@ -4,7 +4,7 @@
         <hr class="spartan mb-0">
         <a routerLink="/profile" class="mx-2"><i class="fas fa-arrow-left"></i> Volver a mi perfil</a>
         <div>
-            <app-order-card *ngFor="let order of ordersList" [order]="order"></app-order-card>
+            <app-order-card *ngFor="let order of ordersList" [order]="order" (click)="goToOrder(order)"></app-order-card>
         </div>
     </div>
 </div>

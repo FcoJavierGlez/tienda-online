@@ -2,6 +2,7 @@ import Order from '../models/Order.model';
 import User from '../models/User.model';
 import mailTransport from '../lib/mail';
 import appConfig from '../config';
+import { json } from 'express';
 
 const itemList = order => {
     let list = '';
@@ -53,9 +54,12 @@ const orderController = {
     },
     getOneUserOrder: async function (req,res) {
         try {
-            
+            const order = await Order.findById( req.params.id );
+            if ( order.uid !== req.uid ) throw new Error();
+            res.status(200).json( order );
         } catch (error) {
-            
+            // console.log(error);
+            res.status(500).json( { message: 'Parecido que algo ha ido mal.' } );
         }
     },
     newOrder: async function (req,res) {

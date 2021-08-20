@@ -6,7 +6,7 @@ export interface Orders {
     _id?: string,
     uid?: string,
     status: string,
-    address: UserAddress[],
+    address: UserAddress,
     creditCard: UserCreditCards,
     order: Product[],
     instructions: string,

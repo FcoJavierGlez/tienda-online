@@ -1,0 +1,28 @@
+<div class="product-cart">
+    <div class="product-img" (click)="goToProduct()">
+        <img [src]="product.images[0]" alt="Imagen del producto" loading="lazy">
+    </div>
+    <div class="info-box">
+        <div class="info">
+            <div>
+                <div class="product-name" (click)="goToProduct()">
+                    <p class="product-name">{{ product.name }}</p>
+                </div>
+                <p class="vendor" *ngIf="product?.vendor !== ''">
+                    por <span class="vendor" (click)="goToProduct()" *ngIf="product.vendor !== ''">{{ product.vendor }}</span>
+                </p>
+            </div>
+            <div class="price-quantity">
+                <div class="price">
+                    <div>Precio/ud: </div> <div> <span>{{ product.price * (100 - product.discount) / 100 | price }}</span> </div>
+                </div>
+                <div class="quantity">
+                    <div>Cantidad: </div><div>x{{ product.quantity }}</div>
+                </div>
+                <div class="total-price">
+                    <div>Total: </div> <div> <span>{{ ( product.price * (100 - product.discount) / 100 ) * product.quantity | price }}</span> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

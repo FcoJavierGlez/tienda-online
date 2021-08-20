@@ -19,9 +19,14 @@
                     <p>x{{ order.order[0].quantity }}</p>
                 </div>
                 <div class="other-products" *ngIf="totalProducts() > 1">
-                    <b>
-                        Y otros {{ totalProducts() }} productos...
+                    <b *ngIf="totalProducts() == 2; else moreThanTwo">
+                        Y un producto más.
                     </b>
+                    <ng-template #moreThanTwo>
+                        <b>
+                            Y otros {{ totalProducts() - 1 }} productos...
+                        </b>
+                    </ng-template>
                 </div>
             </div>
         </div>
