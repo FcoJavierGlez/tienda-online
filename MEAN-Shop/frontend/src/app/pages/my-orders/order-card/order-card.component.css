@@ -68,8 +68,16 @@ section img {
     text-overflow: ellipsis;
 }
 
+.other-products {
+    display: flex;
+    justify-content: flex-end;
+}
+
 @media screen and (min-width: 500px) {
     header {
         font-size: 1rem;
+    }
+    .other-products {
+        justify-content: flex-start;
     }
 }

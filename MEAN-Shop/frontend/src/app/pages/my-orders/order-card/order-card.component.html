@@ -18,7 +18,7 @@
                     </div>
                     <p>x{{ order.order[0].quantity }}</p>
                 </div>
-                <div class="d-flex justify-content-end" *ngIf="totalProducts() > 1">
+                <div class="other-products" *ngIf="totalProducts() > 1">
                     <b>
                         Y otros {{ totalProducts() }} productos...
                     </b>
