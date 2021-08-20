@@ -31,11 +31,7 @@ export class MyOrderViewComponent implements OnInit {
         this.idOrder = param['id'];
         this.orderSvc$ = this.orderSvc.getOneUserOrder( this.cookiesSvc.getToken(), this.idOrder )
           .subscribe(
-            res => {
-              this.order = res;
-              console.log(this.order);
-              
-            },
+            res => this.order = res,
             err => this.router.navigate( ['/myorders'] )
           );
       }
@@ -45,6 +41,10 @@ export class MyOrderViewComponent implements OnInit {
   ngOnDestroy(): void {
     this.orderSvc$?.unsubscribe();
     this.params$?.unsubscribe();
+  }
+
+  getTotalPrice(): number {
+    return this.order.order.map( e => e.price * ( (100 - e.discount) / 100 ) * e.quantity ).reduce( (e,acc) => e + acc );
   }
 
   cssStatus(): any {

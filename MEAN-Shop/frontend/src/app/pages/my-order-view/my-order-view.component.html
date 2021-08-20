@@ -24,6 +24,7 @@
                             {{ order.instructions }}
                         </div>
                     </div>
+                    <div class="total-price mt-2">Precio total: <span>{{ getTotalPrice() | price }}</span> </div>
                 </div>
                 <div class="products-list">
                     <app-my-order-product-card *ngFor="let product of order.order" [product]="product"></app-my-order-product-card>

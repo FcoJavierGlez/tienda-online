@@ -1,5 +1,5 @@
 .container {
-    padding-bottom: 25px;
+    padding-bottom: 25px !important;
     margin-top: 30px;
 }
 
@@ -77,9 +77,14 @@ section {
     border-right: 2px dashed black;
 }
 
+.total-price {
+    font-weight: 500;
+}
 
-.products-list {
-    padding: 5px 0;
+.total-price span {
+    color: var(--red);
+    font-size: 18px;
+    font-weight: bold;
 }
 
 @media screen and (min-width: 500px) {

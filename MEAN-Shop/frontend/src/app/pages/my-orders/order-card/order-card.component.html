@@ -8,7 +8,7 @@
             <b>Ref: </b>{{ order._id }}
         </div>
         <div class="info">
-            <div class="d-flex justify-content-center"> <!--  justify-content-center -->
+            <div class="d-flex justify-content-center">
                 <img [src]="order.order[0].images[0]" alt="Imagen del primer producto">
             </div>
             <div>
@@ -18,13 +18,13 @@
                     </div>
                     <p>x{{ order.order[0].quantity }}</p>
                 </div>
-                <div class="other-products" *ngIf="totalProducts() > 1">
-                    <b *ngIf="totalProducts() == 2; else moreThanTwo">
+                <div class="other-products" *ngIf="totalProducts() - order.order[0].quantity > 0">
+                    <b *ngIf="totalProducts() - order.order[0].quantity == 1; else moreThanTwo">
                         Y un producto más.
                     </b>
                     <ng-template #moreThanTwo>
                         <b>
-                            Y otros {{ totalProducts() - 1 }} productos...
+                            Y otros {{ totalProducts() - order.order[0].quantity }} productos...
                         </b>
                     </ng-template>
                 </div>
