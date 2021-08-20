@@ -25,21 +25,22 @@ export class SearchBarComponent implements OnInit {
   search(): void {
     if ( this.textSearch.replace(/\s+/g, '') == '' ) this.router.navigate(['/products']);
     else {
-      //const SEARCH = this.textSearch.trim().replace(/\s+/g, ' ');
       const ROUTE = this.textSearch.trim().replace(/\s+/g, ' ').replace(/\s/g, '%20');
       this.textSearch = '';
       this.router.navigateByUrl( `/products?s=${ROUTE}` );
     }
   }
 
-  getSuggestions() {
+  getSuggestions(event: Event) {
+    const keyBoardEvent = ( <KeyboardEvent> event );
     if (!this.textSearch.length) this.suggestions = [];
+    else if ( keyBoardEvent.key.length > 1 ) return;
     else
     this.searchSvc.suggestions( this.textSearch ).subscribe(
       data => {
         this.suggestions = data;
       }
-    )
+    );
   }
 
   toggleFocus(): void {

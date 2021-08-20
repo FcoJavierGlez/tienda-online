@@ -7,7 +7,7 @@
           (blur)="toggleFocus()" 
           [(ngModel)]="textSearch" 
           (keyup.enter)="search()"
-          (keyup)="getSuggestions()"
+          (keyup)="getSuggestions($event)"
           [matAutocomplete]="auto"/>
         </div>
         <button type="button" class="btn btn-primary ceramic" [ngClass]="cssSearchButton()" (click)="search()">
