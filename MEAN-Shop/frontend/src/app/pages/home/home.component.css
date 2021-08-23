@@ -1,6 +1,7 @@
 .container-fluid {
     background-color: rgb(235,235,235);
     min-height: 100vh;
+    padding-bottom: 25px !important;
 }
 
 .main-panel {
@@ -18,11 +19,11 @@ h4 {
     color: white;
     font-size: 0.85rem;
     position: relative;
-    top: 40px;
+    top: 30px;
 }
 
 .bg-img {
-    padding: 30px;
+    /* padding: 30px; */
     width: 100%;
 }
 .bg_logo {
@@ -44,7 +45,7 @@ h4 {
     background-color: white;
     border-radius: 5px;
     height: 450px;
-    padding: 5px;
+    padding: 15px;
     width: 300px;
 }
 .card h3 {
@@ -71,11 +72,12 @@ h4 {
 
 .card .products-box {
     align-items: center;
+    column-gap: 25px;
     display: flex;
     flex-wrap: wrap;
     height: 100%;
-    gap: 25px;
     justify-content: center;
+    row-gap: 10px;
     width: 100%;
 }
 .card .product {
@@ -168,17 +170,31 @@ a.vendor:hover {
 
 @media screen and (min-width: 400px) {
     h4 {
-        top: 32px;
+        top: 25px;
     }
 }
 @media screen and (min-width: 458px) {
     h4 {
         font-size: 1rem;
+        top: 5px;
+    }
+    .bg-img {
+        padding: 20px;
+    }
+}
+@media screen and (min-width: 768px) {
+    h4 {
         top: 0;
+    }
+    .bg-img {
+        padding: 30px;
     }
 }
 @media screen and (min-width: 1000px) {
     h4 {
         font-size: 24px;
+    }
+    .bg-img {
+        padding: 50px;
     }
 }

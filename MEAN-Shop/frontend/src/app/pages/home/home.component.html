@@ -40,10 +40,8 @@
                     <h3>Cine</h3>
                     <hr class="spartan">
                     <div class="products-box">
-                        <div class="products-box">
-                            <div class="product" *ngFor="let film of films">
-                                <img [src]="film.images[0]" loading="lazy" [title]="film.name" alt="Imagen de producto" (click)="goToProduct(film)">
-                            </div>
+                        <div class="product" *ngFor="let film of films">
+                            <img [src]="film.images[0]" loading="lazy" [title]="film.name" alt="Imagen de producto" (click)="goToProduct(film)">
                         </div>
                     </div>
                 </div>
