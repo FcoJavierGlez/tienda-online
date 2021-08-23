@@ -2,7 +2,6 @@ import Order from '../models/Order.model';
 import User from '../models/User.model';
 import mailTransport from '../lib/mail';
 import appConfig from '../config';
-import { json } from 'express';
 
 const itemList = order => {
     let list = '';
@@ -49,7 +48,7 @@ const orderController = {
             res.status(200).json( userOrders );
         } catch (error) {
             console.log(error);
-            res.status(500).json( { message: 'Parecido que algo ha ido mal.' } );
+            res.status(500).json( { message: 'Parece que algo ha ido mal.' } );
         }
     },
     getOneUserOrder: async function (req,res) {
@@ -59,7 +58,7 @@ const orderController = {
             res.status(200).json( order );
         } catch (error) {
             // console.log(error);
-            res.status(500).json( { message: 'Parecido que algo ha ido mal.' } );
+            res.status(500).json( { message: 'Parece que algo ha ido mal.' } );
         }
     },
     newOrder: async function (req,res) {

@@ -1,7 +1,53 @@
 <div class="container-fluid">
     <div class="container-xxl">
         <div class="main-panel">
-            <!-- <h1>home works!</h1> -->
+            <div class="bg-img">
+                <h4>Descubre las ventajas de comprar con</h4>
+                <div class="bg_logo"></div>
+            </div>
+            <div class="box-cards">
+                <div class="card">
+                    <h3>Oferta Top</h3>
+                    <hr class="spartan">
+                    <div class="bargain" *ngIf="bargain">
+                        <div class="product-card col">
+                            <div class="product-img" (click)="goToProduct(bargain)">
+                                <img loading="lazy" [src]="bargain.images[0]" [title]="bargain.name" alt="Imagen de producto">
+                            </div>
+                            <div class="name">
+                                <a (click)="goToProduct(bargain)" class="name">{{ bargain.name }}</a>
+                            </div>
+                            <div class="show-price">
+                                <div class="price sale-price">{{ bargain.price * ( (100 - bargain.discount) / 100 ) | price }} ({{ bargain.discount }}%)</div>
+                                <div *ngIf="bargain.discount" class="old-price">{{ bargain.price | price }}</div>
+                            </div>
+                            <a class="vendor" (click)="goToProduct(bargain)" *ngIf="bargain.vendor !== ''">
+                                {{ bargain.vendor }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" (click)="goTo('libros')">
+                    <h3>Librería</h3>
+                    <hr class="spartan">
+                    <div class="products-box">
+                        <div class="product" *ngFor="let book of books">
+                            <img [src]="book.images[0]" loading="lazy" [title]="book.name" alt="Imagen de producto" (click)="goToProduct(book)">
+                        </div>
+                    </div>
+                </div>
+                <div class="card" (click)="goTo('películas')">
+                    <h3>Cine</h3>
+                    <hr class="spartan">
+                    <div class="products-box">
+                        <div class="products-box">
+                            <div class="product" *ngFor="let film of films">
+                                <img [src]="film.images[0]" loading="lazy" [title]="film.name" alt="Imagen de producto" (click)="goToProduct(film)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

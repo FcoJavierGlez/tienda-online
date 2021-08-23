@@ -1,26 +1,185 @@
-.main-panel {
-    background-color: lightskyblue;
-    background: linear-gradient(180deg, lightskyblue 0%, transparent 100%);
-    height: 600px;
-    width: 100%;
-}
-
 .container-fluid {
     background-color: rgb(235,235,235);
     min-height: 100vh;
 }
 
-/* @media screen and (max-width: 1400px) {
-    .container-fluid {
-        padding: 0!important;
-    }
-    .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
-        padding: 0!important;
-        width: 100vw!important;
+.main-panel {
+    background: linear-gradient(180deg, var(--blue_greek) 0%, lightskyblue 40%, transparent 100%);
+    min-height: 600px;
+    width: 100%;
+}
+
+h1,
+h4 {
+    margin-bottom: 0;
+}
+
+h4 {
+    color: white;
+    font-size: 0.85rem;
+    position: relative;
+    top: 40px;
+}
+
+.bg-img {
+    padding: 30px;
+    width: 100%;
+}
+.bg_logo {
+    background-image: url(../../../assets/icon/amz_ultm_logo_bl_lg.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 20vh;
+}
+
+.box-cards {
+    display: flex;
+    gap: 20px;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.card {
+    background-color: white;
+    /* border: 1px solid black; */
+    border-radius: 5px;
+    height: 450px;
+    padding: 5px;
+    width: 300px;
+}
+.card h3 {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
+.card:hover {
+    cursor: pointer;
+}
+
+.bargain {
+    align-items: center;
+    display: flex;
+    flex-flow: column;
+    height: 375px;
+    justify-content: center;
+    width: 100%;
+}
+.bargain img {
+    max-height: 90%;
+    width: auto;
+    max-width: 100%;
+}
+
+.card .products-box {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    gap: 25px;
+    justify-content: center;
+    width: 100%;
+}
+.card .product {
+    align-items: center;
+    display: flex;
+    height: 45%;
+    width: 40%;
+}
+.card .product img {
+    height: auto;
+    width: 100%;
+}
+
+
+.product-card {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    width: 300px;
+    flex-direction: column;
+}
+
+.product-img {
+    display: flex;
+    height: 250px;
+    margin-bottom: 10px;
+    width: auto;
+    max-width: 300px;
+}
+.product-img:hover {
+    cursor: pointer;
+}
+.product-img img {
+    display: block;
+    margin: auto;
+    max-height: 100%;
+    width: auto;
+    max-width: 290px;
+}
+
+div.name {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical; 
+    overflow: hidden;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+a.name {
+    color: var(--charcoal);
+    font-weight: 400;
+    line-height: 1rem;
+
+}
+a.name:hover {
+    color: var(--ceramic_dark);
+}
+
+.show-price {
+    align-items: flex-end;
+    display: flex;
+    column-gap: 10px;
+}
+.price {
+    font-size: 20px;
+    font-weight: 500;
+}
+.sale-price {
+    color: var(--red);
+}
+.old-price {
+    font-size: 14px;
+    text-decoration: line-through;
+}
+
+a.vendor {
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-left: 1px;
+}
+a.vendor:hover {
+    color: var(--spartan_red);
+    text-decoration: underline;
+}
+
+
+@media screen and (min-width: 400px) {
+    h4 {
+        top: 32px;
     }
 }
-@media screen and (min-width: 1400px) {
-    .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
-        max-width: 1500px;
+@media screen and (min-width: 458px) {
+    h4 {
+        font-size: 1rem;
+        top: 0;
     }
-} */
+}
+@media screen and (min-width: 1000px) {
+    h4 {
+        font-size: 24px;
+    }
+}
