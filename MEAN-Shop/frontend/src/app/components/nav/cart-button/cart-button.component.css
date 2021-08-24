@@ -7,7 +7,6 @@
     justify-content: center;
     text-decoration: none;
     width: 100px;
-    /* width: 110px; */
 }
 .cart_icon {
     background-image: url(../../../../assets/icon/cart_icon.png);
@@ -18,12 +17,6 @@
     width: 50px;
 }
 .items {
-    /* bottom: 12px;
-    color: var(--ceramic_dark);
-    font-size: 19px;
-    font-weight: bold;
-    position: relative; */
-    *bottom: 10px;
     bottom: 8px;
     color: var(--ceramic_dark);
     font-size: 16px;
@@ -34,10 +27,10 @@
     color: var(--ceramic_light);
 }
 .lt-10 {
-    left: 25px;
+    left: 24px;
 }
 .geqt-10 {
-    left: 20px;
+    left: 19px;
 }
 .geqt-100 {
     left: 15px;

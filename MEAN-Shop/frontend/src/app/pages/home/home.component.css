@@ -1,6 +1,7 @@
 .container-fluid {
     background-color: rgb(235,235,235);
-    min-height: 100vh;
+    /* min-height: 100vh; */
+    min-height: 93vh;
     padding-bottom: 25px !important;
 }
 
@@ -23,7 +24,6 @@ h4 {
 }
 
 .bg-img {
-    /* padding: 30px; */
     width: 100%;
 }
 .bg_logo {
