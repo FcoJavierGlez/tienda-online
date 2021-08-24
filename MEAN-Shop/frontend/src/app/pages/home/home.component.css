@@ -1,7 +1,6 @@
 .container-fluid {
-    background-color: rgb(235,235,235);
-    /* min-height: 100vh; */
-    min-height: 93vh;
+    /* background-color: rgb(235,235,235); */
+    background: linear-gradient(180deg, rgb(240,240,240) 60%, white 80%);
     padding-bottom: 25px !important;
 }
 
@@ -39,6 +38,7 @@ h4 {
     gap: 20px;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    margin-bottom: 55px;
     width: 100%;
 }
 .card {
@@ -165,6 +165,20 @@ a.vendor {
 a.vendor:hover {
     color: var(--spartan_red);
     text-decoration: underline;
+}
+
+/* SUGGEST */
+.suggest {
+    margin: 25px auto;
+}
+.suggest h3, 
+.suggest h4 {
+    color: black;
+    margin-bottom: 25px;
+    text-align: left;
+}
+.boundary-separate {
+    background: linear-gradient(90deg, transparent 0%, black 50%, transparent 100%);
 }
 
 

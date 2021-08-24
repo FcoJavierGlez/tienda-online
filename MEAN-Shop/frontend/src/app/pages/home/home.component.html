@@ -47,5 +47,13 @@
                 </div>
             </div>
         </div>
+        <!-- Suggests -->
+        <div class="container suggest">
+            <hr class="boundary-separate">
+            <h4 class="mx-2">Novedades</h4>
+            <app-suggests *ngIf="novelties" [products]="novelties"></app-suggests>
+            <!-- <hr> -->
+            <hr class="boundary-separate">
+        </div>
     </div>
 </div>

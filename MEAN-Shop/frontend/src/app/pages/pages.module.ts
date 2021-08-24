@@ -35,6 +35,7 @@ import { CreditCardsComponent } from './payments/credit-cards/credit-cards.compo
 import { OrderCardComponent } from './my-orders/order-card/order-card.component';
 import { MyOrderViewComponent } from './my-order-view/my-order-view.component';
 import { MyOrderProductCardComponent } from './my-order-view/my-order-product-card/my-order-product-card.component';
+import { NoveltiesSuggestComponent } from './home/novelties-suggest/novelties-suggest.component';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { MyOrderProductCardComponent } from './my-order-view/my-order-product-ca
     CreditCardsComponent,
     OrderCardComponent,
     MyOrderViewComponent,
-    MyOrderProductCardComponent
+    MyOrderProductCardComponent,
+    NoveltiesSuggestComponent
   ],
   imports: [
     AppRoutingModule,

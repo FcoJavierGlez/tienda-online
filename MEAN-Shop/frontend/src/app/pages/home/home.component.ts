@@ -15,12 +15,12 @@ export class HomeComponent implements OnInit {
   bargain!: Product;
   books!: Product[];
   films!: Product[];
-  new!: Product[];
+  novelties!: Product[];
 
   private bargain$!: any;
   private books$!: any;
   private films$!: any;
-  private new$!: any;
+  private novelties$!: any;
 
   constructor( 
     private cookiesSvc: AppCookiesService, 
@@ -37,14 +37,14 @@ export class HomeComponent implements OnInit {
     this.bargain$ = this.suggestSvc.getBargain().subscribe( product => this.bargain = product );
     this.books$ = this.suggestSvc.getBooks().subscribe( products => this.books = products );
     this.films$ = this.suggestSvc.getFilms().subscribe( products => this.films = products );
-    this.new$ = this.suggestSvc.getNew().subscribe( products => this.new = products );
+    this.novelties$ = this.suggestSvc.getNew().subscribe( products => this.novelties = products );
   }
 
   ngOnDestroy(): void {
     this.bargain$?.unsubscribe();
     this.books$?.unsubscribe();
     this.films$?.unsubscribe();
-    this.new$?.unsubscribe();
+    this.novelties$?.unsubscribe();
   }
 
   goTo(route: string): void {

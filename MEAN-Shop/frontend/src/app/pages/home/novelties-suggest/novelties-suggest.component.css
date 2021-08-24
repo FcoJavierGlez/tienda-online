@@ -1,0 +1,42 @@
+carousel {
+    /* background-color: white; */
+    padding: 10px;
+    z-index: 5 !important;
+}
+.carousel-cells {
+    width: max-content !important;
+}
+.carousel-cell {
+    *border: 1px solid black;
+    width: 200px !important;
+}
+.carousel-cell:hover {
+    cursor: pointer;
+}
+.cell-img {
+    height: 100px;
+}
+.cell-name-box {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.cell-name {
+    font-weight: 500;
+    margin-bottom: 0;
+}
+.cell-price {
+    align-items: baseline;
+    display: flex;
+    column-gap: 10px;
+}
+.cell-price .price {
+    color: var(--red);
+    font-size: 18px;
+}
+.cell-price .old-price {
+    color: rgb(125,125,125);
+    font-size: 14px;
+    text-decoration: line-through;
+}
