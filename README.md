@@ -19,7 +19,7 @@
 ### Demo de Amazona:
 <div align="center">
     <a href="https://www.youtube.com/" target="_blank">
-        <img src="img_readme/amz_video_frame.png" alt="Enlace demo Amazona" width="75%">
+        <img src="img_readme/amz_video_frame.png" alt="Enlace demo Amazona" title="Ver demo de Amazona" width="75%">
     </a>
 </div>
 
