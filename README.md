@@ -1,4 +1,4 @@
-# Amazona - Tienda online (Angular 12, Express & MongoDB)
+# Amazona (Angular 12, Express & MongoDB)
 ## Author: [Francisco Javier González Sabariego](https://fcojavierglez.github.io/portfolio/)
 
 ---
