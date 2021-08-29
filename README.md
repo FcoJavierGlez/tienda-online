@@ -1,4 +1,4 @@
-# Amazona (tienda-online)
+# Amazona - Tienda online (Angular 12, Express & MongoDB)
 ## Author: [Francisco Javier González Sabariego](https://fcojavierglez.github.io/portfolio/)
 
 ---
@@ -22,14 +22,15 @@
 
 ---
 
-### Demo de Amazona:
+### Demo
+Haz click en la siguiente imagen para poder ver el video de la demo:
 <div align="center">
-    <a href="https://www.youtube.com/" target="_blank">
-        <img src="img_readme/amz_video_frame.png" alt="Enlace demo Amazona" title="Ver demo de Amazona" width="75%">
+    <a href="https://www.youtube.com/watch?v=g4le1tt5_as" target="_blank">
+        <img src="img_readme/amz_video_frame.png" alt="Enlace demo Amazona" title="Ver demo de Amazona">
     </a>
 </div>
 
-### Sobre Amazona:
+### Sobre Amazona
 Tienda online desarrollada con el **stack MEAN (MongoDB, Express, Angular y Node.JS)**. 
 
 - **Con Angular 12 se ha desarrollado la SPA (Single Page Aplication)**, es decir, la página web que hará de UI y que a través de la misma el cliente podrá registrar su cuenta y, una vez activada, realizar el pedido de cualquier producto que se encuentre en la tienda.
